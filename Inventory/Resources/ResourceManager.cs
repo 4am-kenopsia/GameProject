@@ -7,9 +7,10 @@ namespace MapGame
     {
         [Export] public int _startingMainResource = 10000;
         [Export] public int _startingHappiness = 100;
+        [Export] public int _startingThirdResource = 5;
         [Export] public int _currentMainResource = 0;
         [Export] public int _currentHappiness = 0;
-        int num = 10;
+        [Export] public int _currentThirdResource = 0;
         public static ResourceManager Instance
         {
             get;
@@ -23,13 +24,31 @@ namespace MapGame
         }
         public void SetHappiness(int targetAmount)
         {
-            
+            _currentHappiness = targetAmount;
+        }
+        public void SetThirdResource(int targetAmount)
+        {
+            _currentThirdResource = targetAmount;
+        }
+        public void IncreaseMainResource(int increase)
+        {
+            _currentMainResource =+ increase;
+        }
+        public void IncreaseHappiness(int increase)
+        {
+            _currentHappiness =+ increase;
+        }
+        public void IncreaseThirdResource(int increase)
+        {
+            _currentThirdResource =+ increase;
         }
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
             Instance = this;
-            _currentHappiness = 5555;
+            IncreaseHappiness(-100);
+            
         }
+        
     }
 }

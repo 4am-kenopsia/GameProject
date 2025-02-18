@@ -1,3 +1,11 @@
 [gd_scene format=3 uid="uid://dt4smnno30xaw"]
 
-[node name="TopGui" type="Node2D"]
+[node name="TopGUI" type="CanvasLayer"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
