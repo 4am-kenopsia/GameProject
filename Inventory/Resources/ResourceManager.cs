@@ -42,11 +42,22 @@ namespace MapGame
         {
             _currentThirdResource =+ increase;
         }
+        public void DecreaseMainResource(int decrease)
+        {
+            _currentThirdResource =- decrease;
+        }
+        public void DecreaseHappiness(int decrease)
+        {
+            _currentThirdResource =- decrease;
+        }
+        public void DecreaseThirdResource(int decrease)
+        {
+            _currentThirdResource =- decrease;
+        }
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
             Instance = this;
-            IncreaseHappiness(-100);
             
         }
         
