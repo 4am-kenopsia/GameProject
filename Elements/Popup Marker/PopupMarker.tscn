@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0pxit6y5ejky"]
+
+[ext_resource type="Script" path="res://Code/PopupMarker.cs" id="1_c2lsn"]
+[ext_resource type="Texture2D" uid="uid://bj4ra0p5ywqxk" path="res://Art/popup-map-marker.png" id="2_uhlki"]
+
+[node name="PopupMarker" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_c2lsn")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("2_uhlki")
+texture_pressed = ExtResource("2_uhlki")
+texture_hover = ExtResource("2_uhlki")
+texture_disabled = ExtResource("2_uhlki")
+texture_focused = ExtResource("2_uhlki")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
