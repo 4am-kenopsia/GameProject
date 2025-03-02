@@ -10,6 +10,8 @@ namespace MapGame
 		private Label _mainResourceLabel;
 		private Label _happinessLabel;
 		private Label _thirdResourceLabel;
+		[Signal] public delegate void ShitBoughtEventHandler();
+		private Button _button;
 
 		
 		
@@ -24,6 +26,10 @@ namespace MapGame
 			_thirdResourceLabel = GetNode<Label>("HBoxContainer/ThirdResourceLabel");
 			SpawnChild();
 			UpdateResourceLabels();
+			_button = GetNode<Button>("Panel/BuyShit");
+
+			// Connect the button's "pressed" signal to a local method
+			_button.Pressed += BuyBuff;
 			
 		}
 
@@ -46,8 +52,8 @@ namespace MapGame
 
 		// Generate a random position within the scene
 		Vector2 randomPosition = new Vector2(
-			(float)GD.RandRange(0, GetViewport().GetVisibleRect().Size.X),
-			(float)GD.RandRange(0, GetViewport().GetVisibleRect().Size.Y)
+			(float)GD.RandRange(0, 1405),
+			(float)GD.RandRange(0, 854)
 		);
 
 		// Set the position of the child instance
@@ -79,9 +85,12 @@ namespace MapGame
 		PopupWindow popUpInstance = (PopupWindow)popUp.Instantiate();
 		popUpInstance.ButtonPressed2 += OnRightButtonPressed;
 		popUpInstance.ButtonPressed1 += OnLeftButtonPressed;
+		ShitBought += popUpInstance.OnShitBought;
 		Vector2 middleBottom = new Vector2( GetViewport().GetVisibleRect().Size.X / 2 , GetViewport().GetVisibleRect().Size.Y );
 		popUpInstance.Position = middleBottom;
 		AddChild(popUpInstance);
+		GetNode<Panel>("Panel").Visible = true;
+		
 	}
 	
 	private void UpdateResourceLabels()
@@ -89,6 +98,14 @@ namespace MapGame
 		_mainResourceLabel.Text = $"Main Resource: {ResourceManager.Instance._currentMainResource}";
 		_happinessLabel.Text = $"Happiness: {ResourceManager.Instance._currentHappiness}";
 		_thirdResourceLabel.Text = $"Third Resource: {ResourceManager.Instance._currentThirdResource}";
+	}
+		private void BuyBuff()
+	{
+		// Emit the custom signal
+		ResourceManager.Instance.DecreaseMainResource(300);
+		UpdateResourceLabels();
+		EmitSignal(SignalName.ShitBought);
+		GD.Print("lol1");
 	}
 	}
 }

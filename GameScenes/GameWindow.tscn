@@ -60,3 +60,25 @@ stretch_mode = 3
 layout_mode = 2
 text = "Dummy
 "
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_top = 324.0
+offset_right = 207.0
+offset_bottom = 670.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 206.0
+offset_bottom = 48.0
+text = "Buy buffs"
+horizontal_alignment = 1
+
+[node name="BuyShit" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 32.0
+offset_right = 194.0
+offset_bottom = 86.0
+text = "3rd resource +1
+Cost -300 Main"

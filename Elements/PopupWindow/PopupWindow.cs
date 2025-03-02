@@ -12,6 +12,7 @@ public partial class PopupWindow : Node2D
 
 	private Button _button1;
 	private Button _button2;
+	private int _increase = 1;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,7 +28,7 @@ public partial class PopupWindow : Node2D
 	private void OnButton1Pressed()
 	{
 		// Emit the custom signal
-		ResourceManager.Instance.IncreaseThirdResource(1);
+		ResourceManager.Instance.IncreaseThirdResource(_increase);
 		EmitSignal(SignalName.ButtonPressed1);
 		GD.Print("lol1");
 	}
@@ -38,6 +39,12 @@ public partial class PopupWindow : Node2D
 		ResourceManager.Instance.DecreaseMainResource(100);
 		EmitSignal(SignalName.ButtonPressed2);
 		GD.Print("lol2");
+	}
+	public void OnShitBought()
+	{
+		GD.Print("Shit was bought! Updating PopupWindow...");
+		_increase = _increase + 1;
+		// Add logic to update the PopupWindow UI or perform other actions
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
