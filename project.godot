@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-RecMan="*res://Inventory/Resources/ResourceManager.cs"
+RecMan="*res://Elements/ResourcesManager/ResourceManager.cs"
 
 [display]
 
