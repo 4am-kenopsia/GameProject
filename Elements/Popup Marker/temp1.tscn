@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctwwm2hcacqyy"]
-
-[ext_resource type="Texture2D" uid="uid://bj4ra0p5ywqxk" path="res://Art/popup-map-marker.png" id="1_ggc1x"]
-[ext_resource type="Script" path="res://Code/PopupMarker.cs" id="2_wkuaw"]
-
-[node name="Temp1" type="Sprite2D"]
-scale = Vector2(0.07375, 0.07375)
-texture = ExtResource("1_ggc1x")
-script = ExtResource("2_wkuaw")
