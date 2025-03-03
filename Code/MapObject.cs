@@ -24,6 +24,6 @@ namespace MapGame
             }
             return false;
         }
-        public abstract void OnClick();
+        public abstract void OnButtonPressed();
     }
 }

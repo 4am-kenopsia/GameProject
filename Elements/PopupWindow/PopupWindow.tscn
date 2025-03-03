@@ -22,6 +22,7 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ib3xj")
 
 [node name="Button2" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 339.5
 offset_top = 240.0
 offset_right = 520.5
@@ -29,6 +30,7 @@ offset_bottom = 288.0
 text = "Option 2"
 
 [node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 57.5
 offset_top = 239.0
 offset_right = 238.5
