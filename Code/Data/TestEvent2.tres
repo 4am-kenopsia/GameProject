@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="GameEventData" load_steps=3 format=3 uid="uid://yupv7dcpkr75"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/GameEventData.cs" id="1_oh74p"]
+
+[sub_resource type="Resource" id="Resource_2p7tn"]
+script = ExtResource("1_oh74p")
+EventID = ""
+EventTitle = ""
+EventDesc = ""
+EventOptions = PackedStringArray()
+EventDictionary = {}
+
+[resource]
+script = ExtResource("1_oh74p")
+EventID = "002"
+EventTitle = "Event 2"
+EventDesc = "mau"
+EventOptions = PackedStringArray()
+EventDictionary = {
+"002_A": SubResource("Resource_2p7tn"),
+"002_B": "Option B"
+}

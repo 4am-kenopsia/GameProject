@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="GameEventData" load_steps=2 format=3 uid="uid://t7hc6t5xmvy5"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/GameEventData.cs" id="1_3ccrw"]
+
+[resource]
+script = ExtResource("1_3ccrw")
+EventID = "001"
+EventTitle = "Event 1"
+EventDesc = "meow"
+EventOptions = PackedStringArray("", "", "")
+EventDictionary = {
+"001_A": "Option A",
+"001_B": "Option B",
+"001_C": "Option C"
+}

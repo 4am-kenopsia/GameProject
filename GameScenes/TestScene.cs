@@ -37,7 +37,7 @@ namespace MapGame
 		public override void _Process(double delta)
 		{
 		}
-		 private void SpawnChild()
+		private void SpawnChild()
 		{
 			
 			if (childScene == null)

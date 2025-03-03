@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://54jfwhkvwvi2"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/OptionButton.cs" id="1_u6b3q"]
+[ext_resource type="Texture2D" uid="uid://ctxd2ert1ni2a" path="res://Assets/Popup Window/Temp_Button_1.png" id="2_rg7og"]
+
+[node name="OptionButton" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_u6b3q")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 408.0
+offset_bottom = 78.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TextureButton"]
+layout_mode = 0
+offset_right = 408.0
+offset_bottom = 78.0
+texture = ExtResource("2_rg7og")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[connection signal="pressed" from="TextureButton" to="." method="OnButtonPress"]
