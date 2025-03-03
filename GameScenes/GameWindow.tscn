@@ -1,11 +1,84 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo6tx2rp08jy2"]
+[gd_scene load_steps=6 format=3 uid="uid://bo6tx2rp08jy2"]
 
 [ext_resource type="Script" path="res://GameScenes/TestScene.cs" id="1_kmy46"]
-[ext_resource type="Texture2D" uid="uid://x1ukx6nlwuuh" path="res://Art/testbackground.png" id="2_wgamw"]
+[ext_resource type="Texture2D" uid="uid://dne7cnx41vyw3" path="res://icon.svg" id="2_icxuh"]
+[ext_resource type="Texture2D" uid="uid://drrf1p5wjr0mn" path="res://Assets/Map/map-consept.png" id="3_jiwqr"]
+[ext_resource type="PackedScene" uid="uid://chjk886f8fk21" path="res://Elements/PopupMarker/MarkerContainer.tscn" id="4_gc2is"]
+[ext_resource type="Texture2D" uid="uid://cwgi70tw8j5k2" path="res://Assets/Map/resource.png" id="5_mgdev"]
 
 [node name="GameWindow" type="Node2D"]
 script = ExtResource("1_kmy46")
 
-[node name="Testbackground" type="Sprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(924, 464)
+texture = ExtResource("2_icxuh")
+
+[node name="Map-consept" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
-texture = ExtResource("2_wgamw")
+texture = ExtResource("3_jiwqr")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 174.0
+offset_bottom = 71.0
+
+[node name="MarkerContainer" parent="." instance=ExtResource("4_gc2is")]
+visible = false
+position = Vector2(627, 312)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_mgdev")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="MainResourceLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Dummy"
+
+[node name="Icon2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_mgdev")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="HappinessLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Dummy"
+
+[node name="Icon3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_mgdev")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="ThirdResourceLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Dummy
+"
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_top = 324.0
+offset_right = 207.0
+offset_bottom = 670.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 206.0
+offset_bottom = 48.0
+text = "Buy buffs"
+horizontal_alignment = 1
+
+[node name="BuyShit" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 32.0
+offset_right = 194.0
+offset_bottom = 86.0
+text = "3rd resource +1
+Cost -300 Main"
