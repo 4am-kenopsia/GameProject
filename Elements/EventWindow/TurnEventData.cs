@@ -5,7 +5,7 @@ using System;
 namespace MapGame
 {
     [GlobalClass]
-    public partial class GameEventData : Resource
+    public partial class TurnEventData : Resource
     {
         [Export] public string EventID;
         [Export] public string EventTitle;
