@@ -1,3 +1,93 @@
-[gd_scene format=3 uid="uid://dovue5gii8l1b"]
+[gd_scene load_steps=3 format=3 uid="uid://dovue5gii8l1b"]
 
-[node name="EventWindow" type="Node2D"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventWindow.cs" id="1_8ghau"]
+[ext_resource type="Texture2D" uid="uid://bue71fn67m22p" path="res://Assets/Popup Window/Event_Window_1.png" id="1_82ama"]
+
+[node name="EventWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -850.0
+offset_top = -430.0
+offset_right = -850.0
+offset_bottom = -430.0
+script = ExtResource("1_8ghau")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 1700.0
+offset_bottom = 860.0
+texture = ExtResource("1_82ama")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 540.0
+offset_right = 1660.0
+offset_bottom = 840.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 1660.0
+offset_bottom = 100.0
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 120.0
+offset_right = 1240.0
+offset_bottom = 520.0
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 1260.0
+offset_top = 120.0
+offset_right = 1660.0
+offset_bottom = 520.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 20.0
+offset_right = 1660.0
+offset_bottom = 100.0
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 120.0
+offset_right = 1240.0
+offset_bottom = 520.0
+
+[node name="OptionsContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 540.0
+offset_right = 1660.0
+offset_bottom = 840.0
+columns = 2
+
+[node name="OptionContainer1" type="CenterContainer" parent="OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OptionContainer2" type="CenterContainer" parent="OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OptionContainer3" type="CenterContainer" parent="OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OptionContainer4" type="CenterContainer" parent="OptionsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
