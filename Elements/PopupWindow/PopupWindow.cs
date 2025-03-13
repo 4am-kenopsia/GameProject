@@ -3,55 +3,171 @@ using Godot;
 namespace MapGame
 {
 
-    public partial class PopupWindow : Node2D
-    {
-        // Define custom signals
-        [Signal]
-        public delegate void ButtonPressed1EventHandler();
+	public partial class PopupWindow : Node2D
+	{
+		// Define custom signals
+		[Signal]
+		public delegate void ButtonPressed1EventHandler();
+		
+		[Export] private Label _eventLabel; // Assign this in the Godot editor
 
-        [Signal]
-        public delegate void ButtonPressed2EventHandler();
+		[Signal]
+		public delegate void ButtonPressed2EventHandler();
 
-        private Button _button1;
-        private Button _button2;
-        private int _increase = 1;
+		private Button _button1;
+		private Button _button2;
+		private Panel _panel;
+		private Label _description;
+		private int _increase = 1;
+		public int _eventsHappened { get; set; } = 0;
 
-        // Called when the node enters the scene tree for the first time.
-        public override void _Ready()
-        {
-            _button1 = GetNode<Button>("Panel/Button");
-            _button2 = GetNode<Button>("Panel/Button2");
+		// Called when the node enters the scene tree for the first time.
+		public override void _Ready()
+		{
+			
+			_button1 = GetNode<Button>("Panel/Button");
+			_button2 = GetNode<Button>("Panel/Button2");
+			_panel = GetNode<Panel>("Panel");
+			_description = GetNode<Label>("Panel/Description");
+			LoadData(_eventsHappened);
+			
+			TweenSelf();
+			TweenLabel();
+			TweenButton();
+			
 
-            // Connect the button's "pressed" signal to local methods
-            _button1.Pressed += OnButton1Pressed;
-            _button2.Pressed += OnButton2Pressed;
-        }
+			// Connect the button's "pressed" signal to local methods
+			_button1.Pressed += OnButton1Pressed;
+			_button2.Pressed += OnButton2Pressed;
+			
+		}
+		
+		private void LoadData(int number) 
+		{
+			// Load the .tres file
+			var eventData = ResourceLoader.Load<PopupEventData>("res://Code/PopupData/PopupEvents/TestEvent" + number + ".tres");
+			// var eventData = ResourceLoader.Load<PopupEventData>("res://Code/PopupData/PopupEvents/TestEvent" + _eventsHappened + ".tres");
+			GD.Print(eventData);
+			if (eventData != null)
+			{
+				// Update the Label with the data
+				_eventLabel.Text = $"{eventData.EventTitle}";
+				_description.Text = $"{eventData.EventDesc}";
 
-        private void OnButton1Pressed()
-        {
-            // Emit the custom signal
-            ResourceManager.Instance.IncreaseThirdResource(_increase);
-            EmitSignal(SignalName.ButtonPressed1);
-            GD.Print("lol1");
-        }
+				// Example of accessing other properties
+				_button1.SetText(eventData.EventOptions[0]);
+				_button2.SetText(eventData.EventOptions[1]);
+				if (eventData.EventOptions != null)
+				{
+					foreach (var option in eventData.EventOptions)
+					{
+						GD.Print($"Option: {option}");
+						
+					}
+				}
 
-        private void OnButton2Pressed()
-        {
-            // Emit the custom signal
-            ResourceManager.Instance.DecreaseMainResource(100);
-            EmitSignal(SignalName.ButtonPressed2);
-            GD.Print("lol2");
-        }
-        public void OnShitBought()
-        {
-            GD.Print("Shit was bought! Updating PopupWindow...");
-            _increase = _increase + 1;
-            // Add logic to update the PopupWindow UI or perform other actions
-        }
+				if (eventData.EventDictionary != null)
+				{
+					foreach (var key in eventData.EventDictionary.Keys)
+					{
+						GD.Print($"Key: {key}, Value: {eventData.EventDictionary[key]}");
+					}
+				}
+			}
+			else
+			{
+				GD.PrintErr("Failed to load PopupEventData resource.");
+			}
+		
+		}
 
-        // Called every frame. 'delta' is the elapsed time since the previous frame.
-        public override void _Process(double delta)
-        {
-        }
-    }
+		private void OnButton1Pressed()
+		{
+			// Emit the custom signal
+			ResourceManager.Instance.IncreaseThirdResource(_increase);
+			EmitSignal(SignalName.ButtonPressed1);
+			GD.Print("lol1");
+			
+			GD.Print(_eventsHappened);
+			Visible = false;
+			
+			LoadData(_eventsHappened);
+		}
+
+		private void OnButton2Pressed()
+		{
+			// Emit the custom signal
+			ResourceManager.Instance.DecreaseMainResource(100);
+			EmitSignal(SignalName.ButtonPressed2);
+			GD.Print("lol2");
+			Visible = false;
+			
+			
+			LoadData(_eventsHappened);
+		}
+		public void OnShitBought()
+		{
+			GD.Print("Shit was bought! Updating PopupWindow...");
+			_increase = _increase + 1;
+			// Add logic to update the PopupWindow UI or perform other actions
+		}
+		
+		
+		 private void TweenButton()
+	{
+		// Tween the button's position
+		Tween _tween = GetTree().CreateTween();
+
+		// Tween the button's scale
+		_tween.TweenProperty(_button1, "scale", new Vector2(1f, 1f), 0.5f)
+			  .SetTrans(Tween.TransitionType.Back) // Add a slight overshoot
+			  .SetEase(Tween.EaseType.InOut); // Ease in and out
+			
+		_tween.TweenProperty(_button2, "scale", new Vector2(1f, 1f), 0.5f)
+			  .SetTrans(Tween.TransitionType.Back) // Add a slight overshoot
+			  .SetEase(Tween.EaseType.InOut); // Ease in and out
+
+		// Start the tween
+		_tween.Play();
+	}
+	 private void TweenLabel()
+	{
+		// Tween the button's position
+		_eventLabel.VisibleRatio = 0;
+		_description.VisibleRatio = 0;
+		Tween _tween = GetTree().CreateTween();
+
+		_tween.TweenProperty(_eventLabel, "visible_ratio", 1.0f, 0.5f)
+			.SetTrans(Tween.TransitionType.Linear) // Smooth linear transition
+			.SetEase(Tween.EaseType.InOut); // Ease in and out for smooth animation
+				
+		_tween.TweenProperty(_description, "visible_ratio", 1.0f, 0.5f)
+			.SetTrans(Tween.TransitionType.Linear) // Smooth linear transition
+			.SetEase(Tween.EaseType.InOut); // Ease in and out for smooth animation
+			
+
+
+		// Start the tween
+		_tween.Play();
+	}
+	 private void TweenSelf()
+	{
+		// Tween the button's position
+		Tween _tween = GetTree().CreateTween();
+
+		_tween.TweenProperty(_panel, "scale", new Vector2(1f, 1f), 0.25f)
+			.SetTrans(Tween.TransitionType.Back) // Smooth linear transition
+			.SetEase(Tween.EaseType.InOut); // Ease in and out for smooth animation
+
+
+		// Start the tween
+		_tween.Play();
+	}
+
+
+		// Called every frame. 'delta' is the elapsed time since the previous frame.
+		public override void _Process(double delta)
+		{
+		}
+	}
 }

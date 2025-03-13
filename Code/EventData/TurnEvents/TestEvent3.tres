@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameEventData" load_steps=2 format=3 uid="uid://cttuiion2vjs5"]
+[gd_resource type="Resource" script_class="TurnEventData" load_steps=2 format=3 uid="uid://cttuiion2vjs5"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/TurnEventData.cs" id="1_hgfx8"]
 
