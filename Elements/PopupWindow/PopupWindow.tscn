@@ -1,12 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhxvgpyahrcbh"]
+[gd_scene load_steps=8 format=3 uid="uid://bhxvgpyahrcbh"]
 
 [ext_resource type="Script" path="res://Elements/PopupWindow/PopupWindow.cs" id="1_2q78g"]
+[ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="2_slau0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ib3xj"]
 bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
-[node name="PopupWindow" type="Node2D"]
+[sub_resource type="FontVariation" id="FontVariation_rdi1y"]
+base_font = ExtResource("2_slau0")
+
+[sub_resource type="FontVariation" id="FontVariation_myhcs"]
+base_font = ExtResource("2_slau0")
+
+[sub_resource type="FontVariation" id="FontVariation_obhgt"]
+base_font = ExtResource("2_slau0")
+variation_opentype = {
+2003265652: 800
+}
+
+[sub_resource type="FontVariation" id="FontVariation_iwew6"]
+base_font = ExtResource("2_slau0")
+
+[node name="PopupWindow" type="Node2D" node_paths=PackedStringArray("_eventLabel")]
 script = ExtResource("1_2q78g")
+_eventLabel = NodePath("Panel/Label")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 7
@@ -19,29 +40,49 @@ offset_top = -346.0
 offset_right = 293.5
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.1, 0.1)
 theme_override_styles/panel = SubResource("StyleBoxFlat_ib3xj")
 
 [node name="Button2" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 339.5
-offset_top = 240.0
+offset_top = 263.0
 offset_right = 520.5
-offset_bottom = 288.0
+offset_bottom = 311.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = SubResource("FontVariation_rdi1y")
 text = "Option 2"
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 57.5
-offset_top = 239.0
+offset_top = 262.0
 offset_right = 238.5
-offset_bottom = 287.0
+offset_bottom = 310.0
+scale = Vector2(0.1, 0.1)
+theme_override_fonts/font = SubResource("FontVariation_myhcs")
 text = "Option 1"
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
 offset_right = 588.0
-offset_bottom = 193.0
+offset_bottom = 150.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_obhgt")
+theme_override_font_sizes/font_size = 18
 text = "A man has fallen in to the river of lego city"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 95.0
+offset_top = 111.0
+offset_right = 496.0
+offset_bottom = 213.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = SubResource("FontVariation_iwew6")
+text = "description textfatakokpdkaspdkaspdakpdaskpodaskpodask
+podaskpodakspodaskp"
+horizontal_alignment = 1
+autowrap_mode = 2

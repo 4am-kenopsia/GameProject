@@ -4,7 +4,7 @@ using System;
 namespace MapGame
 {
 	[GlobalClass]
-	public partial class TurnEventOutcomeData : Resource
+	public partial class PopupEventOutcomeData : Resource
 	{
 		[ExportGroup("Resource changes")]
 		[Export(PropertyHint.Range, "-1000,1000,")] public int HappinessChange;

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PopupEventData" load_steps=2 format=3 uid="uid://406lrs711obx"]
+
+[ext_resource type="Script" path="res://Elements/PopupWindow/PopupEventData.cs" id="1_4xo67"]
+
+[resource]
+script = ExtResource("1_4xo67")
+EventID = "0004"
+EventTitle = "jiodajsoi"
+EventDesc = "bombaclat"
+EventOptions = PackedStringArray("big", "swag")
+EventDictionary = {}

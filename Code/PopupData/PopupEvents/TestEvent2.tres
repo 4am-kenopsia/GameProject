@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PopupEventData" load_steps=2 format=3 uid="uid://by2s04vprcxcj"]
+
+[ext_resource type="Script" path="res://Elements/PopupWindow/PopupEventData.cs" id="1_lrfwk"]
+
+[resource]
+script = ExtResource("1_lrfwk")
+EventID = "002"
+EventTitle = "Something"
+EventDesc = "Happened swag bitch yeah yeah swag swag"
+EventOptions = PackedStringArray("Accept", "Swagger")
+EventDictionary = {}

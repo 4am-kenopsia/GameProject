@@ -5,13 +5,13 @@ using System;
 namespace MapGame
 {
 	[GlobalClass]
-	public partial class TurnEventData : Resource
+	public partial class PopupEventData : Resource
 	{
 		[Export] public string EventID;
 		[Export] public string EventTitle;
 		[Export] public string EventDesc;
 		[Export] public string[] EventOptions = null;
-		[Export] Dictionary EventDictionary = new Godot.Collections.Dictionary();
+		[Export] public Dictionary EventDictionary = new Godot.Collections.Dictionary();
 		
 	}
 }
