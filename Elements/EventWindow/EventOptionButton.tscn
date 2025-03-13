@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://54jfwhkvwvi2"]
+[gd_scene load_steps=4 format=3 uid="uid://54jfwhkvwvi2"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/OptionButton.cs" id="1_brxe4"]
 [ext_resource type="Texture2D" uid="uid://ctxd2ert1ni2a" path="res://Assets/Popup Window/Temp_Button_1.png" id="2_f2v72"]
+[ext_resource type="Theme" uid="uid://b1hrndcg3hihh" path="res://Elements/EventWindow/TurnEventButtonTheme.tres" id="3_pjr7v"]
 
 [node name="OptionButton" type="Control"]
 layout_mode = 3
@@ -19,13 +20,6 @@ texture_pressed = ExtResource("2_f2v72")
 texture_hover = ExtResource("2_f2v72")
 stretch_mode = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = -404.0
-offset_top = -74.0
-offset_right = 404.0
-offset_bottom = 74.0
-
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_left = -404.0
@@ -37,5 +31,16 @@ patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -404.0
+offset_top = -74.0
+offset_right = 404.0
+offset_bottom = 74.0
+theme = ExtResource("3_pjr7v")
+theme_override_colors/default_color = Color(0.0923551, 0.0505763, 0.0141586, 1)
+text = "
+"
 
 [connection signal="pressed" from="TextureButton" to="." method="OnButtonPress"]

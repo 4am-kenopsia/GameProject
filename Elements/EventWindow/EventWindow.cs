@@ -66,7 +66,7 @@ namespace MapGame
             _optionButtonText.Text = buttonContent;
             
             // Renames the newly created button
-            _optionButton.Name = "OptionButton" + optionNumber;            
+            _optionButton.Name = "OptionButton" + optionNumber;
         }
     }
 }
