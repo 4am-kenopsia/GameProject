@@ -1,15 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dovue5gii8l1b"]
+[gd_scene load_steps=4 format=3 uid="uid://dovue5gii8l1b"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/EventWindow.cs" id="1_8ghau"]
 [ext_resource type="Texture2D" uid="uid://bue71fn67m22p" path="res://Assets/Popup Window/Event_Window_1.png" id="1_82ama"]
+[ext_resource type="Theme" uid="uid://b1hrndcg3hihh" path="res://Elements/EventWindow/TurnEventButtonTheme.tres" id="3_gf7l4"]
 
 [node name="EventWindow" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -850.0
-offset_top = -430.0
-offset_right = -850.0
-offset_bottom = -430.0
+offset_left = 84.0
+offset_top = 50.0
+offset_right = 84.0
+offset_bottom = 50.0
 script = ExtResource("1_8ghau")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -50,19 +51,23 @@ offset_top = 120.0
 offset_right = 1660.0
 offset_bottom = 520.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="TurnEventTitle" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 20.0
 offset_right = 1660.0
 offset_bottom = 100.0
+theme = ExtResource("3_gf7l4")
+theme_override_colors/default_color = Color(0.0941176, 0.0509804, 0.0156863, 1)
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="TurnEventContent" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 120.0
 offset_right = 1240.0
 offset_bottom = 520.0
+theme = ExtResource("3_gf7l4")
+theme_override_colors/default_color = Color(0.0941176, 0.0509804, 0.0156863, 1)
 
 [node name="OptionsContainer" type="GridContainer" parent="."]
 layout_mode = 0

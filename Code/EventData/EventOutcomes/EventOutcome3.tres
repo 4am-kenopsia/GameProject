@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EventOutcomeData" load_steps=2 format=3 uid="uid://dbu5ir8f3y3cl"]
+[gd_resource type="Resource" script_class="TurnEventOutcomeData" load_steps=2 format=3 uid="uid://dbu5ir8f3y3cl"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/TurnEventOutcomeData.cs" id="1_5cl2l"]
 

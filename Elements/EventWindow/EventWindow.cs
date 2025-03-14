@@ -9,20 +9,25 @@ namespace MapGame
         
         private PackedScene _optionButtonScene = null;
         
+        private RichTextLabel _eventTitle = null;
+        private RichTextLabel _eventContent = null;
         private OptionButton _optionButton = null;
         private RichTextLabel _optionButtonText = null;
-        private CenterContainer _optionContainer1 = null;
-        private CenterContainer _optionContainer2 = null;
-        private CenterContainer _optionContainer3 = null;
-        private CenterContainer _optionContainer4 = null;
+        private CenterContainer _optionContainer = null;
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
-            for (int i = 1; i <= 4; i++)
+            TurnEventData _currentEvent = GetEvent();
+            _eventTitle = GetNode<RichTextLabel>("TurnEventTitle");
+            _eventTitle.Text = _currentEvent.EventTitle;
+            _eventContent = GetNode<RichTextLabel>("TurnEventContent");
+            _eventContent.Text = _currentEvent.EventDesc;
+            GD.Print(_eventContent.Text + _eventTitle.Text);
+            for (int i = 1; i <= _currentEvent.EventOptions.Length; i++)
             {
                 string _currentButton = i.ToString();
-                string _buttonContent = "Hello" + i;
+                string _buttonContent = _currentEvent.EventOptions[i - 1];
                 CreateOptionButton(_currentButton, _buttonContent);
             }
         }
@@ -32,6 +37,12 @@ namespace MapGame
         {
         }
         
+        public static TurnEventData GetEvent()
+        {
+            int _eventNumber = 1; /*GD.RandRange(1, 4);*/
+            var _turnEvent = ResourceLoader.Load<TurnEventData>("res://Code/EventData/TurnEvents/TestEvent" + _eventNumber + ".tres");
+            return _turnEvent;
+        }
         //TODO: add button contents string input
         public void CreateOptionButton(string optionNumber, string buttonContent)
         {
@@ -53,11 +64,11 @@ namespace MapGame
             }
             
             // Getting the right container to put the button in
-            _optionContainer1 = GetNode<CenterContainer>("OptionsContainer/OptionContainer" + optionNumber);
+            _optionContainer = GetNode<CenterContainer>("OptionsContainer/OptionContainer" + optionNumber);
             
             // Creating the button node
             _optionButton = _optionButtonScene.Instantiate<OptionButton>();
-            _optionContainer1.AddChild(_optionButton);
+            _optionContainer.AddChild(_optionButton);
             
             // Getting the button scene's RichTextLabel node
             _optionButtonText = GetNode<RichTextLabel>("OptionsContainer/OptionContainer" + optionNumber + "/OptionButton/RichTextLabel");

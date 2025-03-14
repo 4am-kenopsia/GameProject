@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TurnEventOutcomeData" load_steps=2 format=3 uid="uid://b02uc41koj585"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/TurnEventOutcomeData.cs" id="1_xxcce"]
+
+[resource]
+script = ExtResource("1_xxcce")
+HappinessChange = 330
+MainResourcehange = -2000
+ThirdResourceChange = 1
+SecretMode1 = false
+SecretMode2 = false
+SecretMultiplier = 0

@@ -1,11 +1,43 @@
-[gd_resource type="Resource" script_class="TurnEventData" load_steps=2 format=3 uid="uid://t7hc6t5xmvy5"]
+[gd_resource type="Resource" script_class="TurnEventData" load_steps=6 format=3 uid="uid://t7hc6t5xmvy5"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/TurnEventData.cs" id="1_3ccrw"]
+[ext_resource type="Script" path="res://Elements/EventWindow/TurnEventOutcomeData.cs" id="1_yvt5u"]
+
+[sub_resource type="Resource" id="Resource_qdsai"]
+script = ExtResource("1_yvt5u")
+HappinessChange = 100
+MainResourcehange = -10000
+ThirdResourceChange = 0
+SecretMode1 = true
+SecretMode2 = false
+SecretMultiplier = 0
+
+[sub_resource type="Resource" id="Resource_bsh28"]
+script = ExtResource("1_yvt5u")
+HappinessChange = -70
+MainResourcehange = 3000
+ThirdResourceChange = 0
+SecretMode1 = false
+SecretMode2 = false
+SecretMultiplier = 0
+
+[sub_resource type="Resource" id="Resource_8f1w4"]
+script = ExtResource("1_yvt5u")
+HappinessChange = 100
+MainResourcehange = 0
+ThirdResourceChange = -1
+SecretMode1 = false
+SecretMode2 = false
+SecretMultiplier = 0
 
 [resource]
 script = ExtResource("1_3ccrw")
 EventID = "001"
-EventTitle = "Event 1"
-EventDesc = "meow"
-EventOptions = PackedStringArray("", "", "")
-EventDictionary = {}
+EventTitle = "Chaos in the North"
+EventDesc = "A local crime faction is spreading misinformation in the area. The citizens of the affected areas are worried that their property values will go down because of this. What should you do?"
+EventOptions = PackedStringArray("Hire a crew of vampires to keep the local thugs in check.", "Steal the criminals\' equipment while they\'re not watching and let them wither out.", "SMITE DOWN THOSE RASCALS!!!")
+EventDictionary = {
+"001_1": SubResource("Resource_qdsai"),
+"001_2": SubResource("Resource_bsh28"),
+"001_3": SubResource("Resource_8f1w4")
+}
