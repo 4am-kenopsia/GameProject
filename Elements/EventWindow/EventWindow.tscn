@@ -7,10 +7,10 @@
 [node name="EventWindow" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 84.0
-offset_top = 50.0
-offset_right = 84.0
-offset_bottom = 50.0
+offset_left = -850.0
+offset_top = -430.0
+offset_right = -850.0
+offset_bottom = -430.0
 script = ExtResource("1_8ghau")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
