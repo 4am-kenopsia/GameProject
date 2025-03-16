@@ -20,7 +20,6 @@ namespace MapGame
 		}
 		public void OnButtonPressed()
 		{
-            GD.Print("Zeep");
             EmitSignal(SignalName.ButtonPressed);
 		}
 	}

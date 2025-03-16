@@ -11,6 +11,8 @@ namespace MapGame
 		[Export] public int _currentMainResource = 10000;
 		[Export] public int _currentHappiness = 100;
 		[Export] public int _currentThirdResource = 5;
+        [Export] public float _mainResourceMultiplier = 1;
+        [Export] public float _happinessMultiplier = 1;
 		public static ResourceManager Instance
 		{
 			get;

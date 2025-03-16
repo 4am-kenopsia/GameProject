@@ -7,6 +7,7 @@ namespace MapGame
 	[GlobalClass]
 	public partial class TurnEventData : Resource
 	{
+        [Export] public bool isEventOneTime;
 		[Export] public string EventID;
 		[Export] public string EventTitle;
 		[Export] public string EventDesc;

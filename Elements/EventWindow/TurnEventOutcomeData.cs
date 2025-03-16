@@ -12,8 +12,10 @@ namespace MapGame
 		[Export] public int ThirdResourceChange;
 
 		[ExportSubgroup("Bonus changes")]
-		[Export] public bool SecretMode1;
+        [Export] public string unlockEvent;
+		[Export] public string unlockEvent2;
 		[Export] public bool SecretMode2;
-		[Export] public int SecretMultiplier;
+		[Export] public float HappinessMultiplier;
+        [Export] public float MainResourceMultiplier;
 	}
 }

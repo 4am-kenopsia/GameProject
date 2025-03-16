@@ -9,17 +9,6 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_brxe4")
 
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = -404.0
-offset_top = -74.0
-offset_right = 404.0
-offset_bottom = 74.0
-texture_normal = ExtResource("2_f2v72")
-texture_pressed = ExtResource("2_f2v72")
-texture_hover = ExtResource("2_f2v72")
-stretch_mode = 0
-
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_left = -404.0
@@ -42,3 +31,11 @@ theme = ExtResource("3_pjr7v")
 theme_override_colors/default_color = Color(0.0923551, 0.0505763, 0.0141586, 1)
 text = "
 "
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -404.0
+offset_top = -74.0
+offset_right = 404.0
+offset_bottom = 74.0
+stretch_mode = 0
