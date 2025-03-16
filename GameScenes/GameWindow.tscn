@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo6tx2rp08jy2"]
+[gd_scene load_steps=6 format=3 uid="uid://bo6tx2rp08jy2"]
 
 [ext_resource type="Script" path="res://GameScenes/TestScene.cs" id="1_kmy46"]
 [ext_resource type="Texture2D" uid="uid://dne7cnx41vyw3" path="res://icon.svg" id="2_icxuh"]
 [ext_resource type="Texture2D" uid="uid://drrf1p5wjr0mn" path="res://Assets/Map/map-consept.png" id="3_jiwqr"]
-[ext_resource type="PackedScene" uid="uid://chjk886f8fk21" path="res://Elements/PopupMarker/MarkerContainer.tscn" id="4_gc2is"]
 [ext_resource type="Texture2D" uid="uid://cwgi70tw8j5k2" path="res://Assets/Resources/resource.png" id="5_mgdev"]
 [ext_resource type="Texture2D" uid="uid://cer2yjwund7cw" path="res://Assets/Map/turn.png" id="6_s0yq0"]
 
@@ -18,10 +17,6 @@ texture = ExtResource("2_icxuh")
 [node name="Map-consept" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 texture = ExtResource("3_jiwqr")
-
-[node name="MarkerContainer" parent="." instance=ExtResource("4_gc2is")]
-visible = false
-position = Vector2(627, 312)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 offset_right = 40.0

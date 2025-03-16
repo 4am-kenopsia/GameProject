@@ -1,22 +1,62 @@
-[gd_resource type="Resource" script_class="TurnEventData" load_steps=3 format=3 uid="uid://yupv7dcpkr75"]
+[gd_resource type="Resource" script_class="TurnEventData" load_steps=7 format=3 uid="uid://yupv7dcpkr75"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/TurnEventData.cs" id="1_oh74p"]
+[ext_resource type="Script" path="res://Elements/EventWindow/TurnEventOutcomeData.cs" id="1_xp4xj"]
 
-[sub_resource type="Resource" id="Resource_2p7tn"]
-script = ExtResource("1_oh74p")
-EventID = ""
-EventTitle = ""
-EventDesc = ""
-EventOptions = PackedStringArray()
-EventDictionary = {}
+[sub_resource type="Resource" id="Resource_62hoj"]
+script = ExtResource("1_xp4xj")
+HappinessChange = 0
+MainResourcehange = -2500
+ThirdResourceChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.0
+MainResourceMultiplier = 1.5
+
+[sub_resource type="Resource" id="Resource_xsk0v"]
+script = ExtResource("1_xp4xj")
+HappinessChange = -450
+MainResourcehange = 0
+ThirdResourceChange = 2
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.9
+MainResourceMultiplier = 0.0
+
+[sub_resource type="Resource" id="Resource_2luu6"]
+script = ExtResource("1_xp4xj")
+HappinessChange = 200
+MainResourcehange = -1000
+ThirdResourceChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.0
+MainResourceMultiplier = 0.0
+
+[sub_resource type="Resource" id="Resource_stg8o"]
+script = ExtResource("1_xp4xj")
+HappinessChange = 0
+MainResourcehange = 0
+ThirdResourceChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.9
+MainResourceMultiplier = 0.0
 
 [resource]
 script = ExtResource("1_oh74p")
+isEventOneTime = false
 EventID = "2"
 EventTitle = "Investment opportunity"
 EventDesc = "A time-space continuum appeared at a discreet location. This opportunity is rare so you could get some use out of it. What will you do?"
-EventOptions = PackedStringArray("Channel your magical energy into it.", "", "", "")
+EventOptions = PackedStringArray("Channel your magical energy into it.", "Gather up some sacrifices for the new sight", "Protect the site from any intruders", "Ignore")
 EventDictionary = {
-"2_A": SubResource("Resource_2p7tn"),
-"2_B": "Option B"
+"2_1": SubResource("Resource_62hoj"),
+"2_2": SubResource("Resource_xsk0v"),
+"2_3": SubResource("Resource_2luu6"),
+"2_4": SubResource("Resource_stg8o")
 }

@@ -8,30 +8,37 @@ script = ExtResource("1_yvt5u")
 HappinessChange = 100
 MainResourcehange = -10000
 ThirdResourceChange = 0
-SecretMode1 = true
+unlockEvent = ""
+unlockEvent2 = ""
 SecretMode2 = false
-SecretMultiplier = 0
+HappinessMultiplier = 0.0
+MainResourceMultiplier = 0.0
 
 [sub_resource type="Resource" id="Resource_bsh28"]
 script = ExtResource("1_yvt5u")
 HappinessChange = -70
 MainResourcehange = 3000
 ThirdResourceChange = 0
-SecretMode1 = false
+unlockEvent = ""
+unlockEvent2 = ""
 SecretMode2 = false
-SecretMultiplier = 0
+HappinessMultiplier = 0.0
+MainResourceMultiplier = 0.0
 
 [sub_resource type="Resource" id="Resource_8f1w4"]
 script = ExtResource("1_yvt5u")
 HappinessChange = 100
 MainResourcehange = 0
 ThirdResourceChange = -1
-SecretMode1 = false
+unlockEvent = ""
+unlockEvent2 = ""
 SecretMode2 = false
-SecretMultiplier = 0
+HappinessMultiplier = 0.0
+MainResourceMultiplier = 0.0
 
 [resource]
 script = ExtResource("1_3ccrw")
+isEventOneTime = false
 EventID = "1"
 EventTitle = "Chaos in the North"
 EventDesc = "A local crime faction is spreading misinformation in the area. The citizens of the affected areas are worried that their property values will go down because of this. What should you do?"

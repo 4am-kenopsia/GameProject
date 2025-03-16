@@ -35,7 +35,7 @@ namespace MapGame
         public override void _Ready()
         {
             // Edit this with the number of events
-            int _eventNumber = GD.RandRange(1, 1);
+            int _eventNumber = GD.RandRange(1, 2);
             LoadEventData(_eventNumber);
         }
 
@@ -131,9 +131,9 @@ namespace MapGame
         {
             ResourceManager.Instance.IncreaseHappiness(outcome.HappinessChange);
             GD.Print(ResourceManager.Instance._currentHappiness);
-            ResourceManager.Instance.IncreaseHappiness(outcome.MainResourcehange);
+            ResourceManager.Instance.IncreaseMainResource(outcome.MainResourcehange);
             GD.Print(ResourceManager.Instance._currentMainResource);
-            ResourceManager.Instance.IncreaseHappiness(outcome.ThirdResourceChange);
+            ResourceManager.Instance.IncreaseThirdResource(outcome.ThirdResourceChange);
             GD.Print(ResourceManager.Instance._currentThirdResource);
         }
     }
