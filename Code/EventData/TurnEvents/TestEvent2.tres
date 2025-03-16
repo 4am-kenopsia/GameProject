@@ -12,11 +12,11 @@ EventDictionary = {}
 
 [resource]
 script = ExtResource("1_oh74p")
-EventID = "002"
+EventID = "2"
 EventTitle = "Investment opportunity"
 EventDesc = "A time-space continuum appeared at a discreet location. This opportunity is rare so you could get some use out of it. What will you do?"
 EventOptions = PackedStringArray("Channel your magical energy into it.", "", "", "")
 EventDictionary = {
-"002_A": SubResource("Resource_2p7tn"),
-"002_B": "Option B"
+"2_A": SubResource("Resource_2p7tn"),
+"2_B": "Option B"
 }

@@ -1,15 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dovue5gii8l1b"]
+[gd_scene load_steps=5 format=3 uid="uid://dovue5gii8l1b"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/EventWindow.cs" id="1_8ghau"]
 [ext_resource type="Texture2D" uid="uid://bue71fn67m22p" path="res://Assets/Popup Window/Event_Window_1.png" id="1_82ama"]
 [ext_resource type="Theme" uid="uid://b1hrndcg3hihh" path="res://Elements/EventWindow/TurnEventButtonTheme.tres" id="3_gf7l4"]
+[ext_resource type="PackedScene" uid="uid://54jfwhkvwvi2" path="res://Elements/EventWindow/EventOptionButton.tscn" id="4_g6yn3"]
 
 [node name="EventWindow" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -850.0
+offset_left = -840.0
 offset_top = -430.0
-offset_right = -850.0
+offset_right = -840.0
 offset_bottom = -430.0
 script = ExtResource("1_8ghau")
 
@@ -82,17 +83,33 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="OptionButton1" parent="OptionsContainer/OptionContainer1" instance=ExtResource("4_g6yn3")]
+visible = false
+layout_mode = 2
+
 [node name="OptionContainer2" type="CenterContainer" parent="OptionsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="OptionButton2" parent="OptionsContainer/OptionContainer2" instance=ExtResource("4_g6yn3")]
+visible = false
+layout_mode = 2
 
 [node name="OptionContainer3" type="CenterContainer" parent="OptionsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="OptionButton3" parent="OptionsContainer/OptionContainer3" instance=ExtResource("4_g6yn3")]
+visible = false
+layout_mode = 2
+
 [node name="OptionContainer4" type="CenterContainer" parent="OptionsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="OptionButton4" parent="OptionsContainer/OptionContainer4" instance=ExtResource("4_g6yn3")]
+visible = false
+layout_mode = 2

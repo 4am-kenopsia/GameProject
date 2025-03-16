@@ -32,12 +32,12 @@ SecretMultiplier = 0
 
 [resource]
 script = ExtResource("1_3ccrw")
-EventID = "001"
+EventID = "1"
 EventTitle = "Chaos in the North"
 EventDesc = "A local crime faction is spreading misinformation in the area. The citizens of the affected areas are worried that their property values will go down because of this. What should you do?"
 EventOptions = PackedStringArray("Hire a crew of vampires to keep the local thugs in check.", "Steal the criminals\' equipment while they\'re not watching and let them wither out.", "SMITE DOWN THOSE RASCALS!!!")
 EventDictionary = {
-"001_1": SubResource("Resource_qdsai"),
-"001_2": SubResource("Resource_bsh28"),
-"001_3": SubResource("Resource_8f1w4")
+"1_1": SubResource("Resource_qdsai"),
+"1_2": SubResource("Resource_bsh28"),
+"1_3": SubResource("Resource_8f1w4")
 }

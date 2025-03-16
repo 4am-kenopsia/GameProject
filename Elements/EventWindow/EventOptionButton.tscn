@@ -42,5 +42,3 @@ theme = ExtResource("3_pjr7v")
 theme_override_colors/default_color = Color(0.0923551, 0.0505763, 0.0141586, 1)
 text = "
 "
-
-[connection signal="pressed" from="TextureButton" to="." method="OnButtonPress"]

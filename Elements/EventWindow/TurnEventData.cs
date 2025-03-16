@@ -11,7 +11,7 @@ namespace MapGame
 		[Export] public string EventTitle;
 		[Export] public string EventDesc;
 		[Export] public string[] EventOptions = null;
-		[Export] Dictionary EventDictionary = new Godot.Collections.Dictionary();
+		[Export] public Dictionary EventDictionary = new();
 		
 	}
 }
