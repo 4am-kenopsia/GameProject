@@ -4,7 +4,7 @@ using System;
 namespace MapGame
 {
 	[GlobalClass]
-	public partial class TurnEventOutcomeData : Resource
+	public partial class EventOutcomeData : Resource
 	{
 		[ExportGroup("Resource changes")]
 		[Export] public int HappinessChange;

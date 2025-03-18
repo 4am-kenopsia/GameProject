@@ -5,9 +5,9 @@ using System;
 namespace MapGame
 {
 	[GlobalClass]
-	public partial class TurnEventData : Resource
+	public partial class EventData : Resource
 	{
-        [Export] public bool isEventOneTime;
+		[Export] public bool isEventOneTime;
 		[Export] public string EventID;
 		[Export] public string EventTitle;
 		[Export] public string EventDesc;

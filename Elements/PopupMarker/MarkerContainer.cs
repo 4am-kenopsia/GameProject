@@ -40,8 +40,8 @@ namespace MapGame
 		PopupWindow popUpInstance = (PopupWindow)popUp.Instantiate();
 		//popUpInstance._eventsHappened = _timesOpened;
 		popUpInstance.TopLevel = true;
-		popUpInstance.ButtonPressed2 += OnRightButtonPressed;
-		popUpInstance.ButtonPressed1 += OnLeftButtonPressed;
+		popUpInstance.ButtonPressed2 += OnPopUpButtonPressed;
+		popUpInstance.ButtonPressed1 += OnPopUpButtonPressed;
 		//ShitBought += popUpInstance.OnShitBought;
 		Vector2 middleBottom = new Vector2( GetViewport().GetVisibleRect().Size.X / 2 , GetViewport().GetVisibleRect().Size.Y );
 		popUpInstance.Position = middleBottom;
@@ -49,20 +49,17 @@ namespace MapGame
 		EmitSignal(SignalName.PopUpEventOpened);
 		
 		//_timesOpened = _timesOpened + 1;
-		GetNode<Panel>("Panel").Visible = true;
+		//GetNode<Panel>("Panel").Visible = true;
 	
 		}
 	
-		public void OnRightButtonPressed()
-		{
-			QueueFree();
+
+		public void OnPopUpButtonPressed()
+		{	
+			GD.Print("pressed yuea");
 			EmitSignal(SignalName.PopUpEventAnswered);
+			QueueFree();
 			
-		}
-		public void OnLeftButtonPressed()
-		{
-			QueueFree();
-			EmitSignal(SignalName.PopUpEventAnswered);
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.

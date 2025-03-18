@@ -21,5 +21,4 @@ centered = false
 
 [node name="UI" parent="." instance=ExtResource("2_bg5t6")]
 layout_mode = 1
-anchors_preset = 15
 grow_vertical = 2

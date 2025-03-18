@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="PopupEventData" load_steps=2 format=3 uid="uid://bk78u4x03ulpe"]
+[gd_resource type="Resource" script_class="TurnEventData" load_steps=2 format=3 uid="uid://bk78u4x03ulpe"]
 
-[ext_resource type="Script" path="res://Elements/PopupWindow/PopupEventData.cs" id="1_lcq4s"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_erkq7"]
 
 [resource]
-script = ExtResource("1_lcq4s")
-EventID = "001"
+script = ExtResource("1_erkq7")
+isEventOneTime = false
+EventID = "1"
 EventTitle = "A MAN HAS FALLEN INTO THE RIVER IN LEGO CITY"
 EventDesc = "START THE RESCUE HELICOPTERHEY! BUILD THE HELICOPTER AND OFF TO THE RESCUE PREPARE THE LIFELINE, LOWER THE STRETCHER AND MAKE THE RESCUE"
 EventOptions = PackedStringArray("Accept", "Decline")
