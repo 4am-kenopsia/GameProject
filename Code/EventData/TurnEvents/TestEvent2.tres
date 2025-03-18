@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TurnEventData" load_steps=7 format=3 uid="uid://yupv7dcpkr75"]
 
-[ext_resource type="Script" path="res://Elements/EventWindow/TurnEventData.cs" id="1_oh74p"]
-[ext_resource type="Script" path="res://Elements/EventWindow/TurnEventOutcomeData.cs" id="1_xp4xj"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_oh74p"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_xp4xj"]
 
 [sub_resource type="Resource" id="Resource_62hoj"]
 script = ExtResource("1_xp4xj")

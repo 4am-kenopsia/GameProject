@@ -55,13 +55,14 @@ namespace MapGame
 		}
 		public void OnEventAnswered()
 		{
-            GUI.UpdateLabels();
+			GUI.UpdateLabels();
 			RemoveChild(_eventWindow);
 			isEventRunning = false;
 			
 		}
 		public void OnPopUpEventAnswered()
 		{
+			GUI.UpdateLabels();
 			isEventRunning = false;
 			
 		}
@@ -83,7 +84,7 @@ namespace MapGame
 				(float)GD.RandRange(0, 1405),
 				(float)GD.RandRange(0, 854)
 			);
-			
+			 
 			// Set the position of the child instance
 			markerInstance.Position = randomPosition;
 

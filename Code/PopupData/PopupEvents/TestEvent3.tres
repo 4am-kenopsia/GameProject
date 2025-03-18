@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="PopupEventData" load_steps=2 format=3 uid="uid://w34n2wcwltn6"]
+[gd_resource type="Resource" script_class="TurnEventData" load_steps=2 format=3 uid="uid://w34n2wcwltn6"]
 
-[ext_resource type="Script" path="res://Elements/PopupWindow/PopupEventData.cs" id="1_jyt8r"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_2l547"]
 
 [resource]
-script = ExtResource("1_jyt8r")
+script = ExtResource("1_2l547")
+isEventOneTime = false
 EventID = "003"
 EventTitle = "Event 3"
 EventDesc = "djodjdoias"

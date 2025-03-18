@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 namespace MapGame
 {
@@ -19,6 +20,9 @@ namespace MapGame
 		private Panel _panel;
 		private Label _description;
 		private int _popUpEventNumber;
+		private string _currentEventID;
+		private Dictionary _eventDictionary = null;
+		//private PopupEventData _currentEvent = null;
 		//public int _eventsHappened { get; set; } = 0;
 		
 		
@@ -48,7 +52,10 @@ namespace MapGame
 		private void LoadData() 
 		{
 			// Load the .tres file
-			var eventData = ResourceLoader.Load<PopupEventData>("res://Code/PopupData/PopupEvents/TestEvent" + _popUpEventNumber + ".tres");
+			var eventData = ResourceLoader.Load<EventData>("res://Code/PopupData/PopupEvents/TestEvent" + _popUpEventNumber + ".tres");
+			_eventDictionary = eventData.EventDictionary;
+			_currentEventID = _popUpEventNumber.ToString();
+			
 			// var eventData = ResourceLoader.Load<PopupEventData>("res://Code/PopupData/PopupEvents/TestEvent" + _eventsHappened + ".tres");
 			GD.Print(eventData);
 			if (eventData != null)
@@ -87,27 +94,33 @@ namespace MapGame
 		private void OnButton1Pressed()
 		{
 			// Emit the custom signal
-			ResourceManager.Instance.IncreaseThirdResource(20);
+			string outcomeKey = _currentEventID + "_" + 1;
+			var outcome = _eventDictionary[outcomeKey];
+			ResourceManager.Instance.HandleOptionOutcomes((EventOutcomeData)outcome);
 			EmitSignal(SignalName.ButtonPressed1);
 			GD.Print("lol1");
 			
 			//GD.Print(_eventsHappened);
 			Visible = false;
 			
-			LoadData();
+	
 		}
 
 		private void OnButton2Pressed()
 		{
-			// Emit the custom signal
+			string outcomeKey = _currentEventID + "_" + 2;
+			var outcome = _eventDictionary[outcomeKey];
+			HandleOptionOutcomes((EventOutcomeData)outcome);
 			ResourceManager.Instance.DecreaseMainResource(100);
 			EmitSignal(SignalName.ButtonPressed2);
 			GD.Print("lol2");
 			Visible = false;
 			
 			
-			LoadData();
+			
 		}
+
+
 		//public void OnShitBought()
 		//{
 			//GD.Print("Shit was bought! Updating PopupWindow...");

@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="PopupEventData" load_steps=2 format=3 uid="uid://406lrs711obx"]
+[gd_resource type="Resource" script_class="TurnEventData" load_steps=2 format=3 uid="uid://406lrs711obx"]
 
-[ext_resource type="Script" path="res://Elements/PopupWindow/PopupEventData.cs" id="1_4xo67"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_f2vxf"]
 
 [resource]
-script = ExtResource("1_4xo67")
+script = ExtResource("1_f2vxf")
+isEventOneTime = false
 EventID = "0004"
 EventTitle = "jiodajsoi"
 EventDesc = "bombaclat"

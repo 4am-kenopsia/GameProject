@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="PopupEventData" load_steps=2 format=3 uid="uid://by2s04vprcxcj"]
+[gd_resource type="Resource" script_class="TurnEventData" load_steps=2 format=3 uid="uid://by2s04vprcxcj"]
 
-[ext_resource type="Script" path="res://Elements/PopupWindow/PopupEventData.cs" id="1_lrfwk"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_ube2t"]
 
 [resource]
-script = ExtResource("1_lrfwk")
-EventID = "002"
+script = ExtResource("1_ube2t")
+isEventOneTime = false
+EventID = "2"
 EventTitle = "Something"
 EventDesc = "Happened swag bitch yeah yeah swag swag"
 EventOptions = PackedStringArray("Accept", "Swagger")
