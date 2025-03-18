@@ -1,18 +1,26 @@
 [gd_scene load_steps=5 format=3 uid="uid://dovue5gii8l1b"]
 
-[ext_resource type="Script" path="res://Elements/EventWindow/EventWindow.cs" id="1_8ghau"]
 [ext_resource type="Texture2D" uid="uid://bue71fn67m22p" path="res://Assets/Popup Window/Event_Window_1.png" id="1_82ama"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventWindow.cs" id="1_g37cm"]
 [ext_resource type="Theme" uid="uid://b1hrndcg3hihh" path="res://Elements/EventWindow/TurnEventButtonTheme.tres" id="3_gf7l4"]
 [ext_resource type="PackedScene" uid="uid://54jfwhkvwvi2" path="res://Elements/EventWindow/EventOptionButton.tscn" id="4_g6yn3"]
 
 [node name="EventWindow" type="Control"]
+top_level = true
+z_index = 4096
 layout_mode = 3
-anchors_preset = 0
-offset_left = -840.0
-offset_top = -430.0
-offset_right = -840.0
-offset_bottom = -430.0
-script = ExtResource("1_8ghau")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -427.0
+offset_right = -850.0
+offset_bottom = -427.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g37cm")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0

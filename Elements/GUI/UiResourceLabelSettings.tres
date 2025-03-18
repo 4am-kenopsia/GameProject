@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bhk4sb115ln2u"]
+
+[ext_resource type="FontFile" uid="uid://beqgdqeaya2gp" path="res://Assets/Fonts/Aclonica/Aclonica-Regular.ttf" id="1_figan"]
+
+[resource]
+font = ExtResource("1_figan")
+font_size = 40
+font_color = Color(0.114525, 0.0913149, 0.0732295, 1)
+outline_size = 1

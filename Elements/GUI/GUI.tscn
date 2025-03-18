@@ -1,0 +1,126 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6jfpii80x5me"]
+
+[ext_resource type="Texture2D" uid="uid://cer2yjwund7cw" path="res://Assets/Map/turn.png" id="1_1b1uc"]
+[ext_resource type="Script" path="res://Elements/GUI/GUI.cs" id="1_j14vk"]
+[ext_resource type="Texture2D" uid="uid://dc3oh2sy5t74q" path="res://Assets/UI/Map_Frame.png" id="2_x1fcm"]
+[ext_resource type="Texture2D" uid="uid://dey5xtpx8006u" path="res://Assets/UI/UI_Bar_Temp_3.png" id="3_7ts4m"]
+[ext_resource type="LabelSettings" uid="uid://bhk4sb115ln2u" path="res://Elements/GUI/UiResourceLabelSettings.tres" id="3_h5cb3"]
+[ext_resource type="FontFile" uid="uid://beqgdqeaya2gp" path="res://Assets/Fonts/Aclonica/Aclonica-Regular.ttf" id="4_wcg0u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oyn0g"]
+font = ExtResource("4_wcg0u")
+font_size = 37
+font_color = Color(0.114525, 0.0913149, 0.0732295, 1)
+outline_size = 1
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_j14vk")
+
+[node name="SideUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="SidePanel" type="Sprite2D" parent="SideUI"]
+position = Vector2(-200, 0)
+texture = ExtResource("3_7ts4m")
+centered = false
+
+[node name="MainResourceLabel" type="Label" parent="SideUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -195.0
+offset_top = 70.0
+offset_right = -5.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "123456"
+label_settings = ExtResource("3_h5cb3")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="HappinessLabel" type="Label" parent="SideUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -195.0
+offset_top = 195.0
+offset_right = -5.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100%"
+label_settings = ExtResource("3_h5cb3")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="ThirdResourceLabel" type="Label" parent="SideUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -195.0
+offset_top = 320.0
+offset_right = -5.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10
+"
+label_settings = ExtResource("3_h5cb3")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="TurnLabel" type="Label" parent="SideUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -195.0
+offset_top = 810.0
+offset_right = -5.0
+offset_bottom = 865.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Turn 0"
+label_settings = SubResource("LabelSettings_oyn0g")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="TurnButtonContainer" type="AspectRatioContainer" parent="SideUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -183.0
+offset_top = -182.0
+offset_right = -18.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TurnButton" type="TextureButton" parent="SideUI/TurnButtonContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_1b1uc")
+stretch_mode = 4
+
+[node name="MapFrame" type="Sprite2D" parent="."]
+texture = ExtResource("2_x1fcm")
+centered = false
