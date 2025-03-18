@@ -6,6 +6,8 @@ namespace MapGame
 	public partial class MarkerContainer : MapObject
 	{
 		[Signal] public delegate void ButtonPressedEventHandler(); 
+		[Signal] public delegate void PopUpEventAnsweredEventHandler();
+		[Signal] public delegate void PopUpEventOpenedEventHandler();
 		[Export] private PackedScene popUp;
 		//private int _timesOpened = 1;
 
@@ -23,6 +25,10 @@ namespace MapGame
 
 		public override void OnButtonPressed()
 		{
+			if (GameScene.isEventRunning) 
+			{
+				return;
+			}
 			// Emit the custom signal
 			EmitSignal(SignalName.ButtonPressed);
 			SpawnPopUp();
@@ -40,6 +46,7 @@ namespace MapGame
 		Vector2 middleBottom = new Vector2( GetViewport().GetVisibleRect().Size.X / 2 , GetViewport().GetVisibleRect().Size.Y );
 		popUpInstance.Position = middleBottom;
 		AddChild(popUpInstance);
+		EmitSignal(SignalName.PopUpEventOpened);
 		
 		//_timesOpened = _timesOpened + 1;
 		GetNode<Panel>("Panel").Visible = true;
@@ -49,10 +56,13 @@ namespace MapGame
 		public void OnRightButtonPressed()
 		{
 			QueueFree();
+			EmitSignal(SignalName.PopUpEventAnswered);
+			
 		}
 		public void OnLeftButtonPressed()
 		{
 			QueueFree();
+			EmitSignal(SignalName.PopUpEventAnswered);
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
