@@ -14,6 +14,7 @@ grow_vertical = 2
 script = ExtResource("1_dodt0")
 
 [node name="Map" type="Sprite2D" parent="."]
+texture_filter = 1
 scale = Vector2(1.19444, 1.333)
 texture = ExtResource("1_lc14w")
 centered = false

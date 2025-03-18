@@ -6,7 +6,7 @@ namespace MapGame
 	public partial class ResourceManager : Node
 	{
 		[Export] public int _startingMainResource = 10000;
-		[Export] public int _startingHappiness = 100;
+		[Export] public int _startingHappiness = 100; //Percentage 0-100%
 		[Export] public int _startingThirdResource = 5;
 		[Export] public int _currentMainResource = 10000;
 		[Export] public int _currentHappiness = 100;
