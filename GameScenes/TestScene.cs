@@ -104,10 +104,10 @@ namespace MapGame
 	private void SpawnPopUp()
 	{
 		PopupWindow popUpInstance = (PopupWindow)popUp.Instantiate();
-		popUpInstance._eventsHappened = _timesOpened;
+		//popUpInstance._eventsHappened = _timesOpened;
 		popUpInstance.ButtonPressed2 += OnRightButtonPressed;
 		popUpInstance.ButtonPressed1 += OnLeftButtonPressed;
-		ShitBought += popUpInstance.OnShitBought;
+		//ShitBought += popUpInstance.OnShitBought;
 		Vector2 middleBottom = new Vector2( GetViewport().GetVisibleRect().Size.X / 2 , GetViewport().GetVisibleRect().Size.Y );
 		popUpInstance.Position = middleBottom;
 		AddChild(popUpInstance);
