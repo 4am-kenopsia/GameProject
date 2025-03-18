@@ -18,18 +18,21 @@ namespace MapGame
 		private Button _button2;
 		private Panel _panel;
 		private Label _description;
-		private int _increase = 1;
-		public int _eventsHappened { get; set; } = 0;
+		private int _popUpEventNumber;
+		//public int _eventsHappened { get; set; } = 0;
+		
+		
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
+			_popUpEventNumber = GD.RandRange(1, 2);
 			
 			_button1 = GetNode<Button>("Panel/Button");
 			_button2 = GetNode<Button>("Panel/Button2");
 			_panel = GetNode<Panel>("Panel");
 			_description = GetNode<Label>("Panel/Description");
-			LoadData(_eventsHappened);
+			LoadData();
 			
 			TweenSelf();
 			TweenLabel();
@@ -42,10 +45,10 @@ namespace MapGame
 			
 		}
 		
-		private void LoadData(int number) 
+		private void LoadData() 
 		{
 			// Load the .tres file
-			var eventData = ResourceLoader.Load<PopupEventData>("res://Code/PopupData/PopupEvents/TestEvent" + number + ".tres");
+			var eventData = ResourceLoader.Load<PopupEventData>("res://Code/PopupData/PopupEvents/TestEvent" + _popUpEventNumber + ".tres");
 			// var eventData = ResourceLoader.Load<PopupEventData>("res://Code/PopupData/PopupEvents/TestEvent" + _eventsHappened + ".tres");
 			GD.Print(eventData);
 			if (eventData != null)
@@ -84,14 +87,14 @@ namespace MapGame
 		private void OnButton1Pressed()
 		{
 			// Emit the custom signal
-			ResourceManager.Instance.IncreaseThirdResource(_increase);
+			ResourceManager.Instance.IncreaseThirdResource(20);
 			EmitSignal(SignalName.ButtonPressed1);
 			GD.Print("lol1");
 			
-			GD.Print(_eventsHappened);
+			//GD.Print(_eventsHappened);
 			Visible = false;
 			
-			LoadData(_eventsHappened);
+			LoadData();
 		}
 
 		private void OnButton2Pressed()
@@ -103,14 +106,14 @@ namespace MapGame
 			Visible = false;
 			
 			
-			LoadData(_eventsHappened);
+			LoadData();
 		}
-		public void OnShitBought()
-		{
-			GD.Print("Shit was bought! Updating PopupWindow...");
-			_increase = _increase + 1;
-			// Add logic to update the PopupWindow UI or perform other actions
-		}
+		//public void OnShitBought()
+		//{
+			//GD.Print("Shit was bought! Updating PopupWindow...");
+			//_increase = _increase + 1;
+			//// Add logic to update the PopupWindow UI or perform other actions
+		//}
 		
 		
 		 private void TweenButton()

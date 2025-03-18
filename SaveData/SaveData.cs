@@ -5,8 +5,8 @@ namespace MapGame
 {
 	public partial class SaveData : Node
 	{
-        [Export] public int _currentTurn = 0;
-        [Export] public string[] _eventPool; // Something like this? 
+		[Export] public int _currentTurn = 0;
+		[Export] public string[] _eventPool; // Something like this? 
 		public static SaveData Instance
 		{
 			get;
@@ -19,12 +19,12 @@ namespace MapGame
 			Instance = this;
 			
 		}
-        
-        public void IncreaseTurn()
-        {
-            _currentTurn += 1;
-        }
-        
+		
+		public void IncreaseTurn()
+		{
+			_currentTurn += 1;
+		}
+		
 		
 	}
 }
