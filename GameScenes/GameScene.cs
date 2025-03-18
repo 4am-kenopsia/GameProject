@@ -8,7 +8,7 @@ namespace MapGame
 		private PackedScene _eventWindowScene;
 		private EventWindow _eventWindow;
 		private TextureButton _turnButton;
-		private bool _isEventRunning = false;
+		public static bool isEventRunning = false;
 		[Export] private PackedScene markerScene;
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -37,11 +37,11 @@ namespace MapGame
 			_eventWindow = _eventWindowScene.Instantiate<EventWindow>();
 			AddChild(_eventWindow);
 			_eventWindow.EventAnswered += OnEventAnswered;
-			_isEventRunning = true;
+			isEventRunning = true;
 		}
 		public void OnTurnButtonPressed()
 		{
-			if (_isEventRunning)
+			if (isEventRunning)
 			{
 				GD.Print("Event is already running");
 				return;
@@ -56,28 +56,41 @@ namespace MapGame
 		public void OnEventAnswered()
 		{
 			RemoveChild(_eventWindow);
-			_isEventRunning = false;
+			isEventRunning = false;
+			
+		}
+		public void OnPopUpEventAnswered()
+		{
+			isEventRunning = false;
+			
+		}
+		public void OnPopUpEventOpened()
+		{
+			isEventRunning = true;
 			
 		}
 		private void CreatePopUpMarker()
 		{
-		// Instance the child scene
-		MarkerContainer markerInstance = (MarkerContainer)markerScene.Instantiate(); 
+			// Instance the child scene
+			
+			MarkerContainer markerInstance = (MarkerContainer)markerScene.Instantiate(); 
+			markerInstance.PopUpEventAnswered += OnPopUpEventAnswered;
+			markerInstance.PopUpEventOpened += OnPopUpEventOpened;
 
-		// Generate a random position within the scene
-		Vector2 randomPosition = new Vector2(
-			(float)GD.RandRange(0, 1405),
-			(float)GD.RandRange(0, 854)
-		);
-		
-		// Set the position of the child instance
-		markerInstance.Position = randomPosition;
+			// Generate a random position within the scene
+			Vector2 randomPosition = new Vector2(
+				(float)GD.RandRange(0, 1405),
+				(float)GD.RandRange(0, 854)
+			);
+			
+			// Set the position of the child instance
+			markerInstance.Position = randomPosition;
 
-		// Add the child instance to the scene
-		
-		AddChild(markerInstance);
+			// Add the child instance to the scene
+			
+			AddChild(markerInstance);
 	
-	}
+		}
 
 	}
 }
