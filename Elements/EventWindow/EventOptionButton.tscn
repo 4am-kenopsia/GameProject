@@ -33,6 +33,7 @@ text = "
 "
 
 [node name="TextureButton" type="TextureButton" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = -404.0
 offset_top = -74.0

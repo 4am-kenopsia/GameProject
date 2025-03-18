@@ -49,7 +49,7 @@ namespace MapGame
 		EmitSignal(SignalName.PopUpEventOpened);
 		
 		//_timesOpened = _timesOpened + 1;
-		GetNode<Panel>("Panel").Visible = true;
+		//GetNode<Panel>("Panel").Visible = true;
 	
 		}
 	

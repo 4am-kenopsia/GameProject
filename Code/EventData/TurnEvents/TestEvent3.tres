@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="TurnEventData" load_steps=7 format=3 uid="uid://dvunpd7tit74b"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/TurnEventOutcomeData.cs" id="1_a28u8"]
+[ext_resource type="Script" path="res://Elements/EventWindow/TurnEventData.cs" id="1_g46mq"]
+
+[sub_resource type="Resource" id="Resource_bj2tj"]
+script = ExtResource("1_a28u8")
+HappinessChange = 10
+MainResourcehange = 100
+ThirdResourceChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.0
+MainResourceMultiplier = 0.0
+
+[sub_resource type="Resource" id="Resource_56qvo"]
+script = ExtResource("1_a28u8")
+HappinessChange = -10
+MainResourcehange = 200
+ThirdResourceChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.0
+MainResourceMultiplier = 0.0
+
+[sub_resource type="Resource" id="Resource_n4d6m"]
+script = ExtResource("1_a28u8")
+HappinessChange = -40
+MainResourcehange = 6000
+ThirdResourceChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.0
+MainResourceMultiplier = 0.0
+
+[sub_resource type="Resource" id="Resource_p8okq"]
+script = ExtResource("1_a28u8")
+HappinessChange = 100
+MainResourcehange = -4000
+ThirdResourceChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.0
+MainResourceMultiplier = 0.0
+
+[resource]
+script = ExtResource("1_g46mq")
+isEventOneTime = false
+EventID = "3"
+EventTitle = "Zeep zorp"
+EventDesc = "Zorp vorp goop zlorg zap zup LORZ zeeper zup glambo zorb"
+EventOptions = PackedStringArray("zorp.", "zup vorb gloop", "GLEEP ZORPO ZUP", "zleebe gloop")
+EventDictionary = {
+"3_1": SubResource("Resource_bj2tj"),
+"3_2": SubResource("Resource_56qvo"),
+"3_3": SubResource("Resource_n4d6m"),
+"3_4": SubResource("Resource_p8okq")
+}

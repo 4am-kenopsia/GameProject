@@ -47,43 +47,32 @@ namespace MapGame
 			_eventContent = GetNode<RichTextLabel>("TurnEventContent");
 			_eventContent.Text = _currentEvent.EventDesc;
 
-			SetupOptionButton(0, "OptionContainer1", _currentEvent.EventOptions.Length > 0);
-			SetupOptionButton(1, "OptionContainer2", _currentEvent.EventOptions.Length > 1);
-			SetupOptionButton(2, "OptionContainer3", _currentEvent.EventOptions.Length > 2);
-			SetupOptionButton(3, "OptionContainer4", _currentEvent.EventOptions.Length > 3);
+			SetupOptionButton(1, "OptionContainer1", _currentEvent.EventOptions.Length > 0);
+			SetupOptionButton(2, "OptionContainer2", _currentEvent.EventOptions.Length > 1);
+			SetupOptionButton(3, "OptionContainer3", _currentEvent.EventOptions.Length > 2);
+			SetupOptionButton(4, "OptionContainer4", _currentEvent.EventOptions.Length > 3);
 		}
 
 		private void SetupOptionButton(int index, string containerName, bool isVisible)
 		{
 			if (isVisible)
 			{
-				var optionButton = GetNode<TextureButton>($"OptionsContainer/{containerName}/OptionButton{index + 1}/TextureButton");
-				var optionButtonText = GetNode<RichTextLabel>($"OptionsContainer/{containerName}/OptionButton{index + 1}/RichTextLabel");
-				var optionButtonContainer = GetNode<OptionButton>($"OptionsContainer/{containerName}/OptionButton{index + 1}");
+				var optionButton = GetNode<TextureButton>($"OptionsContainer/{containerName}/OptionButton{index}/TextureButton");
+				var optionButtonText = GetNode<RichTextLabel>($"OptionsContainer/{containerName}/OptionButton{index}/RichTextLabel");
+				var optionButtonContainer = GetNode<OptionButton>($"OptionsContainer/{containerName}/OptionButton{index}");
 
 				optionButton.Pressed += () => OnOptionButtonPressed(index);
-				optionButtonText.Text = _currentEvent.EventOptions[index];
+				optionButtonText.Text = _currentEvent.EventOptions[index - 1];
 				optionButtonContainer.Visible = true;
 			}
 		}
 
 		public void OnOptionButtonPressed(int optionIndex)
 		{
-			string outcomeKey = _currentEventID + "_" + (optionIndex + 1);
+			string outcomeKey = _currentEventID + "_" + optionIndex;
 			var outcome = _eventDictionary[outcomeKey];
-			HandleOptionOutcomes((TurnEventOutcomeData)outcome);
-		}
-
-		public void HandleOptionOutcomes(TurnEventOutcomeData outcome)
-		{
-			ResourceManager.Instance.IncreaseHappiness(outcome.HappinessChange);
-			GD.Print(ResourceManager.Instance._currentHappiness);
-			ResourceManager.Instance.IncreaseMainResource(outcome.MainResourcehange);
-			GD.Print(ResourceManager.Instance._currentMainResource);
-			ResourceManager.Instance.IncreaseThirdResource(outcome.ThirdResourceChange);
-			GD.Print(ResourceManager.Instance._currentThirdResource);
-			
-			EmitSignal(SignalName.EventAnswered);
+            EmitSignal(SignalName.EventAnswered);
+			ResourceManager.Instance.HandleOptionOutcomes((TurnEventOutcomeData)outcome);
 		}
 	}
 }

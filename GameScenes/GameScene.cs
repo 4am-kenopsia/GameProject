@@ -55,6 +55,7 @@ namespace MapGame
 		}
 		public void OnEventAnswered()
 		{
+            GUI.UpdateLabels();
 			RemoveChild(_eventWindow);
 			isEventRunning = false;
 			
