@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://cp2ge8oql675t"]
+[gd_resource type="Resource" load_steps=7 format=3 uid="uid://cp2ge8oql675t"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_3ccrw"]
 [ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_yvt5u"]

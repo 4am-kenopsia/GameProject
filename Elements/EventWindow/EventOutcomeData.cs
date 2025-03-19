@@ -15,17 +15,17 @@ namespace MapGame
 		[Export] public string unlockEvent;
 		[Export] public string unlockEvent2;
 		[Export] public bool SecretMode2;
-        
-        [ExportSubgroup("Happiness Multipliers")]
-        [Export] public bool ChangeHappinessPosMultiplier;
+		
+		[ExportSubgroup("Happiness Multipliers")]
+		[Export] public bool ChangeHappinessPosMultiplier;
 		[Export] public float HappinessPosMultiplier;
-        [Export] public bool ChangeHappinessNegMultiplier;
-        [Export] public float HappinessNegMultiplier;
-        
-        [ExportSubgroup("Main Resource Multipliers")]
-        [Export] public bool ChangeMainResourcePosMultiplier;
+		[Export] public bool ChangeHappinessNegMultiplier;
+		[Export] public float HappinessNegMultiplier;
+		
+		[ExportSubgroup("Main Resource Multipliers")]
+		[Export] public bool ChangeMainResourcePosMultiplier;
 		[Export] public float MainResourcePosMultiplier;
-        [Export] public bool ChangeMainResourceNegMultiplier;
-        [Export] public float MainResourceNegMultiplier;
+		[Export] public bool ChangeMainResourceNegMultiplier;
+		[Export] public float MainResourceNegMultiplier;
 	}
 }

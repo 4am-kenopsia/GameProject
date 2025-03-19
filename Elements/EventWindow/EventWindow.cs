@@ -72,7 +72,7 @@ namespace MapGame
 			string outcomeKey = _currentEventID + "_" + optionIndex;
 			var outcome = _eventDictionary[outcomeKey];
 			ResourceManager.Instance.HandleOptionOutcomes((EventOutcomeData)outcome);
-            EmitSignal(SignalName.EventAnswered);
+			EmitSignal(SignalName.EventAnswered);
 		}
 	}
 }

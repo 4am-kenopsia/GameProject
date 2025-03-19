@@ -30,7 +30,7 @@ namespace MapGame
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			_popUpEventNumber = GD.RandRange(1, 2);
+			_popUpEventNumber = GD.RandRange(1, 4);
 			
 			_button1 = GetNode<Button>("Panel/Button");
 			_button2 = GetNode<Button>("Panel/Button2");
@@ -52,7 +52,7 @@ namespace MapGame
 		private void LoadData() 
 		{
 			// Load the .tres file
-			var eventData = ResourceLoader.Load<EventData>("res://Code/PopupData/PopupEvents/TestEvent" + _popUpEventNumber + ".tres");
+			var eventData = ResourceLoader.Load<EventData>("res://Code/EventData/PopupEvents/TestEvent" + _popUpEventNumber + ".tres");
 			_eventDictionary = eventData.EventDictionary;
 			_currentEventID = _popUpEventNumber.ToString();
 			
@@ -111,7 +111,7 @@ namespace MapGame
 			string outcomeKey = _currentEventID + "_" + 2;
 			var outcome = _eventDictionary[outcomeKey];
 			ResourceManager.Instance.HandleOptionOutcomes((EventOutcomeData)outcome);
-			ResourceManager.Instance.DecreaseMainResource(100);
+			
 			EmitSignal(SignalName.ButtonPressed2);
 			GD.Print("lol2");
 			Visible = false;
