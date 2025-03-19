@@ -1,0 +1,71 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=6 format=3 uid="uid://i6fpjcakx1ff"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_dx60s"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_jkwk1"]
+
+[sub_resource type="Resource" id="Resource_rxih2"]
+script = ExtResource("1_jkwk1")
+HappinessChange = 5
+MainResourcehange = 0
+ThirdResourceChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+ChangeHappinessPosMultiplier = true
+HappinessPosMultiplier = 1.4
+ChangeHappinessNegMultiplier = true
+HappinessNegMultiplier = 1.0
+ChangeMainResourcePosMultiplier = true
+MainResourcePosMultiplier = 1.0
+ChangeMainResourceNegMultiplier = true
+MainResourceNegMultiplier = 1.0
+
+[sub_resource type="Resource" id="Resource_2v1nj"]
+script = ExtResource("1_jkwk1")
+HappinessChange = 20
+MainResourcehange = -3000
+ThirdResourceChange = 1
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+ChangeHappinessPosMultiplier = false
+HappinessPosMultiplier = 0.0
+ChangeHappinessNegMultiplier = false
+HappinessNegMultiplier = 0.0
+ChangeMainResourcePosMultiplier = false
+MainResourcePosMultiplier = 0.0
+ChangeMainResourceNegMultiplier = false
+MainResourceNegMultiplier = 0.0
+
+[sub_resource type="Resource" id="Resource_7j5nx"]
+script = ExtResource("1_jkwk1")
+HappinessChange = -10
+MainResourcehange = 0
+ThirdResourceChange = 0
+unlockEvent = "S2"
+unlockEvent2 = ""
+SecretMode2 = false
+ChangeHappinessPosMultiplier = false
+HappinessPosMultiplier = 0.0
+ChangeHappinessNegMultiplier = true
+HappinessNegMultiplier = 1.2
+ChangeMainResourcePosMultiplier = false
+MainResourcePosMultiplier = 0.0
+ChangeMainResourceNegMultiplier = false
+MainResourceNegMultiplier = 0.0
+
+[resource]
+script = ExtResource("1_dx60s")
+isEventOneTime = false
+EventPicture = ""
+EventID = "2"
+EventTitle = "A green friend"
+EventDesc = "You spot a curious creature, one you have not seen like before. It is tiny, green and has a long tongue, looks to be a mix between a gastropod and a feline. It looks at you as if they know you are watching. What will you do?
+"
+EventOptions = PackedStringArray("Wish it luck on it\'s journey", "Offer it a pearl from your collection", "Hide before it sees you!")
+EventOutcomeHints = PackedStringArray("You feel as if your karma has been purified. Odd.", "The creature grabs the pearl and looks at you before swinging away with it\'s long tongue.", "Phew... Safe, I don\'t think it noticed you... ")
+EventDictionary = {
+"2_1": SubResource("Resource_rxih2"),
+"2_2": SubResource("Resource_2v1nj"),
+"2_3": SubResource("Resource_7j5nx")
+}

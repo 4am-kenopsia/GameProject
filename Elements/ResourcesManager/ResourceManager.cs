@@ -6,10 +6,10 @@ namespace MapGame
 	public partial class ResourceManager : Node
 	{
 		[Export] public float _startingMainResource = 10000;
-		[Export] public float _startingHappiness = 100; //Percentage 0-100%
+		[Export] public float _startingHappiness = 100; // Percentage 0-100%
 		[Export] public float _startingThirdResource = 5;
 		[Export] public float _currentMainResource = 10000;
-		[Export] public float _currentHappiness = 100;
+		[Export] public float _currentHappiness = 100; // Percentage 0-100%
 		[Export] public float _currentThirdResource = 5;
         [Export] public float _mainResourceNegMultiplier = 1;
         [Export] public float _mainResourcePosMultiplier = 1;
@@ -61,6 +61,7 @@ namespace MapGame
             if (_currentHappiness + _happinessNegMultiplier * decrease < 0)
             {
                 _currentHappiness = 0;
+                return;
             }
 			_currentHappiness += _happinessNegMultiplier * decrease;
 		}
@@ -88,11 +89,11 @@ namespace MapGame
             
             if (outcome.MainResourcehange >= 0)
             {
-                IncreaseHappiness(outcome.MainResourcehange);
+                IncreaseMainResource(outcome.MainResourcehange);
             }
             else if (outcome.MainResourcehange < 0)
             {
-                DecreaseHappiness(outcome.MainResourcehange);
+                DecreaseMainResource(outcome.MainResourcehange);
             }
 			GD.Print(_currentMainResource);
             

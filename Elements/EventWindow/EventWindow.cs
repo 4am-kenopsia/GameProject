@@ -23,7 +23,7 @@ namespace MapGame
 		private RichTextLabel _optionButton2Text = null;
 		private RichTextLabel _optionButton3Text = null;
 		private RichTextLabel _optionButton4Text = null;
-		private TurnEventData _currentEvent = null;
+		private EventData _currentEvent = null;
 		private Dictionary _eventDictionary = null;
 		
 		private string _currentEventID = "";
@@ -31,13 +31,13 @@ namespace MapGame
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			int _eventNumber = GD.RandRange(1, 2);
+			int _eventNumber = GD.RandRange(1, 4);
 			LoadEventData(_eventNumber);
 		}
 
 		public void LoadEventData(int eventNumber)
 		{
-			_currentEvent = ResourceLoader.Load<TurnEventData>("res://Code/EventData/TurnEvents/TestEvent" + eventNumber + ".tres");
+			_currentEvent = ResourceLoader.Load<EventData>("res://Code/EventData/TurnEvents/TestEvent" + eventNumber + ".tres");
 			_currentEventID = eventNumber.ToString();
 			_eventDictionary = _currentEvent.EventDictionary;
 
@@ -71,8 +71,8 @@ namespace MapGame
 		{
 			string outcomeKey = _currentEventID + "_" + optionIndex;
 			var outcome = _eventDictionary[outcomeKey];
+			ResourceManager.Instance.HandleOptionOutcomes((EventOutcomeData)outcome);
             EmitSignal(SignalName.EventAnswered);
-			ResourceManager.Instance.HandleOptionOutcomes((TurnEventOutcomeData)outcome);
 		}
 	}
 }

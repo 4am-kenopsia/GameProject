@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=6 format=3 uid="uid://cn4qx1wxkjwl"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_t3h4b"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_vse2k"]
+
+[sub_resource type="Resource" id="Resource_k5pqy"]
+script = ExtResource("1_t3h4b")
+HappinessChange = 20
+MainResourcehange = -1000
+ThirdResourceChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+ChangeHappinessPosMultiplier = true
+HappinessPosMultiplier = 1.1
+ChangeHappinessNegMultiplier = true
+HappinessNegMultiplier = 1.1
+ChangeMainResourcePosMultiplier = false
+MainResourcePosMultiplier = 0.0
+ChangeMainResourceNegMultiplier = true
+MainResourceNegMultiplier = 1.2
+
+[sub_resource type="Resource" id="Resource_pdac4"]
+script = ExtResource("1_t3h4b")
+HappinessChange = 70
+MainResourcehange = -5000
+ThirdResourceChange = 1
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+ChangeHappinessPosMultiplier = true
+HappinessPosMultiplier = 1.2
+ChangeHappinessNegMultiplier = false
+HappinessNegMultiplier = 0.0
+ChangeMainResourcePosMultiplier = true
+MainResourcePosMultiplier = 0.5
+ChangeMainResourceNegMultiplier = true
+MainResourceNegMultiplier = 1.5
+
+[sub_resource type="Resource" id="Resource_labuq"]
+script = ExtResource("1_t3h4b")
+HappinessChange = 20
+MainResourcehange = 0
+ThirdResourceChange = 1
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+ChangeHappinessPosMultiplier = false
+HappinessPosMultiplier = 0.0
+ChangeHappinessNegMultiplier = false
+HappinessNegMultiplier = 0.0
+ChangeMainResourcePosMultiplier = true
+MainResourcePosMultiplier = 1.4
+ChangeMainResourceNegMultiplier = false
+MainResourceNegMultiplier = 0.9
+
+[resource]
+script = ExtResource("1_vse2k")
+isEventOneTime = false
+EventPicture = ""
+EventID = "3"
+EventTitle = "A new booming trend"
+EventDesc = "A new trend has risen in the spiritworld. Everyone is all about the new craze where you can \"multiply your spiritual power super easily\" by just channeling it into this medium. You're a bit sceptical at first but it seems like so many of the royals recommend it. They have some of the highest spiritual power after all. What will you do?"
+EventOptions = PackedStringArray("Try it with a little bit of your spiritual power.", "Dump a megaload of your spiritual power into", "It\'s such an obvious scam. Come on.")
+EventOutcomeHints = PackedStringArray("You try it carefully, it feels nice but you don\'t recognize any immediate effects.", "After dumping so much of your spiritual power into it, you feel as if you just made a huge mistake. You just don\'t know how this will come bite you in the ass.", "You steer clear of that junk. It\'s obvious why the spiritually well off want to share that stuff.")
+EventDictionary = {
+"3_1": SubResource("Resource_k5pqy"),
+"3_2": SubResource("Resource_pdac4"),
+"3_3": SubResource("Resource_labuq")
+}

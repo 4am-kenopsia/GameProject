@@ -110,7 +110,7 @@ namespace MapGame
 		{
 			string outcomeKey = _currentEventID + "_" + 2;
 			var outcome = _eventDictionary[outcomeKey];
-			HandleOptionOutcomes((EventOutcomeData)outcome);
+			ResourceManager.Instance.HandleOptionOutcomes((EventOutcomeData)outcome);
 			ResourceManager.Instance.DecreaseMainResource(100);
 			EmitSignal(SignalName.ButtonPressed2);
 			GD.Print("lol2");
