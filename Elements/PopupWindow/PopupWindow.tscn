@@ -1,14 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhxvgpyahrcbh"]
+[gd_scene load_steps=9 format=3 uid="uid://bhxvgpyahrcbh"]
 
 [ext_resource type="Script" path="res://Elements/PopupWindow/PopupWindow.cs" id="1_2q78g"]
+[ext_resource type="Texture2D" uid="uid://b7ww8ebhdb2gn" path="res://Assets/UI/windowBgAlt.png" id="2_jieav"]
 [ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="2_slau0"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ib3xj"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ei0iv"]
+texture = ExtResource("2_jieav")
 
 [sub_resource type="FontVariation" id="FontVariation_rdi1y"]
 base_font = ExtResource("2_slau0")
@@ -40,8 +37,7 @@ offset_top = -346.0
 offset_right = 293.5
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(0.1, 0.1)
-theme_override_styles/panel = SubResource("StyleBoxFlat_ib3xj")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ei0iv")
 
 [node name="Button2" type="Button" parent="Panel"]
 layout_mode = 0
@@ -65,24 +61,35 @@ text = "Option 1"
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
-offset_right = 588.0
-offset_bottom = 150.0
+offset_left = 49.5
+offset_top = 2.0
+offset_right = 535.5
+offset_bottom = 75.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_obhgt")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 14
 text = "A man has fallen in to the river of lego city"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Description" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 111.0
-offset_right = 496.0
-offset_bottom = 213.0
+offset_left = 51.0
+offset_top = 69.0
+offset_right = 395.0
+offset_bottom = 203.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_iwew6")
+theme_override_font_sizes/font_size = 14
 text = "description textfatakokpdkaspdkaspdakpdaskpodaskpodask
 podaskpodakspodaskp"
 horizontal_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
+
+[node name="img" type="TextureRect" parent="Panel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 400.0
+offset_top = 68.0
+offset_right = 537.0
+offset_bottom = 203.0

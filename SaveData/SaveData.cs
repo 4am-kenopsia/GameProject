@@ -24,6 +24,11 @@ namespace MapGame
 		{
 			_currentTurn += 1;
 		}
+		 public void Reset()
+		{
+			_currentTurn = 0;
+			_eventPool = new string[0]; // Reset the event pool to an empty array
+		}
 		
 		
 	}

@@ -19,8 +19,10 @@ namespace MapGame
 		private Button _button2;
 		private Panel _panel;
 		private Label _description;
+		private TextureRect _img;
 		private int _popUpEventNumber;
 		private string _currentEventID;
+		private Texture2D _newTexture;
 		private Dictionary _eventDictionary = null;
 		//private PopupEventData _currentEvent = null;
 		//public int _eventsHappened { get; set; } = 0;
@@ -35,6 +37,7 @@ namespace MapGame
 			_button1 = GetNode<Button>("Panel/Button");
 			_button2 = GetNode<Button>("Panel/Button2");
 			_panel = GetNode<Panel>("Panel");
+			_img = GetNode<TextureRect>("Panel/img");
 			_description = GetNode<Label>("Panel/Description");
 			LoadData();
 			
@@ -63,7 +66,12 @@ namespace MapGame
 				// Update the Label with the data
 				_eventLabel.Text = $"{eventData.EventTitle}";
 				_description.Text = $"{eventData.EventDesc}";
-
+				if (!string.IsNullOrEmpty(eventData.EventPicture))
+				{
+					_newTexture = GD.Load<Texture2D>(eventData.EventPicture);
+					GD.Print("pic:" + eventData.EventPicture);
+					_img.Texture = _newTexture;
+				}
 				// Example of accessing other properties
 				_button1.SetText(eventData.EventOptions[0]);
 				_button2.SetText(eventData.EventOptions[1]);

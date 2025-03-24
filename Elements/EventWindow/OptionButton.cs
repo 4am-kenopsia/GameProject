@@ -5,13 +5,13 @@ namespace MapGame
 {
 	public partial class OptionButton : Control
 	{
-        //[Signal] public delegate void ButtonPressedEventHandler();
-        //private TextureButton _button;
+		//[Signal] public delegate void ButtonPressedEventHandler();
+		//private TextureButton _button;
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-            //_button = GetNode<TextureButton>("TextureButton");
-            //_button.Pressed += OnButtonPressed;
+			//_button = GetNode<TextureButton>("TextureButton");
+			//_button.Pressed += OnButtonPressed;
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,7 +20,7 @@ namespace MapGame
 		}
 		/*public void OnButtonPressed()
 		{
-            EmitSignal(SignalName.ButtonPressed);
+			EmitSignal(SignalName.ButtonPressed);
 		}*/
 	}
 }
