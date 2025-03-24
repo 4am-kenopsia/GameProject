@@ -23,10 +23,10 @@ patch_margin_bottom = 4
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = -404.0
-offset_top = -74.0
-offset_right = 404.0
-offset_bottom = 74.0
+offset_left = -386.0
+offset_top = -64.0
+offset_right = 389.0
+offset_bottom = 64.0
 theme = ExtResource("3_pjr7v")
 theme_override_colors/default_color = Color(0.0923551, 0.0505763, 0.0141586, 1)
 text = "

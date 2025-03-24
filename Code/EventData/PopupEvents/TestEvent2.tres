@@ -40,7 +40,7 @@ MainResourceNegMultiplier = 0.0
 [resource]
 script = ExtResource("1_ube2t")
 isEventOneTime = false
-EventPicture = ""
+EventPicture = "res://Code/EventData/PopupEvents/img/george-droyd.png"
 EventID = "2"
 EventTitle = "George Droid is running out of fent"
 EventDesc = "Help George Droid acquire more"

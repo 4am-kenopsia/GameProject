@@ -40,10 +40,10 @@ MainResourceNegMultiplier = 0.0
 [resource]
 script = ExtResource("1_f2vxf")
 isEventOneTime = false
-EventPicture = ""
+EventPicture = "res://Code/EventData/PopupEvents/img/john-pork.png"
 EventID = "4"
 EventTitle = "John Pork found dead in Ohio"
-EventDesc = "You received an invite to the funeral"
+EventDesc = "You received an invitation to the funeral"
 EventOptions = PackedStringArray("Press F", "Decline")
 EventOutcomeHints = PackedStringArray()
 EventDictionary = {
