@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6jfpii80x5me"]
+[gd_scene load_steps=9 format=3 uid="uid://b6jfpii80x5me"]
 
 [ext_resource type="Texture2D" uid="uid://cer2yjwund7cw" path="res://Assets/Map/turn.png" id="1_1b1uc"]
 [ext_resource type="Script" path="res://Elements/GUI/GUI.cs" id="1_j14vk"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dey5xtpx8006u" path="res://Assets/UI/UI_Bar_Temp_3.png" id="3_7ts4m"]
 [ext_resource type="LabelSettings" uid="uid://bhk4sb115ln2u" path="res://Elements/GUI/UiResourceLabelSettings.tres" id="3_h5cb3"]
 [ext_resource type="FontFile" uid="uid://beqgdqeaya2gp" path="res://Assets/Fonts/Aclonica/Aclonica-Regular.ttf" id="4_wcg0u"]
+[ext_resource type="Texture2D" uid="uid://1ar0jc6mn741" path="res://Assets/Resources/happiness_icon.png" id="6_x0afv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oyn0g"]
 font = ExtResource("4_wcg0u")
@@ -122,6 +123,11 @@ texture_filter = 1
 layout_mode = 2
 texture_normal = ExtResource("1_1b1uc")
 stretch_mode = 4
+
+[node name="HappinessIcon" type="Sprite2D" parent="SideUI"]
+texture_filter = 1
+position = Vector2(-100, 175)
+texture = ExtResource("6_x0afv")
 
 [node name="MapFrame" type="Sprite2D" parent="."]
 texture = ExtResource("2_x1fcm")

@@ -19,10 +19,10 @@ namespace MapGame
 		private OptionButton _optionButton2Container = null;
 		private OptionButton _optionButton3Container = null;
 		private OptionButton _optionButton4Container = null;
-		private RichTextLabel _optionButton1Text = null;
-		private RichTextLabel _optionButton2Text = null;
-		private RichTextLabel _optionButton3Text = null;
-		private RichTextLabel _optionButton4Text = null;
+		private Label _optionButton1Text = null;
+		private Label _optionButton2Text = null;
+		private Label _optionButton3Text = null;
+		private Label _optionButton4Text = null;
 		private EventData _currentEvent = null;
 		private Dictionary _eventDictionary = null;
 		
@@ -58,7 +58,7 @@ namespace MapGame
 			if (isVisible)
 			{
 				var optionButton = GetNode<TextureButton>($"OptionsContainer/{containerName}/OptionButton{index}/TextureButton");
-				var optionButtonText = GetNode<RichTextLabel>($"OptionsContainer/{containerName}/OptionButton{index}/RichTextLabel");
+				var optionButtonText = GetNode<Label>($"OptionsContainer/{containerName}/OptionButton{index}/Label");
 				var optionButtonContainer = GetNode<OptionButton>($"OptionsContainer/{containerName}/OptionButton{index}");
 
 				optionButton.Pressed += () => OnOptionButtonPressed(index);

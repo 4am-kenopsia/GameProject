@@ -61,7 +61,7 @@ EventPicture = ""
 EventID = "3"
 EventTitle = "A new booming trend"
 EventDesc = "A new trend has risen in the spiritworld. Everyone is all about the new craze where you can \"multiply your spiritual power super easily\" by just channeling it into this medium. You're a bit sceptical at first but it seems like so many of the royals recommend it. They have some of the highest spiritual power after all. What will you do?"
-EventOptions = PackedStringArray("Try it with a little bit of your spiritual power.", "Dump a megaload of your spiritual power into", "It\'s such an obvious scam. Come on.")
+EventOptions = PackedStringArray("Try it with a little bit of your spiritual power.", "Dump a megaload of your spiritual power into it", "It\'s such an obvious scam. Come on.")
 EventOutcomeHints = PackedStringArray("You try it carefully, it feels nice but you don\'t recognize any immediate effects.", "After dumping so much of your spiritual power into it, you feel as if you just made a huge mistake. You just don\'t know how this will come bite you in the ass.", "You steer clear of that junk. It\'s obvious why the spiritually well off want to share that stuff.")
 EventDictionary = {
 "3_1": SubResource("Resource_k5pqy"),
