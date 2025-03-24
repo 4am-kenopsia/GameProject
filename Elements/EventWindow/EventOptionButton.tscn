@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Elements/EventWindow/OptionButton.cs" id="1_brxe4"]
 [ext_resource type="Texture2D" uid="uid://ctxd2ert1ni2a" path="res://Assets/Popup Window/Temp_Button_1.png" id="2_f2v72"]
 [ext_resource type="Theme" uid="uid://b1hrndcg3hihh" path="res://Elements/EventWindow/TurnEventButtonTheme.tres" id="3_pjr7v"]
-[ext_resource type="LabelSettings" uid="uid://ch2mjm6gnu04l" path="res://Elements/EventWindow/TurnEventButtonLabelSettings.tres" id="4_rby4x"]
+[ext_resource type="LabelSettings" path="res://Elements/EventWindow/TurnEventButtonLabelSettings.tres" id="4_rby4x"]
 
 [node name="OptionButton" type="Control"]
 layout_mode = 3

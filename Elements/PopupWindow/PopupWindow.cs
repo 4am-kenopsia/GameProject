@@ -4,7 +4,7 @@ using Godot.Collections;
 namespace MapGame
 {
 
-	public partial class PopupWindow : Node2D
+	public partial class PopupWindow : Control
 	{
 		// Define custom signals
 		[Signal]

@@ -43,8 +43,8 @@ namespace MapGame
 		popUpInstance.ButtonPressed2 += OnPopUpButtonPressed;
 		popUpInstance.ButtonPressed1 += OnPopUpButtonPressed;
 		//ShitBought += popUpInstance.OnShitBought;
-		Vector2 middleBottom = new Vector2( GetViewport().GetVisibleRect().Size.X / 2 , GetViewport().GetVisibleRect().Size.Y );
-		popUpInstance.Position = middleBottom;
+		//Vector2 middleBottom = new Vector2( GetViewport().GetVisibleRect().Size.X / 2 , GetViewport().GetVisibleRect().Size.Y / 2 );
+		// popUpInstance.Position = middleBottom;
 		AddChild(popUpInstance);
 		EmitSignal(SignalName.PopUpEventOpened);
 		
