@@ -56,7 +56,7 @@ namespace MapGame
 
 			
 			// Load the main menu scene
-			GetTree().ChangeSceneToFile("res://GameScenes/Menu.tscn");
+			GetTree().ChangeSceneToFile("res://GameScenes/MainMenu.tscn");
 
 						
 		}

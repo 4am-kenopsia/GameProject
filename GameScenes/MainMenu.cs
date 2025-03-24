@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Menu : Control
+public partial class MainMenu : Control
 {
 	// Called when the node enters the scene tree for the first time.
 	private TextureButton _playButton;
@@ -10,9 +10,9 @@ public partial class Menu : Control
 	public override void _Ready()
 	{
 		
-		_playButton = GetNode<TextureButton>("Control/VBoxContainer/playButton");
-		_langButton = GetNode<TextureButton>("Control/VBoxContainer/languageButton");
-		_creditsButton = GetNode<TextureButton>("Control/VBoxContainer/creditsButton");
+		_playButton = GetNode<TextureButton>("VBoxContainer/playButton");
+		_langButton = GetNode<TextureButton>("VBoxContainer/languageButton");
+		_creditsButton = GetNode<TextureButton>("VBoxContainer/creditsButton");
 		
 		_playButton.Pressed += OnPlayButtonPressed;
 		_langButton.Pressed += OnLanguageButtonPressed;
@@ -31,14 +31,14 @@ public partial class Menu : Control
 	}
 	private void OnLanguageButtonPressed()
 	{
-		var _langText = GetNode<Label>("Control/VBoxContainer/languageButton/Label2");
+		var _langText = GetNode<Label>("VBoxContainer/languageButton/Label");
 		_langText.Text = "Not implemented";
 		 
 		
 	}
 	private void OnCreditsButtonPressed()
 	{
-		var _creditsText = GetNode<Label>("Control/VBoxContainer/creditsButton/Label3");
+		var _creditsText = GetNode<Label>("VBoxContainer/creditsButton/Label");
 		_creditsText.Text = "Not implemented";
 		 
 		
