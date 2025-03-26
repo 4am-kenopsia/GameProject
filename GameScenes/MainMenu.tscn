@@ -35,30 +35,46 @@ offset_top = 417.0
 offset_right = -561.0
 offset_bottom = -217.0
 
-[node name="playButton" type="TextureButton" parent="VBoxContainer"]
+[node name="ContinueButton" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 texture_normal = ExtResource("1_bjjx6")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="VBoxContainer/playButton"]
+[node name="ContinueLabel" type="Label" parent="VBoxContainer/ContinueButton"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.993
 anchor_bottom = 1.0
 offset_right = -0.187988
 offset_bottom = 1.0
-text = "PLAY"
+text = "CONTINUE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="languageButton" type="TextureButton" parent="VBoxContainer"]
+[node name="NewGameButton" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_bjjx6")
+stretch_mode = 0
+
+[node name="NegGameLabel" type="Label" parent="VBoxContainer/NewGameButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEW GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LanguageButton" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 texture_normal = ExtResource("1_bjjx6")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="VBoxContainer/languageButton"]
+[node name="LanguageLabel" type="Label" parent="VBoxContainer/LanguageButton"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.993
@@ -69,13 +85,13 @@ text = "LANGUAGE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="creditsButton" type="TextureButton" parent="VBoxContainer"]
+[node name="CreditsButton" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 texture_normal = ExtResource("1_bjjx6")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="VBoxContainer/creditsButton"]
+[node name="CreditsLabel" type="Label" parent="VBoxContainer/CreditsButton"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.993

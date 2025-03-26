@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dovue5gii8l1b"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/EventWindow.cs" id="1_g37cm"]
-[ext_resource type="Texture2D" uid="uid://b7ww8ebhdb2gn" path="res://Assets/UI/windowBgAlt.png" id="2_7sl1j"]
-[ext_resource type="Theme" uid="uid://b1hrndcg3hihh" path="res://Elements/EventWindow/TurnEventButtonTheme.tres" id="3_gf7l4"]
+[ext_resource type="Texture2D" uid="uid://ce4dbryd53mwy" path="res://Assets/Popup Window/Event_Window.png" id="2_k41yb"]
+[ext_resource type="Theme" uid="uid://b1hrndcg3hihh" path="res://Themes/TurnEventButtonTheme.tres" id="3_gf7l4"]
 [ext_resource type="PackedScene" uid="uid://54jfwhkvwvi2" path="res://Elements/EventWindow/EventOptionButton.tscn" id="4_g6yn3"]
 
 [node name="EventWindow" type="Control"]
@@ -27,7 +27,7 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 1700.0
 offset_bottom = 860.0
-texture = ExtResource("2_7sl1j")
+texture = ExtResource("2_k41yb")
 patch_margin_left = 12
 patch_margin_top = 12
 patch_margin_right = 12

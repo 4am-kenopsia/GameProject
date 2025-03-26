@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=7 format=3 uid="uid://cp2ge8oql675t"]
+[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://cp2ge8oql675t"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_3ccrw"]
 [ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_yvt5u"]
@@ -6,70 +6,46 @@
 [sub_resource type="Resource" id="Resource_f3ie3"]
 script = ExtResource("1_yvt5u")
 HappinessChange = 20
-MainResourcehange = -2000
-ThirdResourceChange = 0
+MagicChange = 0
+TokensChange = 0
 unlockEvent = ""
 unlockEvent2 = ""
 SecretMode2 = false
-ChangeHappinessPosMultiplier = false
-HappinessPosMultiplier = 0.0
-ChangeHappinessNegMultiplier = false
-HappinessNegMultiplier = 0.0
-ChangeMainResourcePosMultiplier = false
-MainResourcePosMultiplier = 0.0
-ChangeMainResourceNegMultiplier = false
-MainResourceNegMultiplier = 0.0
+HappinessMultiplier = 0.0
+MagicMultiplier = 0.0
 
 [sub_resource type="Resource" id="Resource_w2yp2"]
 script = ExtResource("1_yvt5u")
 HappinessChange = -10
-MainResourcehange = 2000
-ThirdResourceChange = -1
+MagicChange = 0
+TokensChange = 0
 unlockEvent = "S1"
 unlockEvent2 = ""
 SecretMode2 = false
-ChangeHappinessPosMultiplier = false
-HappinessPosMultiplier = 1.2
-ChangeHappinessNegMultiplier = true
-HappinessNegMultiplier = 1.2
-ChangeMainResourcePosMultiplier = false
-MainResourcePosMultiplier = 0.0
-ChangeMainResourceNegMultiplier = false
-MainResourceNegMultiplier = 0.0
+HappinessMultiplier = 0.0
+MagicMultiplier = 0.0
 
 [sub_resource type="Resource" id="Resource_ws2wk"]
 script = ExtResource("1_yvt5u")
 HappinessChange = -10
-MainResourcehange = 0
-ThirdResourceChange = 1
+MagicChange = 0
+TokensChange = 0
 unlockEvent = ""
 unlockEvent2 = ""
 SecretMode2 = false
-ChangeHappinessPosMultiplier = false
-HappinessPosMultiplier = 0.0
-ChangeHappinessNegMultiplier = true
-HappinessNegMultiplier = 1.2
-ChangeMainResourcePosMultiplier = true
-MainResourcePosMultiplier = 1.2
-ChangeMainResourceNegMultiplier = false
-MainResourceNegMultiplier = 0.0
+HappinessMultiplier = 0.0
+MagicMultiplier = 0.0
 
 [sub_resource type="Resource" id="Resource_mdiu7"]
 script = ExtResource("1_yvt5u")
 HappinessChange = 10
-MainResourcehange = -4000
-ThirdResourceChange = 0
+MagicChange = 0
+TokensChange = 0
 unlockEvent = ""
 unlockEvent2 = ""
 SecretMode2 = false
-ChangeHappinessPosMultiplier = true
-HappinessPosMultiplier = 1.2
-ChangeHappinessNegMultiplier = false
-HappinessNegMultiplier = 0.0
-ChangeMainResourcePosMultiplier = false
-MainResourcePosMultiplier = 0.0
-ChangeMainResourceNegMultiplier = false
-MainResourceNegMultiplier = 0.0
+HappinessMultiplier = 0.0
+MagicMultiplier = 0.0
 
 [resource]
 script = ExtResource("1_3ccrw")

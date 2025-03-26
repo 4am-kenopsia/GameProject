@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Elements/EventWindow/OptionButton.cs" id="1_brxe4"]
 [ext_resource type="Texture2D" uid="uid://ctxd2ert1ni2a" path="res://Assets/Popup Window/Temp_Button_1.png" id="2_f2v72"]
-[ext_resource type="Theme" uid="uid://b1hrndcg3hihh" path="res://Elements/EventWindow/TurnEventButtonTheme.tres" id="3_pjr7v"]
-[ext_resource type="LabelSettings" path="res://Elements/EventWindow/TurnEventButtonLabelSettings.tres" id="4_rby4x"]
+[ext_resource type="Theme" uid="uid://b1hrndcg3hihh" path="res://Themes/TurnEventButtonTheme.tres" id="3_pjr7v"]
+[ext_resource type="LabelSettings" uid="uid://ch2mjm6gnu04l" path="res://Themes/TurnEventButtonLabelSettings.tres" id="4_rby4x"]
 
 [node name="OptionButton" type="Control"]
 layout_mode = 3
@@ -23,11 +23,18 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = -386.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -387.5
 offset_top = -64.0
-offset_right = 389.0
+offset_right = 387.5
 offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("3_pjr7v")
 text = "
 Dummy

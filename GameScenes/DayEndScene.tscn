@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://boltk43h7rg6h"]
+
+[ext_resource type="Script" path="res://GameScenes/DayEndScene.cs" id="1_fdf8p"]
+[ext_resource type="Texture2D" uid="uid://ce4dbryd53mwy" path="res://Assets/Popup Window/Event_Window.png" id="1_yv0yq"]
+[ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="2_x4mcn"]
+[ext_resource type="Texture2D" uid="uid://cx8idpqg6o8px" path="res://Assets/UI/nextTurn.png" id="3_1hhrl"]
+
+[sub_resource type="Theme" id="Theme_j2oo4"]
+default_font = ExtResource("2_x4mcn")
+default_font_size = 60
+
+[node name="DayEndScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fdf8p")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yv0yq")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -628.0
+offset_top = 31.0
+offset_right = 634.0
+offset_bottom = 146.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 76
+text = "DAY END!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -630.0
+offset_top = -273.0
+offset_right = 254.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_j2oo4")
+text = "Dummy"
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -348.0
+offset_right = 642.0
+offset_bottom = -43.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("3_1hhrl")
+stretch_mode = 0

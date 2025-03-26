@@ -1,13 +1,18 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6jfpii80x5me"]
+[gd_scene load_steps=15 format=3 uid="uid://b6jfpii80x5me"]
 
 [ext_resource type="Script" path="res://Elements/GUI/GUI.cs" id="1_j14vk"]
-[ext_resource type="Texture2D" uid="uid://b6u4ye2orjvlb" path="res://Assets/UI/sideBar.png" id="2_6jyo4"]
 [ext_resource type="Texture2D" uid="uid://dc3oh2sy5t74q" path="res://Assets/UI/Map_Frame.png" id="2_x1fcm"]
-[ext_resource type="LabelSettings" uid="uid://bhk4sb115ln2u" path="res://Elements/GUI/UiResourceLabelSettings.tres" id="3_h5cb3"]
+[ext_resource type="LabelSettings" uid="uid://bhk4sb115ln2u" path="res://Themes/UiResourceLabelSettings.tres" id="3_h5cb3"]
+[ext_resource type="Texture2D" uid="uid://cu1aw20nxlmih" path="res://Assets/UI/Side_Bar_Transparent.png" id="3_upsr8"]
+[ext_resource type="Texture2D" uid="uid://mmytxk3k1kqp" path="res://Assets/UI/Temp_Plaque.png" id="4_sk6og"]
 [ext_resource type="FontFile" uid="uid://beqgdqeaya2gp" path="res://Assets/Fonts/Aclonica/Aclonica-Regular.ttf" id="4_wcg0u"]
 [ext_resource type="Texture2D" uid="uid://cx8idpqg6o8px" path="res://Assets/UI/nextTurn.png" id="5_m6hsv"]
 [ext_resource type="Texture2D" uid="uid://deh7wpbjx8s6p" path="res://Assets/UI/nextTurnPressed.png" id="6_3t53y"]
+[ext_resource type="Texture2D" uid="uid://cihii7u3ovfqy" path="res://Assets/Resources/magic_icon.png" id="6_ex2hx"]
+[ext_resource type="Texture2D" uid="uid://bxpxytgp824ov" path="res://Assets/Resources/happiness_icon_yay.png" id="7_r6ecx"]
+[ext_resource type="Texture2D" uid="uid://dc47jglg3jxlu" path="res://Assets/Resources/coin_icon.png" id="8_37wqc"]
 [ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="8_euguv"]
+[ext_resource type="Texture2D" uid="uid://cvh7buw7onpsv" path="res://Assets/UI/Temp_Turn_Plaque.png" id="12_ummaj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oyn0g"]
 font = ExtResource("4_wcg0u")
@@ -24,6 +29,17 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_j14vk")
 
+[node name="MapFrame2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.998
+anchor_bottom = 0.998
+offset_right = 3.83997
+offset_bottom = 2.15991
+mouse_filter = 2
+texture = ExtResource("2_x1fcm")
+expand_mode = 3
+
 [node name="SideUI" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 11
@@ -33,69 +49,116 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="SideUI"]
+[node name="SidePanel2" type="TextureRect" parent="SideUI"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = -205.0
-offset_top = 1.0
-offset_right = -5.0
-offset_bottom = 1.0
+offset_left = -206.0
+offset_right = -6.0
 grow_vertical = 2
-texture = ExtResource("2_6jyo4")
+texture = ExtResource("3_upsr8")
 expand_mode = 4
 stretch_mode = 6
 
-[node name="SidePanel" type="Sprite2D" parent="SideUI"]
-visible = false
-texture_filter = 1
-position = Vector2(-200, 0)
-texture = ExtResource("2_6jyo4")
-centered = false
-
-[node name="MainResourceLabel" type="Label" parent="SideUI"]
+[node name="MagicUI" type="TextureRect" parent="SideUI"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -195.0
-offset_top = 70.0
-offset_right = -5.0
-offset_bottom = 125.0
+offset_left = -206.0
+offset_top = 50.0
+offset_right = -6.0
+offset_bottom = 150.0
+grow_horizontal = 0
+texture = ExtResource("4_sk6og")
+
+[node name="MagicLabel" type="Label" parent="SideUI/MagicUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 text = "123456"
 label_settings = ExtResource("3_h5cb3")
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="HappinessLabel" type="Label" parent="SideUI"]
+[node name="MagicIcon" type="TextureRect" parent="SideUI/MagicUI"]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-offset_left = -195.0
-offset_top = 195.0
-offset_right = -5.0
-offset_bottom = 250.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_top = 9.0
+offset_right = 19.0
+offset_bottom = 49.0
 grow_horizontal = 2
-grow_vertical = 2
+texture = ExtResource("6_ex2hx")
+
+[node name="HappinessUI" type="TextureRect" parent="SideUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -206.0
+offset_top = 170.0
+offset_right = -6.0
+offset_bottom = 270.0
+grow_horizontal = 0
+texture = ExtResource("4_sk6og")
+
+[node name="HappinessLabel" type="Label" parent="SideUI/HappinessUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+grow_horizontal = 2
+grow_vertical = 0
 text = "100%"
 label_settings = ExtResource("3_h5cb3")
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="ThirdResourceLabel" type="Label" parent="SideUI"]
+[node name="HappinessIcon" type="TextureRect" parent="SideUI/HappinessUI"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_top = 9.0
+offset_right = 19.0
+offset_bottom = 49.0
+grow_horizontal = 2
+texture = ExtResource("7_r6ecx")
+
+[node name="TokensUI" type="TextureRect" parent="SideUI"]
+layout_mode = 1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -195.0
-offset_top = 320.0
-offset_right = -5.0
-offset_bottom = 375.0
+offset_left = -206.0
+offset_top = 290.0
+offset_right = -6.0
+offset_bottom = 390.0
+grow_horizontal = 0
+texture = ExtResource("4_sk6og")
+
+[node name="TokensLabel" type="Label" parent="SideUI/TokensUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 text = "10
 "
 label_settings = ExtResource("3_h5cb3")
@@ -103,22 +166,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="TurnLabel" type="Label" parent="SideUI"]
+[node name="TokensIcon" type="TextureRect" parent="SideUI/TokensUI"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -195.0
-offset_top = 810.0
-offset_right = -5.0
-offset_bottom = 865.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -21.0
+offset_top = 9.0
+offset_right = 19.0
+offset_bottom = 49.0
 grow_horizontal = 2
-grow_vertical = 2
-text = "Turn 0"
-label_settings = SubResource("LabelSettings_oyn0g")
-horizontal_alignment = 1
-vertical_alignment = 1
-text_overrun_behavior = 3
+texture = ExtResource("8_37wqc")
 
 [node name="TurnButtonContainer" type="AspectRatioContainer" parent="SideUI"]
 layout_mode = 1
@@ -139,22 +197,6 @@ texture_normal = ExtResource("5_m6hsv")
 texture_pressed = ExtResource("6_3t53y")
 stretch_mode = 4
 
-[node name="MapFrame" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_x1fcm")
-centered = false
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.998
-anchor_bottom = 0.998
-offset_right = 3.83997
-offset_bottom = 2.15991
-mouse_filter = 2
-texture = ExtResource("2_x1fcm")
-expand_mode = 3
-
 [node name="GameOver" type="Label" parent="."]
 visible = false
 layout_mode = 1
@@ -169,3 +211,21 @@ theme_override_font_sizes/font_size = 80
 text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TurnUI" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 256.0
+offset_bottom = 76.0
+texture = ExtResource("12_ummaj")
+
+[node name="TurnLabel" type="Label" parent="TurnUI"]
+layout_mode = 1
+offset_right = 190.0
+offset_bottom = 70.0
+text = "Turn 0"
+label_settings = SubResource("LabelSettings_oyn0g")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3

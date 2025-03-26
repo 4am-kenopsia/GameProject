@@ -5,137 +5,135 @@ namespace MapGame
 {
 	public partial class ResourceManager : Node
 	{
-		[Export] public float _startingMainResource = 10000;
+		[Export] public float _startingMagic = 10000;
 		[Export] public float _startingHappiness = 100; // Percentage 0-100%
-		[Export] public float _startingThirdResource = 5;
-		[Export] public float _currentMainResource = 10000;
-		[Export] public float _currentHappiness = 100; // Percentage 0-100%
-		[Export] public float _currentThirdResource = 5;
-		[Export] public float _mainResourceNegMultiplier = 1;
-		[Export] public float _mainResourcePosMultiplier = 1;
-		[Export] public float _happinessNegMultiplier = 1;
-		[Export] public float _happinessPosMultiplier = 1;
+		[Export] public float _startingTokens = 3;
+		[Export] public float _startingSalary = 1000;
+		[Export] public float _startingMagicMultiplier = 1;
+		[Export] public float _startingHappinessMultiplier = 1;
+
 		public static ResourceManager Instance
 		{
 			get;
 			private set;
 		}
-		
+
 		public void ResetResources()
 		{
-			SetMainResource(_startingMainResource);
+			SetMagic(_startingMagic);
 			SetHappiness(_startingHappiness);
-			SetThirdResource(_startingThirdResource);
+			SetTokens(_startingTokens);
+			SetSalary(_startingSalary);
+			SetMagicMultiplier(_startingMagicMultiplier);
+			SetHappinessMultiplier(_startingHappinessMultiplier);
 		}
-		public void SetMainResource(float targetAmount)
+
+		public void SetMagic(float targetAmount)
 		{
-			_currentMainResource = targetAmount;
+			SaveData.Instance._currentMagic = targetAmount;
 		}
 		public void SetHappiness(float targetAmount)
 		{
-			_currentHappiness = targetAmount;
+			SaveData.Instance._currentHappiness = targetAmount;
 		}
-		public void SetThirdResource(float targetAmount)
+		public void SetTokens(float targetAmount)
 		{
-			_currentThirdResource = targetAmount;
+			SaveData.Instance._currentTokens = targetAmount;
 		}
-		public void IncreaseMainResource(int increase)
+		public void SetSalary(float targetAmount)
 		{
-			_currentMainResource += _mainResourcePosMultiplier * increase;
+			SaveData.Instance._currentSalary = targetAmount;
 		}
-		public void DecreaseMainResource(int decrease)
+		public void SetMagicMultiplier(float targetAmount)
 		{
-			_currentMainResource += _mainResourceNegMultiplier * decrease;
+			SaveData.Instance._currentMagicMultiplier = targetAmount;
 		}
-		public void IncreaseHappiness(int increase)
+		public void SetHappinessMultiplier(float targetAmount)
 		{
-			if (_currentHappiness + _happinessPosMultiplier * increase > 100)
+			SaveData.Instance._currentHappinessMultiplier = targetAmount;
+		}
+
+
+		public void ChangeMagic(int change)
+		{
+			if (SaveData.Instance._currentMagic + change < 0)
 			{
-				_currentHappiness = 100;
+				SaveData.Instance._currentMagic = 0;
 				return;
 			}
-			_currentHappiness += _happinessPosMultiplier * increase;
+			SaveData.Instance._currentMagic += change;
 		}
-		public void DecreaseHappiness(int decrease)
+		public void ChangeHappiness(int change)
 		{
-			if (_currentHappiness + _happinessNegMultiplier * decrease < 0)
+			if (SaveData.Instance._currentHappiness + change > 100)
 			{
-				_currentHappiness = 0;
+				SaveData.Instance._currentHappiness = 100;
 				return;
 			}
-			_currentHappiness += _happinessNegMultiplier * decrease;
+			else if (SaveData.Instance._currentHappiness + change < 0)
+			{
+				SaveData.Instance._currentHappiness = 0;
+			}
+			SaveData.Instance._currentHappiness += change;
 		}
-		public void IncreaseThirdResource(int increase)
+		public void ChangeTokens(int change)
 		{
-			_currentThirdResource += increase;
+			if (SaveData.Instance._currentTokens + change < 0)
+			{
+				SaveData.Instance._currentTokens = 0;
+				return;
+			}
+			SaveData.Instance._currentTokens += change;
 		}
-		public void DecreaseThirdResource(int decrease)
+		public void ChangeSalary(int change)
 		{
-			_currentThirdResource += decrease;
+			SaveData.Instance._currentSalary += change;
 		}
-		
+		public void ChangeMagicMultiplier(float change)
+		{
+			SaveData.Instance._currentMagicMultiplier += change;
+		}
+		public void ChangeHappinessMultiplier(float change)
+		{
+			SaveData.Instance._currentHappinessMultiplier += change;
+		}
+
+
 		public void HandleOptionOutcomes(EventOutcomeData outcome)
 		{
-			if (outcome.HappinessChange >= 0)
+			if (outcome.HappinessChange != 0)
 			{
-				IncreaseHappiness(outcome.HappinessChange);
+				ChangeHappiness(outcome.HappinessChange);
 			}
-			else if (outcome.HappinessChange < 0)
-			{
-				DecreaseHappiness(outcome.HappinessChange);
-			}
-			GD.Print(_currentHappiness);
-			
-			
-			if (outcome.MainResourcehange >= 0)
-			{
-				IncreaseMainResource(outcome.MainResourcehange);
-			}
-			else if (outcome.MainResourcehange < 0)
-			{
-				DecreaseMainResource(outcome.MainResourcehange);
-			}
-			GD.Print(_currentMainResource);
-			
-			
-			if (outcome.ThirdResourceChange >= 0)
-			{
-				IncreaseThirdResource(outcome.ThirdResourceChange);
-			}
-			else if (outcome.ThirdResourceChange < 0)
-			{
-				DecreaseThirdResource(outcome.ThirdResourceChange);
-			}
-			GD.Print(_currentThirdResource);
-			
-			if (outcome.ChangeHappinessPosMultiplier)
-			{
-				_happinessPosMultiplier = outcome.HappinessPosMultiplier;
-			}
-			
-			if (outcome.ChangeHappinessNegMultiplier)
-			{
-				_happinessNegMultiplier = outcome.HappinessNegMultiplier;
-			}
-			
-			if (outcome.ChangeMainResourcePosMultiplier)
-			{
-				_mainResourcePosMultiplier = outcome.MainResourcePosMultiplier;
-			}
-			
-			if (outcome.ChangeMainResourceNegMultiplier)
-			{
-				_mainResourceNegMultiplier = outcome.MainResourceNegMultiplier;
-			}
-			
 
+			if (outcome.MagicChange != 0)
+			{
+				ChangeMagic(outcome.MagicChange);
+			}
+
+			if (outcome.TokensChange != 0)
+			{
+				ChangeTokens(outcome.TokensChange);
+			}
+			else if (outcome.TokensChange < 0)
+
+			if (outcome.HappinessMultiplier != 0)
+			{
+				ChangeHappinessMultiplier(outcome.HappinessMultiplier);
+			}
+
+			if (outcome.MagicMultiplier != 0)
+			{
+				ChangeMagicMultiplier(outcome.MagicMultiplier);
+			}
+			SaveData.Instance.SaveGame();
 		}
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
 			Instance = this;
-			
+
 		}
-		
+
 	}
 }
