@@ -9,15 +9,9 @@
 top_level = true
 z_index = 4096
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -850.0
-offset_top = -427.0
-offset_right = -850.0
-offset_bottom = -427.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g37cm")
@@ -73,6 +67,8 @@ offset_right = 1535.0
 offset_bottom = 138.0
 theme = ExtResource("3_gf7l4")
 theme_override_colors/default_color = Color(0.0941176, 0.0509804, 0.0156863, 1)
+theme_override_font_sizes/normal_font_size = 70
+text = "Dummy"
 
 [node name="TurnEventContent" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -82,13 +78,17 @@ offset_right = 1127.0
 offset_bottom = 492.0
 theme = ExtResource("3_gf7l4")
 theme_override_colors/default_color = Color(0.0941176, 0.0509804, 0.0156863, 1)
+text = "Dummy"
 
 [node name="OptionsContainer" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 540.0
-offset_right = 1660.0
-offset_bottom = 840.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
 columns = 2
 
 [node name="OptionContainer1" type="CenterContainer" parent="OptionsContainer"]

@@ -1,8 +1,8 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ch2mjm6gnu04l"]
 
-[ext_resource type="FontFile" uid="uid://b2fa4quf7y6x2" path="res://Assets/Fonts/Ortica/Ortica-Light.otf" id="1_d5t7i"]
+[ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="1_wofp5"]
 
 [resource]
-font = ExtResource("1_d5t7i")
-font_size = 40
+font = ExtResource("1_wofp5")
+font_size = 35
 font_color = Color(0, 0, 0, 1)

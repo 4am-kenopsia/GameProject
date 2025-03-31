@@ -25,12 +25,18 @@ namespace MapGame
 		public override void _Ready()
 		{
 			Instance = this;
-			
 		}
 		
 		public void IncreaseTurn()
 		{
 			_currentTurn += 1;
+		}
+		public void IncreaseDay()
+		{
+			_currentDay += 1;
+			_currentTurn = 0;
+			ResourceManager.Instance.SetHappinessMultiplier(1);
+			ResourceManager.Instance.SetMagicMultiplier(1);
 		}
 		public void Reset()
 		{
@@ -38,12 +44,12 @@ namespace MapGame
 			_eventPool = new string[0]; // Reset the event pool to an empty array
 		}
 		
-		public void SaveGame()
+		public void SaveGame()	
 		{
 			var _saveFile = new ConfigFile();
 
 			_saveFile.SetValue("Save1","Turn", _currentTurn);
-			_saveFile.SetValue("Save1", "Turn", _currentDay);
+			_saveFile.SetValue("Save1", "Day", _currentDay);
 			_saveFile.SetValue("Save1","Magic", _currentMagic);
 			_saveFile.SetValue("Save1","Happiness", _currentHappiness);
 			_saveFile.SetValue("Save1","Tokens", _currentTokens);
@@ -58,7 +64,7 @@ namespace MapGame
 			foreach (String save in _saveData.GetSections())
 			{
 				_currentTurn = (int)_saveData.GetValue(save, "Turn");
-				_currentDay = (int)_saveData.GetValue(save, "Magic");
+				_currentDay = (int)_saveData.GetValue(save, "Day");
 				_currentMagic = (float)_saveData.GetValue(save, "Magic");
 				_currentHappiness = (float)_saveData.GetValue(save, "Happiness");
 				_currentTokens = (float)_saveData.GetValue(save, "Tokens");

@@ -54,7 +54,7 @@ namespace MapGame
 		}
 
 
-		public void ChangeMagic(int change)
+		public void ChangeMagic(float change)
 		{
 			if (SaveData.Instance._currentMagic + change < 0)
 			{
@@ -63,7 +63,7 @@ namespace MapGame
 			}
 			SaveData.Instance._currentMagic += change;
 		}
-		public void ChangeHappiness(int change)
+		public void ChangeHappiness(float change)
 		{
 			if (SaveData.Instance._currentHappiness + change > 100)
 			{
@@ -76,7 +76,7 @@ namespace MapGame
 			}
 			SaveData.Instance._currentHappiness += change;
 		}
-		public void ChangeTokens(int change)
+		public void ChangeTokens(float change)
 		{
 			if (SaveData.Instance._currentTokens + change < 0)
 			{
@@ -85,7 +85,7 @@ namespace MapGame
 			}
 			SaveData.Instance._currentTokens += change;
 		}
-		public void ChangeSalary(int change)
+		public void ChangeSalary(float change)
 		{
 			SaveData.Instance._currentSalary += change;
 		}

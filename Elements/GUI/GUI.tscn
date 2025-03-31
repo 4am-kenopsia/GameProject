@@ -30,6 +30,7 @@ grow_vertical = 0
 script = ExtResource("1_j14vk")
 
 [node name="MapFrame2" type="TextureRect" parent="."]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.998
@@ -50,6 +51,7 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="SidePanel2" type="TextureRect" parent="SideUI"]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -73,6 +75,7 @@ grow_horizontal = 0
 texture = ExtResource("4_sk6og")
 
 [node name="MagicLabel" type="Label" parent="SideUI/MagicUI"]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -81,13 +84,14 @@ anchor_bottom = 1.0
 offset_top = -44.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "123456"
+text = "12345"
 label_settings = ExtResource("3_h5cb3")
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
 [node name="MagicIcon" type="TextureRect" parent="SideUI/MagicUI"]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -112,6 +116,7 @@ grow_horizontal = 0
 texture = ExtResource("4_sk6og")
 
 [node name="HappinessLabel" type="Label" parent="SideUI/HappinessUI"]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -127,6 +132,7 @@ vertical_alignment = 1
 text_overrun_behavior = 3
 
 [node name="HappinessIcon" type="TextureRect" parent="SideUI/HappinessUI"]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -151,6 +157,7 @@ grow_horizontal = 0
 texture = ExtResource("4_sk6og")
 
 [node name="TokensLabel" type="Label" parent="SideUI/TokensUI"]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -159,14 +166,14 @@ anchor_bottom = 1.0
 offset_top = -44.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "10
-"
+text = "10"
 label_settings = ExtResource("3_h5cb3")
 horizontal_alignment = 1
 vertical_alignment = 1
 text_overrun_behavior = 3
 
 [node name="TokensIcon" type="TextureRect" parent="SideUI/TokensUI"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -213,6 +220,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TurnUI" type="TextureRect" parent="."]
+texture_filter = 2
 layout_mode = 1
 offset_left = 6.0
 offset_top = 6.0
@@ -221,11 +229,11 @@ offset_bottom = 76.0
 texture = ExtResource("12_ummaj")
 
 [node name="TurnLabel" type="Label" parent="TurnUI"]
+texture_filter = 2
 layout_mode = 1
-offset_right = 190.0
+offset_right = 290.0
 offset_bottom = 70.0
-text = "Turn 0"
+text = "Day 0, Turn 0"
 label_settings = SubResource("LabelSettings_oyn0g")
 horizontal_alignment = 1
 vertical_alignment = 1
-text_overrun_behavior = 3

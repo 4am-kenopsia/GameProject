@@ -22,13 +22,11 @@ namespace MapGame
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{
-
 		}
 
 		public void CreateTurnEvent()
 		{
 			GD.Print("meow");
-			// Temp tässä
 			_eventWindowScene = ResourceLoader.Load<PackedScene>("res://Elements/EventWindow/EventWindow.tscn");
 			if (_eventWindowScene == null)
 			{
@@ -47,7 +45,13 @@ namespace MapGame
 				GD.Print("Event is already running");
 				return;
 			}
+
 			GD.Print("TurnButton Pressed");
+			if (SaveData.Instance._currentTurn == 3)
+			{
+				GetTree().ChangeSceneToFile("res://GameScenes/DayEndScene.tscn");
+				return;
+			}
 			SaveData.Instance.IncreaseTurn();
 			GUI.UpdateLabels();
 			GD.Print("Turn: " + SaveData.Instance._currentTurn);

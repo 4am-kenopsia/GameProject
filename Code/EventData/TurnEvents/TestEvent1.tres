@@ -52,6 +52,7 @@ script = ExtResource("1_3ccrw")
 isEventOneTime = false
 EventPicture = ""
 EventID = "1"
+EventSeverity = "Low"
 EventTitle = "Ominous Rumbling"
 EventDesc = "The people have recently sensed periodical rumbling on a small island not far from the main archipelago. The growing unrest is keeping people on edge. You feel as if something colossal is about to happen. What will you do?"
 EventOptions = PackedStringArray("Someone must be hungry, bestow some food upon the people.", "Arm the child soldiers with waist-mounted grappling hooks. He will not win.", "Bite your fingers in boredom.", "Fortify the housing of everyone that needs it from the upcoming earthquake.")

@@ -30,8 +30,8 @@ namespace MapGame
 		{
 			if (SaveData.Instance._currentHappiness == 0)
 			{
-				_gameOver.Show();
-				MainMenu();
+				//_gameOver.Show();
+				//MainMenu();
 
 			}
 		}
@@ -41,7 +41,7 @@ namespace MapGame
 			_magicLabel.Text = SaveData.Instance._currentMagic.ToString();
 			_happinessLabel.Text = SaveData.Instance._currentHappiness.ToString() + "%";
 			_tokensLabel.Text = SaveData.Instance._currentTokens.ToString();
-			_turnLabel.Text = "Turn " + SaveData.Instance._currentTurn.ToString();
+			_turnLabel.Text = "Day " + SaveData.Instance._currentDay.ToString() + ", Turn " + SaveData.Instance._currentTurn.ToString();
 		}
 
 		public async void MainMenu()
