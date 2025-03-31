@@ -35,8 +35,8 @@ namespace MapGame
 			_eventContent = GetNode<RichTextLabel>("TurnEventContent");
 			_eventContent.Text = _currentEvent.EventDesc;
 
-			SetupOptionButton(1, "OptionContainer1", _currentEvent.EventOptions.Length > 0);
 			SetupOptionButton(2, "OptionContainer2", _currentEvent.EventOptions.Length > 1);
+			SetupOptionButton(1, "OptionContainer1", _currentEvent.EventOptions.Length > 0);
 			SetupOptionButton(3, "OptionContainer3", _currentEvent.EventOptions.Length > 2);
 			SetupOptionButton(4, "OptionContainer4", _currentEvent.EventOptions.Length > 3);
 		}
@@ -52,22 +52,22 @@ namespace MapGame
 
 				optionButton.Pressed += () => OnOptionButtonPressed(index);
 				optionButtonText.Text = _currentEvent.EventOptions[index - 1];
-				
-				/*switch (_currentEvent)
+				EventOutcomeData outcome = (EventOutcomeData)_currentEvent.EventDictionary[_currentEventID + "_" + index];
+				switch (outcome.OptionSeverity)
 				{
 					case 1:
-						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/medium_change.png");
+						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/small_change.png");
 						GD.Print("Low");
 						break;
 					case 2:
-						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/small_change.png");
+						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/medium_change.png");
 						GD.Print("Med");
 						break;
 					case 3:
 						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/large_change.png");
 						GD.Print("High");
 						break;
-				}*/
+				}
 				optionButtonContainer.Visible = true;
 			}
 		}
