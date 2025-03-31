@@ -10,7 +10,6 @@ namespace MapGame
 		[Export] public bool isEventOneTime;
 		[Export(PropertyHint.File, "*.png")] public string EventPicture;
 		[Export] public string EventID;
-		[Export(PropertyHint.Enum, "Low,Medium,High")] public int EventSeverity; 
 		[Export] public string EventTitle;
 		[Export(PropertyHint.MultilineText)] public string EventDesc;
 		[Export] public string[] EventOptions = null;
