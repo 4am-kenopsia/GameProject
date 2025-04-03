@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 RecMan="*res://Elements/ResourcesManager/ResourceManager.cs"
 SaveData="*res://SaveData/SaveData.cs"
+EventLoader="*res://Elements/PopupMarker/EventLoader.cs"
 
 [display]
 
