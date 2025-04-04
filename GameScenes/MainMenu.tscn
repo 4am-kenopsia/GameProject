@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://huc58i0jeeo0"]
+[gd_scene load_steps=5 format=3 uid="uid://huc58i0jeeo0"]
 
 [ext_resource type="Texture2D" uid="uid://jnr2k3d70rwx" path="res://Assets/UI/Resource_Background_Temp_1.png" id="1_bjjx6"]
 [ext_resource type="Script" path="res://GameScenes/MainMenu.cs" id="1_sgoep"]
+
+[sub_resource type="Gradient" id="Gradient_f1cp1"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mtkfn"]
+gradient = SubResource("Gradient_f1cp1")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -57,7 +62,7 @@ layout_mode = 2
 texture_normal = ExtResource("1_bjjx6")
 stretch_mode = 0
 
-[node name="NegGameLabel" type="Label" parent="VBoxContainer/NewGameButton"]
+[node name="NewGameLabel" type="Label" parent="VBoxContainer/NewGameButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,3 +106,13 @@ offset_bottom = 1.0
 text = "CREDITS"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_mtkfn")

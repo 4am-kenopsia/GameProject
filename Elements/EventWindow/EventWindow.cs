@@ -1,4 +1,4 @@
-    using Godot;
+using Godot;
 using Godot.Collections;
 using System;
 
@@ -55,15 +55,15 @@ namespace MapGame
 				EventOutcomeData outcome = (EventOutcomeData)_currentEvent.EventDictionary[_currentEventID + "_" + index];
 				switch (outcome.OptionSeverity)
 				{
-					case 1:
+					case EventOutcomeData.Severity.Low:
 						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/small_change.png");
 						GD.Print("Low");
 						break;
-					case 2:
+					case EventOutcomeData.Severity.Medium:
 						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/medium_change.png");
 						GD.Print("Med");
 						break;
-					case 3:
+					case EventOutcomeData.Severity.High:
 						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/large_change.png");
 						GD.Print("High");
 						break;

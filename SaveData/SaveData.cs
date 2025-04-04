@@ -48,7 +48,7 @@ namespace MapGame
 		{
 			var _saveFile = new ConfigFile();
 
-			_saveFile.SetValue("Save1","Turn", _currentTurn);
+			_saveFile.SetValue("Save1","Turn", 1);
 			_saveFile.SetValue("Save1", "Day", _currentDay);
 			_saveFile.SetValue("Save1","Magic", _currentMagic);
 			_saveFile.SetValue("Save1","Happiness", _currentHappiness);
