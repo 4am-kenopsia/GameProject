@@ -1,14 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhxvgpyahrcbh"]
+[gd_scene load_steps=9 format=3 uid="uid://bhxvgpyahrcbh"]
 
 [ext_resource type="Script" path="res://Elements/PopupWindow/PopupWindow.cs" id="1_2q78g"]
-[ext_resource type="Texture2D" uid="uid://b7ww8ebhdb2gn" path="res://Assets/UI/windowBgAlt.png" id="2_jieav"]
+[ext_resource type="Texture2D" uid="uid://21xrjiyrenbp" path="res://Assets/Popup Window/Popup_Window.png" id="2_5otnm"]
 [ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="2_slau0"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ei0iv"]
-texture = ExtResource("2_jieav")
-
-[sub_resource type="FontVariation" id="FontVariation_myhcs"]
-base_font = ExtResource("2_slau0")
+[ext_resource type="Texture2D" uid="uid://y8yolwxxj7q5" path="res://Assets/Popup Window/Popup_window_Button.png" id="4_wfn83"]
+[ext_resource type="Texture2D" uid="uid://qwqf5s26fpn8" path="res://Assets/Popup Window/Popup_Window_Pressed.png" id="5_7fp6y"]
+[ext_resource type="Texture2D" uid="uid://c6y8yyunuq7qx" path="res://Assets/Resources/large_change.png" id="6_a2opx"]
 
 [sub_resource type="FontVariation" id="FontVariation_obhgt"]
 base_font = ExtResource("2_slau0")
@@ -31,7 +28,7 @@ grow_vertical = 2
 script = ExtResource("1_2q78g")
 _eventLabel = NodePath("Panel/EventLabel")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,40 +37,19 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -450.0
 offset_top = -300.0
-offset_right = 450.0
-offset_bottom = 300.0
+offset_right = 614.0
+offset_bottom = 333.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.1, 0.1)
-theme_override_styles/panel = SubResource("StyleBoxTexture_ei0iv")
-
-[node name="Button" type="Button" parent="Panel"]
-layout_mode = 0
-offset_left = 79.0
-offset_top = 437.0
-offset_right = 403.0
-offset_bottom = 538.0
-scale = Vector2(0.1, 0.1)
-theme_override_fonts/font = SubResource("FontVariation_myhcs")
-text = "Option 1"
-
-[node name="Button2" type="Button" parent="Panel"]
-layout_mode = 0
-offset_left = 486.0
-offset_top = 437.0
-offset_right = 810.0
-offset_bottom = 538.0
-scale = Vector2(0.1, 0.1)
-theme_override_fonts/font = SubResource("FontVariation_myhcs")
-text = "Option 2
-"
+texture = ExtResource("2_5otnm")
 
 [node name="EventLabel" type="Label" parent="Panel"]
+visible = false
 layout_mode = 0
-offset_left = 50.0
-offset_top = 29.0
-offset_right = 822.0
-offset_bottom = 106.0
+offset_left = 139.0
+offset_top = 55.0
+offset_right = 1002.0
+offset_bottom = 132.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_obhgt")
 theme_override_font_sizes/font_size = 14
@@ -82,23 +58,122 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Description" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 76.0
-offset_top = 121.0
-offset_right = 602.0
-offset_bottom = 352.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -434.5
+offset_top = -271.0
+offset_right = 434.5
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_iwew6")
-theme_override_font_sizes/font_size = 14
-text = "description textfatakokpdkaspdkaspdakpdaskpodaskpodask
-podaskpodakspodaskp"
+theme_override_font_sizes/font_size = 42
+text = "Description"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="img" type="TextureRect" parent="Panel"]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 620.0
 offset_top = 120.0
 offset_right = 820.0
 offset_bottom = 350.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -453.0
+offset_top = -183.0
+offset_right = 453.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Button1" type="TextureButton" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_wfn83")
+texture_pressed = ExtResource("5_7fp6y")
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/Button1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_slau0")
+theme_override_font_sizes/font_size = 30
+text = "SDSDSADASDASDAS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Button1"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -34.5
+offset_right = -21.0
+offset_bottom = 35.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_a2opx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button2" type="TextureButton" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_wfn83")
+texture_pressed = ExtResource("5_7fp6y")
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/Button2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_slau0")
+theme_override_font_sizes/font_size = 30
+text = "SDSDSADASDASDAS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Button2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -34.5
+offset_right = -21.0
+offset_bottom = 35.5
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_a2opx")
+expand_mode = 1
+stretch_mode = 5

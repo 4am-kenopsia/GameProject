@@ -60,7 +60,7 @@ namespace MapGame
 				GD.Print("Event is already running");
 				return;
 			}
-			isEventRunning = true;
+			
 			SoundPlayer.Instance.PlayNextTurnSound();
 			GD.Print("TurnButton Pressed");
 			if (SaveData.Instance._currentTurn == 3)
@@ -79,6 +79,7 @@ namespace MapGame
 			
 			CreateTurnEvent();
 			CreatePopUpMarker();
+			isEventRunning = true;
 		}
 		
 		public void OnEventAnswered()

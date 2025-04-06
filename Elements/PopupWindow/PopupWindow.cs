@@ -19,9 +19,11 @@ namespace MapGame
 		public delegate void PopUpEventAnsweredEventHandler(EventOutcomeData outcome);
 
 
-		private Button _button1;
-		private Button _button2;
-		private Panel _panel;
+		private TextureButton _button1;
+		private TextureButton _button2;
+		private Label _button1Label;
+		private Label _button2Label;
+		private TextureRect _panel;
 		private Label _description;
 		private TextureRect _img;
 		private int _popUpEventNumber;
@@ -53,9 +55,12 @@ namespace MapGame
 		public override void _Ready()
 {
 	// Get UI elements safely
-	_panel = GetNode<Panel>("Panel");
-	_button1 = _panel.GetNode<Button>("Button");
-	_button2 = _panel.GetNode<Button>("Button2");
+	_panel = GetNode<TextureRect>("Panel");
+	_button1 = _panel.GetNode<TextureButton>("HBoxContainer/Button1");
+	_button2 = _panel.GetNode<TextureButton>("HBoxContainer/Button2");
+	_button1Label = _panel.GetNode<Label>("HBoxContainer/Button1/Label");
+	_button2Label = _panel.GetNode<Label>("HBoxContainer/Button2/Label");
+	
 	_img = _panel.GetNode<TextureRect>("img");
 	_description = _panel.GetNode<Label>("Description");
 	_eventLabel = _panel.GetNode<Label>("EventLabel");
@@ -68,62 +73,12 @@ namespace MapGame
 	// Initialize event data
 	EventData = eventData ?? new EventData();
 	
-	// Start animations
-	TweenSelf();
-	TweenLabel();
-	TweenButton();
 	
 	// Connect signals
 	_button1.Pressed += OnButton1Pressed;
 	_button2.Pressed += OnButton2Pressed;
 }
-		
-		//private void LoadData() 
-		//{
-			//// Load the .tres file
-			//var eventData = ResourceLoader.Load<EventData>("res://Code/EventData/PopupEvents/TestEvent" + _popUpEventNumber + ".tres");
-			//_eventDictionary = eventData.EventDictionary;
-			//_currentEventID = _popUpEventNumber.ToString();
-			//
-			//// var eventData = ResourceLoader.Load<PopupEventData>("res://Code/PopupData/PopupEvents/TestEvent" + _eventsHappened + ".tres");
-			//GD.Print(eventData);
-			//if (eventData != null)
-			//{
-				//// Update the Label with the data
-				//_eventLabel.Text = $"{eventData.EventTitle}";
-				//_description.Text = $"{eventData.EventDesc}";
-				//if (!string.IsNullOrEmpty(eventData.EventPicture))
-				//{
-					//_newTexture = GD.Load<Texture2D>(eventData.EventPicture);
-					//GD.Print("pic:" + eventData.EventPicture);
-					//_img.Texture = _newTexture;
-				//}
-				//// Example of accessing other properties
-				//_button1.SetText(eventData.EventOptions[0]);
-				//_button2.SetText(eventData.EventOptions[1]);
-				//if (eventData.EventOptions != null)
-				//{
-					//foreach (var option in eventData.EventOptions)
-					//{
-						//GD.Print($"Option: {option}");
-						//
-					//}
-				//}
-//
-				//if (eventData.EventDictionary != null)
-				//{
-					//foreach (var key in eventData.EventDictionary.Keys)
-					//{
-						//GD.Print($"Key: {key}, Value: {eventData.EventDictionary[key]}");
-					//}
-				//}
-			//}
-			//else
-			//{
-				//GD.PrintErr("Failed to load PopupEventData resource.");
-			//}
-		//
-		//}
+
 		private void LoadData() 
 		{
 			// Get the EventLoader instance
@@ -147,8 +102,8 @@ namespace MapGame
 					_img.Texture = GD.Load<Texture2D>(eventData.EventPicture);
 				}
 				
-				_button1.Text = eventData.EventOptions[0];
-				_button2.Text = eventData.EventOptions[1];
+				_button1Label.Text = eventData.EventOptions[0];
+				_button2Label.Text = eventData.EventOptions[1];
 			}
 		}
 
@@ -211,13 +166,13 @@ namespace MapGame
 	// Safe button options (with array bounds checking)
 	if (eventData?.EventOptions != null && eventData.EventOptions.Length >= 2)
 	{
-		_button1.Text = eventData.EventOptions[0] ?? "Continue";
-		_button2.Text = eventData.EventOptions[1] ?? "Cancel";
+		_button1Label.Text = eventData.EventOptions[0] ?? "Continue";
+		_button2Label.Text = eventData.EventOptions[1] ?? "Cancel";
 	}
 	else
 	{
-		_button1.Text = "Continue";
-		_button2.Text = "Cancel";
+		_button1Label.Text = "Continue";
+		_button2Label.Text = "Cancel";
 	}
 }
 
@@ -229,57 +184,7 @@ namespace MapGame
 			//// Add logic to update the PopupWindow UI or perform other actions
 		//}
 		
-		
-		 private void TweenButton()
-	{
-		// Tween the button's position
-		Tween _tween = GetTree().CreateTween();
 
-		// Tween the button's scale
-		_tween.TweenProperty(_button1, "scale", new Vector2(1f, 1f), 0.5f)
-			  .SetTrans(Tween.TransitionType.Back) // Add a slight overshoot
-			  .SetEase(Tween.EaseType.InOut); // Ease in and out
-			
-		_tween.TweenProperty(_button2, "scale", new Vector2(1f, 1f), 0.5f)
-			  .SetTrans(Tween.TransitionType.Back) // Add a slight overshoot
-			  .SetEase(Tween.EaseType.InOut); // Ease in and out
-
-		// Start the tween
-		_tween.Play();
-	}
-	 private void TweenLabel()
-	{
-		// Tween the button's position
-		_eventLabel.VisibleRatio = 0;
-		_description.VisibleRatio = 0;
-		Tween _tween = GetTree().CreateTween();
-
-		_tween.TweenProperty(_eventLabel, "visible_ratio", 1.0f, 0.5f)
-			.SetTrans(Tween.TransitionType.Linear) // Smooth linear transition
-			.SetEase(Tween.EaseType.InOut); // Ease in and out for smooth animation
-				
-		_tween.TweenProperty(_description, "visible_ratio", 1.0f, 0.5f)
-			.SetTrans(Tween.TransitionType.Linear) // Smooth linear transition
-			.SetEase(Tween.EaseType.InOut); // Ease in and out for smooth animation
-			
-
-
-		// Start the tween
-		_tween.Play();
-	}
-	 private void TweenSelf()
-	{
-		// Tween the button's position
-		Tween _tween = GetTree().CreateTween();
-
-		_tween.TweenProperty(_panel, "scale", new Vector2(1f, 1f), 0.25f)
-			.SetTrans(Tween.TransitionType.Back) // Smooth linear transition
-			.SetEase(Tween.EaseType.InOut); // Ease in and out for smooth animation
-
-
-		// Start the tween
-		_tween.Play();
-	}
 
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
