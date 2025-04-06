@@ -127,7 +127,12 @@ namespace MapGame
 			SaveData.Instance._currentHappinessMultiplier = targetAmount;
 		}
 
+<<<<<<< HEAD
 		public void ChangeMagic(int change)
+=======
+
+		public void ChangeMagic(float change)
+>>>>>>> origin/main
 		{
 			if (SaveData.Instance._currentMagic + change < 0)
 			{
@@ -136,8 +141,25 @@ namespace MapGame
 			}
 			SaveData.Instance._currentMagic += change;
 		}
+<<<<<<< HEAD
 
 		public void ChangeTokens(int change)
+=======
+		public void ChangeHappiness(float change)
+		{
+			if (SaveData.Instance._currentHappiness + change > 100)
+			{
+				SaveData.Instance._currentHappiness = 100;
+				return;
+			}
+			else if (SaveData.Instance._currentHappiness + change < 0)
+			{
+				SaveData.Instance._currentHappiness = 0;
+			}
+			SaveData.Instance._currentHappiness += change;
+		}
+		public void ChangeTokens(float change)
+>>>>>>> origin/main
 		{
 			if (SaveData.Instance._currentTokens + change < 0)
 			{
@@ -146,8 +168,12 @@ namespace MapGame
 			}
 			SaveData.Instance._currentTokens += change;
 		}
+<<<<<<< HEAD
 
 		public void ChangeSalary(int change)
+=======
+		public void ChangeSalary(float change)
+>>>>>>> origin/main
 		{
 			SaveData.Instance._currentSalary += change;
 		}
@@ -195,8 +221,11 @@ namespace MapGame
 			{
 				ChangeMagicMultiplier(outcome.MagicMultiplier);
 			}
+<<<<<<< HEAD
 			
 			SaveData.Instance.SaveGame();
+=======
+>>>>>>> origin/main
 		}
 		public Dictionary<Island, float> GetAllIslandHappiness()
 		{

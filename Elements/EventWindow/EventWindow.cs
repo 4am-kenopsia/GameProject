@@ -11,18 +11,6 @@ namespace MapGame
 
 		private RichTextLabel _eventTitle = null;
 		private RichTextLabel _eventContent = null;
-		private TextureButton _optionButton1 = null;
-		private TextureButton _optionButton2 = null;
-		private TextureButton _optionButton3 = null;
-		private TextureButton _optionButton4 = null;
-		private OptionButton _optionButton1Container = null;
-		private OptionButton _optionButton2Container = null;
-		private OptionButton _optionButton3Container = null;
-		private OptionButton _optionButton4Container = null;
-		private Label _optionButton1Text = null;
-		private Label _optionButton2Text = null;
-		private Label _optionButton3Text = null;
-		private Label _optionButton4Text = null;
 		private EventData _currentEvent = null;
 		private Dictionary _eventDictionary = null;
 		
@@ -31,7 +19,7 @@ namespace MapGame
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			int _eventNumber = GD.RandRange(1, 4);
+			int _eventNumber = GD.RandRange(1, 1);
 			LoadEventData(_eventNumber);
 		}
 
@@ -47,8 +35,8 @@ namespace MapGame
 			_eventContent = GetNode<RichTextLabel>("TurnEventContent");
 			_eventContent.Text = _currentEvent.EventDesc;
 
-			SetupOptionButton(1, "OptionContainer1", _currentEvent.EventOptions.Length > 0);
 			SetupOptionButton(2, "OptionContainer2", _currentEvent.EventOptions.Length > 1);
+			SetupOptionButton(1, "OptionContainer1", _currentEvent.EventOptions.Length > 0);
 			SetupOptionButton(3, "OptionContainer3", _currentEvent.EventOptions.Length > 2);
 			SetupOptionButton(4, "OptionContainer4", _currentEvent.EventOptions.Length > 3);
 		}
@@ -60,9 +48,26 @@ namespace MapGame
 				var optionButton = GetNode<TextureButton>($"OptionsContainer/{containerName}/OptionButton{index}/TextureButton");
 				var optionButtonText = GetNode<Label>($"OptionsContainer/{containerName}/OptionButton{index}/Label");
 				var optionButtonContainer = GetNode<OptionButton>($"OptionsContainer/{containerName}/OptionButton{index}");
+				var optionButtonIcon = GetNode<TextureRect>($"OptionsContainer/{containerName}/OptionButton{index}/TextureRect");
 
 				optionButton.Pressed += () => OnOptionButtonPressed(index);
 				optionButtonText.Text = _currentEvent.EventOptions[index - 1];
+				EventOutcomeData outcome = (EventOutcomeData)_currentEvent.EventDictionary[_currentEventID + "_" + index];
+				switch (outcome.OptionSeverity)
+				{
+					case EventOutcomeData.Severity.Low:
+						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/small_change.png");
+						GD.Print("Low");
+						break;
+					case EventOutcomeData.Severity.Medium:
+						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/medium_change.png");
+						GD.Print("Med");
+						break;
+					case EventOutcomeData.Severity.High:
+						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/large_change.png");
+						GD.Print("High");
+						break;
+				}
 				optionButtonContainer.Visible = true;
 			}
 		}

@@ -6,6 +6,15 @@ namespace MapGame
 	[GlobalClass]
 	public partial class EventOutcomeData : Resource
 	{
+		public enum Severity
+		{
+			Low,
+			Medium,
+			High
+		}
+		[Export] public Severity OptionSeverity { get; set; }
+		//[Export(PropertyHint.Enum, "Low,Medium,High")] public string OptionSeverity;
+
 		[ExportGroup("Resource changes")]
 		[Export(PropertyHint.Range, "-100,100,")] public int HappinessChange;
 		[Export] public int MagicChange;
