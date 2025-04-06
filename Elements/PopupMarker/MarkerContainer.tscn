@@ -11,8 +11,17 @@ popUp = ExtResource("2_c8hkg")
 
 [node name="Pin" type="TextureButton" parent="."]
 texture_filter = 3
-offset_right = 52.0
-offset_bottom = 54.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -38.5
+offset_right = 43.0
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("3_87q4n")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
