@@ -20,10 +20,6 @@ namespace MapGame
 		[Export] public int MagicChange;
 		[Export] public int TokensChange;
 
-		[ExportSubgroup("Island Targeting")]
-		[Export] public bool AffectsSpecificIsland = false;
-		[Export] public int IslandIndex = 0; // 0-7 for your 8 islands
-
 		[ExportSubgroup("Bonus changes")]
 		[Export] public string unlockEvent;
 		[Export] public string unlockEvent2;
@@ -33,10 +29,5 @@ namespace MapGame
 		[Export] public float HappinessMultiplier;
 		[Export] public float MagicMultiplier;
 
-		[ExportGroup("Island Targeting")]
-		[Export] public bool IsIslandSpecific = false;
-	
-		// Not exported - set at runtime
-		public Island? TargetIsland { get; set; }
 	}
 }

@@ -14,10 +14,6 @@ namespace MapGame
 
 		[Signal]
 		public delegate void ButtonPressed2EventHandler();
-		
-		[Signal]
-		public delegate void PopUpEventAnsweredEventHandler(EventOutcomeData outcome);
-
 
 		private Button _button1;
 		private Button _button2;
@@ -28,22 +24,6 @@ namespace MapGame
 		private string _currentEventID;
 		private Texture2D _newTexture;
 		private Dictionary _eventDictionary = null;
-		public Island TargetIsland { get; set; }  // Add this property
-
-		private EventData _eventData;
-		public EventData EventData 
-		
-		{
-			get => _eventData;
-			set 
-			{
-				_eventData = value;
-				if (_eventData != null)
-				{
-					LoadEventData(_eventData);
-				}
-			}
-		}
 		//private PopupEventData _currentEvent = null;
 		//public int _eventsHappened { get; set; } = 0;
 		
@@ -51,175 +31,102 @@ namespace MapGame
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
-{
-	// Get UI elements safely
-	_panel = GetNode<Panel>("Panel");
-	_button1 = _panel.GetNode<Button>("Button");
-	_button2 = _panel.GetNode<Button>("Button2");
-	_img = _panel.GetNode<TextureRect>("img");
-	_description = _panel.GetNode<Label>("Description");
-	_eventLabel = _panel.GetNode<Label>("EventLabel");
+		{
+			_popUpEventNumber = GD.RandRange(1, 4);
+			
+			_button1 = GetNode<Button>("Panel/Button");
+			_button2 = GetNode<Button>("Panel/Button2");
+			_panel = GetNode<Panel>("Panel");
+			_img = GetNode<TextureRect>("Panel/img");
+			_description = GetNode<Label>("Panel/Description");
+			LoadData();
+			
+			TweenSelf();
+			TweenLabel();
+			TweenButton();
+			
 
-	// Get event from EventLoader
-	var eventLoader = GetNode<EventLoader>("/root/EventLoader");
-	var marker = GetParent() as MarkerContainer;
-	var eventData = eventLoader.GetRandomEventForIsland(marker?.TargetIsland ?? Island.Island1);
-	
-	// Initialize event data
-	EventData = eventData ?? new EventData();
-	
-	// Start animations
-	TweenSelf();
-	TweenLabel();
-	TweenButton();
-	
-	// Connect signals
-	_button1.Pressed += OnButton1Pressed;
-	_button2.Pressed += OnButton2Pressed;
-}
+			// Connect the button's "pressed" signal to local methods
+			_button1.Pressed += OnButton1Pressed;
+			_button2.Pressed += OnButton2Pressed;
+			
+		}
 		
-		//private void LoadData() 
-		//{
-			//// Load the .tres file
-			//var eventData = ResourceLoader.Load<EventData>("res://Code/EventData/PopupEvents/TestEvent" + _popUpEventNumber + ".tres");
-			//_eventDictionary = eventData.EventDictionary;
-			//_currentEventID = _popUpEventNumber.ToString();
-			//
-			//// var eventData = ResourceLoader.Load<PopupEventData>("res://Code/PopupData/PopupEvents/TestEvent" + _eventsHappened + ".tres");
-			//GD.Print(eventData);
-			//if (eventData != null)
-			//{
-				//// Update the Label with the data
-				//_eventLabel.Text = $"{eventData.EventTitle}";
-				//_description.Text = $"{eventData.EventDesc}";
-				//if (!string.IsNullOrEmpty(eventData.EventPicture))
-				//{
-					//_newTexture = GD.Load<Texture2D>(eventData.EventPicture);
-					//GD.Print("pic:" + eventData.EventPicture);
-					//_img.Texture = _newTexture;
-				//}
-				//// Example of accessing other properties
-				//_button1.SetText(eventData.EventOptions[0]);
-				//_button2.SetText(eventData.EventOptions[1]);
-				//if (eventData.EventOptions != null)
-				//{
-					//foreach (var option in eventData.EventOptions)
-					//{
-						//GD.Print($"Option: {option}");
-						//
-					//}
-				//}
-//
-				//if (eventData.EventDictionary != null)
-				//{
-					//foreach (var key in eventData.EventDictionary.Keys)
-					//{
-						//GD.Print($"Key: {key}, Value: {eventData.EventDictionary[key]}");
-					//}
-				//}
-			//}
-			//else
-			//{
-				//GD.PrintErr("Failed to load PopupEventData resource.");
-			//}
-		//
-		//}
 		private void LoadData() 
 		{
-			// Get the EventLoader instance
-			var eventLoader = GetNode<EventLoader>("/root/EventLoader");
+			// Load the .tres file
+			var eventData = ResourceLoader.Load<EventData>("res://Code/EventData/PopupEvents/TestEvent" + _popUpEventNumber + ".tres");
+			_eventDictionary = eventData.EventDictionary;
+			_currentEventID = _popUpEventNumber.ToString();
 			
-			// Get random event for current island (passed from MarkerContainer)
-			var marker = GetParent() as MarkerContainer;
-			var eventData = eventLoader.GetRandomEventForIsland(marker?.TargetIsland ?? Island.Island1);
-			
+			// var eventData = ResourceLoader.Load<PopupEventData>("res://Code/PopupData/PopupEvents/TestEvent" + _eventsHappened + ".tres");
+			GD.Print(eventData);
 			if (eventData != null)
 			{
-				_eventDictionary = eventData.EventDictionary;
-				_currentEventID = eventData.EventID;
-				
-				// Update UI elements
-				_eventLabel.Text = eventData.EventTitle;
-				_description.Text = eventData.EventDesc;
-				
+				// Update the Label with the data
+				_eventLabel.Text = $"{eventData.EventTitle}";
+				_description.Text = $"{eventData.EventDesc}";
 				if (!string.IsNullOrEmpty(eventData.EventPicture))
 				{
-					_img.Texture = GD.Load<Texture2D>(eventData.EventPicture);
+					_newTexture = GD.Load<Texture2D>(eventData.EventPicture);
+					GD.Print("pic:" + eventData.EventPicture);
+					_img.Texture = _newTexture;
 				}
-				
-				_button1.Text = eventData.EventOptions[0];
-				_button2.Text = eventData.EventOptions[1];
+				// Example of accessing other properties
+				_button1.SetText(eventData.EventOptions[0]);
+				_button2.SetText(eventData.EventOptions[1]);
+				if (eventData.EventOptions != null)
+				{
+					foreach (var option in eventData.EventOptions)
+					{
+						GD.Print($"Option: {option}");
+						
+					}
+				}
+
+				if (eventData.EventDictionary != null)
+				{
+					foreach (var key in eventData.EventDictionary.Keys)
+					{
+						GD.Print($"Key: {key}, Value: {eventData.EventDictionary[key]}");
+					}
+				}
 			}
+			else
+			{
+				GD.PrintErr("Failed to load PopupEventData resource.");
+			}
+		
 		}
 
 		private void OnButton1Pressed()
 		{
+			// Emit the custom signal
 			string outcomeKey = _currentEventID + "_" + 1;
-			var outcome = (EventOutcomeData)_eventDictionary[outcomeKey];
-			
-			// Get parent marker if exists
-			var marker = GetParent() as MarkerContainer;
-			if (marker != null && outcome.IsIslandSpecific)
-			{
-				outcome.TargetIsland = marker.TargetIsland;
-			}
-			
-			EmitSignal(SignalName.PopUpEventAnswered, outcome);
+			var outcome = _eventDictionary[outcomeKey];
+			ResourceManager.Instance.HandleOptionOutcomes((EventOutcomeData)outcome);
 			EmitSignal(SignalName.ButtonPressed1);
+			GD.Print("lol1");
+			
+			//GD.Print(_eventsHappened);
 			Visible = false;
+			
+	
 		}
 
 		private void OnButton2Pressed()
 		{
-			 string outcomeKey = _currentEventID + "_" + 2;
-			var outcome = (EventOutcomeData)_eventDictionary[outcomeKey];
+			string outcomeKey = _currentEventID + "_" + 2;
+			var outcome = _eventDictionary[outcomeKey];
+			ResourceManager.Instance.HandleOptionOutcomes((EventOutcomeData)outcome);
 			
-			// Get parent marker if exists
-			var marker = GetParent() as MarkerContainer;
-			if (marker != null && outcome.IsIslandSpecific)
-			{
-				outcome.TargetIsland = marker.TargetIsland;
-			}
-			
-			EmitSignal(SignalName.PopUpEventAnswered, outcome);
 			EmitSignal(SignalName.ButtonPressed2);
+			GD.Print("lol2");
 			Visible = false;
+			
+			
+			
 		}
-		
-
-
-			private void LoadEventData(EventData eventData)
-{
-	// Initialize with empty dictionary if null
-	_eventDictionary = eventData?.EventDictionary ?? new Godot.Collections.Dictionary();
-	_currentEventID = eventData?.EventID ?? "default_event";
-
-	// Safe UI updates with null checks
-	if (_eventLabel != null)
-		_eventLabel.Text = eventData?.EventTitle ?? "New Event";
-	
-	if (_description != null)
-		_description.Text = eventData?.EventDesc ?? "An event occurred";
-
-	// Safe image loading
-	if (_img != null && !string.IsNullOrEmpty(eventData?.EventPicture))
-	{
-		_img.Texture = GD.Load<Texture2D>(eventData.EventPicture) 
-					  ?? GD.Load<Texture2D>("res://fallback_texture.png");
-	}
-
-	// Safe button options (with array bounds checking)
-	if (eventData?.EventOptions != null && eventData.EventOptions.Length >= 2)
-	{
-		_button1.Text = eventData.EventOptions[0] ?? "Continue";
-		_button2.Text = eventData.EventOptions[1] ?? "Cancel";
-	}
-	else
-	{
-		_button1.Text = "Continue";
-		_button2.Text = "Cancel";
-	}
-}
 
 
 		//public void OnShitBought()

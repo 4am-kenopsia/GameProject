@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace MapGame
 {
@@ -25,7 +23,6 @@ namespace MapGame
 		public override void _Process(double delta)
 		{
 		}
-		
 
 		public void CreateTurnEvent()
 		{
@@ -61,26 +58,16 @@ namespace MapGame
 			CreateTurnEvent();
 			CreatePopUpMarker();
 		}
-		
 		public void OnEventAnswered()
 		{
 			GUI.UpdateLabels();
-			GD.Print("Event answered received - resetting flag");
 			RemoveChild(_eventWindow);
 			isEventRunning = false;
 			
 		}
-		public void OnPopUpEventAnswered(EventOutcomeData outcome)
+		public void OnPopUpEventAnswered()
 		{
-			ResourceManager.Instance.HandleOptionOutcomes(outcome);
 			GUI.UpdateLabels();
-			
-					 // Print happiness for all islands
-			var allHappiness = ResourceManager.Instance.GetAllIslandHappiness();
-			foreach (var entry in allHappiness)
-			{
-				GD.Print($"Island {(int)entry.Key + 1} Happiness: {entry.Value}%");
-			}
 			isEventRunning = false;
 			
 		}
@@ -89,100 +76,27 @@ namespace MapGame
 			isEventRunning = true;
 			
 		}
-		//private void CreatePopUpMarker()
-		//{
-			//// Instance the child scene
-			//
-			//MarkerContainer markerInstance = (MarkerContainer)markerScene.Instantiate(); 
-			//markerInstance.PopUpEventAnswered += OnPopUpEventAnswered;
-			//markerInstance.PopUpEventOpened += OnPopUpEventOpened;
-//
-			//// Generate a random position within the scene
-			//Vector2 randomPosition = new Vector2(
-				//(float)GD.RandRange(0, 1405),
-				//(float)GD.RandRange(0, 854)
-			//);
-			 //
-			//// Set the position of the child instance
-			//markerInstance.Position = randomPosition;
-//
-			//// Add the child instance to the scene
-			//
-			//AddChild(markerInstance);
-	//
-		//}
 		private void CreatePopUpMarker()
 		{
-			// Instance the marker
+			// Instance the child scene
+			
 			MarkerContainer markerInstance = (MarkerContainer)markerScene.Instantiate(); 
 			markerInstance.PopUpEventAnswered += OnPopUpEventAnswered;
 			markerInstance.PopUpEventOpened += OnPopUpEventOpened;
 
-			// Select a random island
-			RandomNumberGenerator rng = new();
-			rng.Randomize();
-			Island randomIsland = (Island)rng.RandiRange(0, 7); // 0-7 for 8 islands
-			
-			// Get position on island
-			Vector2 randomPosition = GetRandomPositionInsideIsland(randomIsland);
-			
-			// Set position and island reference
+			// Generate a random position within the scene
+			Vector2 randomPosition = new Vector2(
+				(float)GD.RandRange(0, 1405),
+				(float)GD.RandRange(0, 854)
+			);
+			 
+			// Set the position of the child instance
 			markerInstance.Position = randomPosition;
-			markerInstance.TargetIsland = randomIsland; // Add this property to MarkerContainer
 
+			// Add the child instance to the scene
+			
 			AddChild(markerInstance);
-			
-			// Optional: Affect island happiness
-			ResourceManager.Instance.ChangeIslandHappiness(randomIsland, -5); // Small happiness penalty
-		}
-		private Vector2 GetRandomPositionInsideIsland(Island island)
-		{
-			// Get the Area2D node for the selected island
-			string nodePath = $"TextureRect/{island}";
-			Area2D islandArea = GetNode<Area2D>(nodePath);
-			
-			// Get all collision polygons for this island
-			var polygons = islandArea.GetChildren()
-								   .OfType<CollisionPolygon2D>()
-								   .ToList();
-			
-			if (polygons.Count == 0)
-			{
-				GD.PrintErr($"No collision polygons found for {island}");
-				return islandArea.GlobalPosition;
-			}
-
-			// Select a random polygon
-			RandomNumberGenerator rng = new();
-			rng.Randomize();
-			CollisionPolygon2D selectedPolygon = polygons[rng.RandiRange(0, polygons.Count - 1)];
-			Vector2[] polygonPoints = selectedPolygon.Polygon;
-
-			// Calculate bounds
-			Vector2 min = polygonPoints[0];
-			Vector2 max = polygonPoints[0];
-			
-			foreach (Vector2 point in polygonPoints)
-			{
-				min = new Vector2(Mathf.Min(min.X, point.X), Mathf.Min(min.Y, point.Y));
-				max = new Vector2(Mathf.Max(max.X, point.X), Mathf.Max(max.Y, point.Y));
-			}
-
-			// Try random points
-			for (int i = 0; i < 100; i++)
-			{
-				Vector2 localPoint = new(
-					rng.RandfRange(min.X, max.X),
-					rng.RandfRange(min.Y, max.Y)
-				);
-				
-				if (Geometry2D.IsPointInPolygon(localPoint, polygonPoints))
-				{
-					return selectedPolygon.ToGlobal(localPoint);
-				}
-			}
-			
-			return islandArea.GlobalPosition;
+	
 		}
 
 	}
