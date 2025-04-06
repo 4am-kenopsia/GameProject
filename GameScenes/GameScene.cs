@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 namespace MapGame
 {
@@ -8,15 +9,22 @@ namespace MapGame
 		private PackedScene _eventWindowScene;
 		private EventWindow _eventWindow;
 		private TextureButton _turnButton;
+		private TextureRect _newDayIndicator;
+		private Label _newDayLabel;
+		private AnimationPlayer _animationPlayer;
 		public static bool isEventRunning = false;
 		[Export] private PackedScene markerScene;
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{	
 			markerScene = GD.Load<PackedScene>("res://Elements/PopupMarker/MarkerContainer.tscn");
-			_turnButton = GetNode<TextureButton>("UI/SideUI/TurnButtonContainer/TurnButton");
-			_turnButton.Pressed += OnTurnButtonPressed;
+			_turnButton = GetNode<TextureButton>("UI/SideUI/TurnButton");
+			_newDayIndicator = GetNode<TextureRect>("UI/NewDayIndicator");
+			_newDayLabel = GetNode<Label>("UI/NewDayIndicator/NewDayLabel");
+			_animationPlayer = GetNode<AnimationPlayer>("UI/AnimationPlayer");
 			
+			_turnButton.Pressed += OnTurnButtonPressed;
+			SoundPlayer.Instance.PlayAmbience();
 		}
 
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,21 +48,32 @@ namespace MapGame
 		}
 		public void OnTurnButtonPressed()
 		{
+			NextTurn();
+		}
+		public async Task NextTurn()
+		{
 			if (isEventRunning)
 			{
 				GD.Print("Event is already running");
 				return;
 			}
-
+			isEventRunning = true;
+			SoundPlayer.Instance.PlayNextTurnSound();
 			GD.Print("TurnButton Pressed");
 			if (SaveData.Instance._currentTurn == 3)
 			{
-				GetTree().ChangeSceneToFile("res://GameScenes/DayEndScene.tscn");
+				SceneTransition.Instance.TransitionToScene("res://GameScenes/DayEndScene.tscn");
 				return;
 			}
+			SoundPlayer.Instance.PlayTicking();
 			SaveData.Instance.IncreaseTurn();
 			GUI.UpdateLabels();
 			GD.Print("Turn: " + SaveData.Instance._currentTurn);
+			_newDayLabel.Text = "TURN " + SaveData.Instance._currentTurn;
+			_animationPlayer.Play("newday");
+
+			await WaitForAnimationToFinish();
+			
 			CreateTurnEvent();
 			CreatePopUpMarker();
 		}
@@ -97,6 +116,21 @@ namespace MapGame
 			
 			AddChild(markerInstance);
 	
+		}
+		private async Task WaitForAnimationToFinish()
+		{
+			var tcs = new TaskCompletionSource<bool>();
+			
+		void OnAnimationFinished(StringName animationName)
+			{
+				if (animationName == "newday")
+				{
+					tcs.SetResult(true);
+				}
+			}
+			_animationPlayer.AnimationFinished += OnAnimationFinished;
+			await tcs.Task;
+			_animationPlayer.AnimationFinished -= OnAnimationFinished;
 		}
 
 	}

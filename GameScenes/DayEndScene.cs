@@ -36,7 +36,7 @@ namespace MapGame
         {
 			SaveData.Instance.IncreaseDay();
 			SaveData.Instance.SaveGame();
-			GetTree().ChangeSceneToFile("res://GameScenes/GameScene.tscn");
+			SceneTransition.Instance.TransitionToScene("res://GameScenes/GameScene.tscn");
 		}
 	}
 }

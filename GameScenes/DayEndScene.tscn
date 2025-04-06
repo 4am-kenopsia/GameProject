@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://GameScenes/DayEndScene.cs" id="1_fdf8p"]
 [ext_resource type="Texture2D" uid="uid://ce4dbryd53mwy" path="res://Assets/Popup Window/Event_Window.png" id="1_yv0yq"]
 [ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="2_x4mcn"]
-[ext_resource type="Texture2D" uid="uid://cx8idpqg6o8px" path="res://Assets/UI/nextTurn.png" id="3_1hhrl"]
+[ext_resource type="Texture2D" uid="uid://gkak5qsc3i51" path="res://Assets/UI/Next_Turn_Button.png" id="4_melqs"]
 
 [sub_resource type="Theme" id="Theme_j2oo4"]
 default_font = ExtResource("2_x4mcn")
@@ -78,5 +78,5 @@ offset_right = 642.0
 offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("3_1hhrl")
+texture_normal = ExtResource("4_melqs")
 stretch_mode = 0

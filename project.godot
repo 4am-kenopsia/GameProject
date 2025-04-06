@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 RecMan="*res://Elements/ResourcesManager/ResourceManager.cs"
 SaveData="*res://SaveData/SaveData.cs"
+SceneTransition="*res://Elements/Transition/SceneTransition.tscn"
+SoundPlayer="*res://Elements/SoundPlayer/SoundPlayer.tscn"
 
 [display]
 
