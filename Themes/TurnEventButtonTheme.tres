@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://b1hrndcg3hihh"]
 
-[ext_resource type="FontFile" uid="uid://b2fa4quf7y6x2" path="res://Assets/Fonts/Ortica/Ortica-Light.otf" id="1_c4ojy"]
+[ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="1_1fqol"]
 
 [resource]
-default_font = ExtResource("1_c4ojy")
+default_font = ExtResource("1_1fqol")
 default_font_size = 35

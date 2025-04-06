@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://bk78u4x03ulpe"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_1spg7"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_erkq7"]
+
+[sub_resource type="Resource" id="Resource_8h64p"]
+script = ExtResource("1_1spg7")
+HappinessChange = 5
+MainResourcehange = -1000
+ThirdResourceChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+ChangeHappinessPosMultiplier = false
+HappinessPosMultiplier = 0.0
+ChangeHappinessNegMultiplier = false
+HappinessNegMultiplier = 0.0
+ChangeMainResourcePosMultiplier = false
+MainResourcePosMultiplier = 0.0
+ChangeMainResourceNegMultiplier = false
+MainResourceNegMultiplier = 0.0
+
+[sub_resource type="Resource" id="Resource_oiudi"]
+script = ExtResource("1_1spg7")
+HappinessChange = -10
+MainResourcehange = -2000
+ThirdResourceChange = 1
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+ChangeHappinessPosMultiplier = false
+HappinessPosMultiplier = 0.0
+ChangeHappinessNegMultiplier = false
+HappinessNegMultiplier = 0.0
+ChangeMainResourcePosMultiplier = false
+MainResourcePosMultiplier = 0.0
+ChangeMainResourceNegMultiplier = false
+MainResourceNegMultiplier = 0.0
+
+[resource]
+script = ExtResource("1_erkq7")
+isEventOneTime = false
+EventPicture = ""
+EventID = "1"
+EventTitle = "Skibidi toilets are doing intelligence"
+EventDesc = "Deploy camera units to stop their evil plans"
+EventOptions = PackedStringArray("Accept", "Decline")
+EventOutcomeHints = PackedStringArray()
+EventDictionary = {
+"1_1": SubResource("Resource_8h64p"),
+"1_2": SubResource("Resource_oiudi")
+}

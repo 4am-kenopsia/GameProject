@@ -5,6 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_f3ie3"]
 script = ExtResource("1_yvt5u")
+OptionSeverity = 0
 HappinessChange = 20
 MagicChange = 0
 TokensChange = 0
@@ -16,6 +17,7 @@ MagicMultiplier = 0.0
 
 [sub_resource type="Resource" id="Resource_w2yp2"]
 script = ExtResource("1_yvt5u")
+OptionSeverity = 1
 HappinessChange = -10
 MagicChange = 0
 TokensChange = 0
@@ -27,6 +29,7 @@ MagicMultiplier = 0.0
 
 [sub_resource type="Resource" id="Resource_ws2wk"]
 script = ExtResource("1_yvt5u")
+OptionSeverity = 1
 HappinessChange = -10
 MagicChange = 0
 TokensChange = 0
@@ -38,6 +41,7 @@ MagicMultiplier = 0.0
 
 [sub_resource type="Resource" id="Resource_mdiu7"]
 script = ExtResource("1_yvt5u")
+OptionSeverity = 2
 HappinessChange = 10
 MagicChange = 0
 TokensChange = 0

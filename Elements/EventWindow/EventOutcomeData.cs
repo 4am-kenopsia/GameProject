@@ -6,14 +6,19 @@ namespace MapGame
 	[GlobalClass]
 	public partial class EventOutcomeData : Resource
 	{
+		public enum Severity
+		{
+			Low,
+			Medium,
+			High
+		}
+		[Export] public Severity OptionSeverity { get; set; }
+		//[Export(PropertyHint.Enum, "Low,Medium,High")] public string OptionSeverity;
+
 		[ExportGroup("Resource changes")]
 		[Export(PropertyHint.Range, "-100,100,")] public int HappinessChange;
 		[Export] public int MagicChange;
 		[Export] public int TokensChange;
-
-		[ExportSubgroup("Island Targeting")]
-		[Export] public bool AffectsSpecificIsland = false;
-		[Export] public int IslandIndex = 0; // 0-7 for your 8 islands
 
 		[ExportSubgroup("Bonus changes")]
 		[Export] public string unlockEvent;
@@ -24,10 +29,5 @@ namespace MapGame
 		[Export] public float HappinessMultiplier;
 		[Export] public float MagicMultiplier;
 
-		[ExportGroup("Island Targeting")]
-		[Export] public bool IsIslandSpecific = false;
-	
-		// Not exported - set at runtime
-		public Island? TargetIsland { get; set; }
 	}
 }

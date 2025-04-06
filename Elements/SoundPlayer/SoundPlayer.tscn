@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://0net4cm1ager"]
+
+[ext_resource type="Script" path="res://SoundPlayer.cs" id="2_n3amm"]
+
+[sub_resource type="AudioStream" id="AudioStream_l25qp"]
+
+[sub_resource type="AudioStream" id="AudioStream_bjb42"]
+
+[sub_resource type="Animation" id="Animation_cd28k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AmbiencePlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SfxPlayer2:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-10.0]
+}
+
+[sub_resource type="Animation" id="Animation_tynxt"]
+resource_name = "soundtransition"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AmbiencePlayer:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-80.0, -15.0]
+}
+
+[sub_resource type="Animation" id="Animation_a2tky"]
+resource_name = "ticking"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SfxPlayer2:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-10.0, 0.0, -10.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8al2i"]
+_data = {
+"RESET": SubResource("Animation_cd28k"),
+"soundtransition": SubResource("Animation_tynxt"),
+"ticking": SubResource("Animation_a2tky")
+}
+
+[node name="SoundPlayer" type="Node"]
+script = ExtResource("2_n3amm")
+
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStream_l25qp")
+volume_db = -80.0
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStream_bjb42")
+volume_db = -10.0
+
+[node name="SfxPlayer2" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="SoundTransition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8al2i")
+}

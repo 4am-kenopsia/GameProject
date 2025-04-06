@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Threading.Tasks;
 
 namespace MapGame
 {
@@ -11,27 +12,18 @@ namespace MapGame
 
 		private RichTextLabel _eventTitle = null;
 		private RichTextLabel _eventContent = null;
-		private TextureButton _optionButton1 = null;
-		private TextureButton _optionButton2 = null;
-		private TextureButton _optionButton3 = null;
-		private TextureButton _optionButton4 = null;
-		private OptionButton _optionButton1Container = null;
-		private OptionButton _optionButton2Container = null;
-		private OptionButton _optionButton3Container = null;
-		private OptionButton _optionButton4Container = null;
-		private Label _optionButton1Text = null;
-		private Label _optionButton2Text = null;
-		private Label _optionButton3Text = null;
-		private Label _optionButton4Text = null;
 		private EventData _currentEvent = null;
 		private Dictionary _eventDictionary = null;
+		private AnimationPlayer _animationPlayer;
 		
 		private string _currentEventID = "";
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
-			int _eventNumber = GD.RandRange(1, 4);
+			_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+			int _eventNumber = GD.RandRange(1, 1);
+			_animationPlayer.Play("newevent");
 			LoadEventData(_eventNumber);
 		}
 
@@ -41,14 +33,14 @@ namespace MapGame
 			_currentEventID = eventNumber.ToString();
 			_eventDictionary = _currentEvent.EventDictionary;
 
-			_eventTitle = GetNode<RichTextLabel>("TurnEventTitle");
+			_eventTitle = GetNode<RichTextLabel>("TextureRect/TurnEventTitle");
 			_eventTitle.Text = _currentEvent.EventTitle;
 
-			_eventContent = GetNode<RichTextLabel>("TurnEventContent");
+			_eventContent = GetNode<RichTextLabel>("TextureRect/TurnEventContent");
 			_eventContent.Text = _currentEvent.EventDesc;
 
-			SetupOptionButton(1, "OptionContainer1", _currentEvent.EventOptions.Length > 0);
 			SetupOptionButton(2, "OptionContainer2", _currentEvent.EventOptions.Length > 1);
+			SetupOptionButton(1, "OptionContainer1", _currentEvent.EventOptions.Length > 0);
 			SetupOptionButton(3, "OptionContainer3", _currentEvent.EventOptions.Length > 2);
 			SetupOptionButton(4, "OptionContainer4", _currentEvent.EventOptions.Length > 3);
 		}
@@ -57,22 +49,61 @@ namespace MapGame
 		{
 			if (isVisible)
 			{
-				var optionButton = GetNode<TextureButton>($"OptionsContainer/{containerName}/OptionButton{index}/TextureButton");
-				var optionButtonText = GetNode<Label>($"OptionsContainer/{containerName}/OptionButton{index}/Label");
-				var optionButtonContainer = GetNode<OptionButton>($"OptionsContainer/{containerName}/OptionButton{index}");
+				var optionButton = GetNode<TextureButton>($"TextureRect/OptionsContainer/{containerName}/OptionButton{index}/TextureButton");
+				var optionButtonText = GetNode<Label>($"TextureRect/OptionsContainer/{containerName}/OptionButton{index}/Label");
+				var optionButtonContainer = GetNode<OptionButton>($"TextureRect/OptionsContainer/{containerName}/OptionButton{index}");
+				var optionButtonIcon = GetNode<TextureRect>($"TextureRect/OptionsContainer/{containerName}/OptionButton{index}/TextureRect");
 
 				optionButton.Pressed += () => OnOptionButtonPressed(index);
 				optionButtonText.Text = _currentEvent.EventOptions[index - 1];
+				EventOutcomeData outcome = (EventOutcomeData)_currentEvent.EventDictionary[_currentEventID + "_" + index];
+				switch (outcome.OptionSeverity)
+				{
+					case EventOutcomeData.Severity.Low:
+						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/small_change.png");
+						break;
+					case EventOutcomeData.Severity.Medium:
+						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/medium_change.png");
+						break;
+					case EventOutcomeData.Severity.High:
+						optionButtonIcon.Texture = (Texture2D)GD.Load("res://Assets/Resources/large_change.png");
+						break;
+				}
 				optionButtonContainer.Visible = true;
 			}
 		}
 
 		public void OnOptionButtonPressed(int optionIndex)
 		{
+			OptionButton(optionIndex);
+		}
+		public async Task OptionButton(int optionIndex)
+		{
+			SoundPlayer.Instance.PlayEventButtonSound();
+			
 			string outcomeKey = _currentEventID + "_" + optionIndex;
 			var outcome = _eventDictionary[outcomeKey];
+			
+			_animationPlayer.Play("begonevent");
+			await WaitForAnimationToFinish();
+			
 			ResourceManager.Instance.HandleOptionOutcomes((EventOutcomeData)outcome);
 			EmitSignal(SignalName.EventAnswered);
+		}
+		private async Task WaitForAnimationToFinish()
+		{
+			var tcs = new TaskCompletionSource<bool>();
+			
+			void OnAnimationFinished(StringName animationName)
+			{
+				if (animationName == "begonevent")
+				{
+					tcs.SetResult(true);
+				}
+			}
+			_animationPlayer.AnimationFinished += OnAnimationFinished;
+			await tcs.Task;
+			_animationPlayer.AnimationFinished -= OnAnimationFinished;
 		}
 	}
 }

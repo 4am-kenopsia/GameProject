@@ -5,55 +5,66 @@ namespace MapGame
 {
 	public partial class MarkerContainer : MapObject
 	{
-		// Signal declarations (only one 'public')
 		[Signal] public delegate void ButtonPressedEventHandler(); 
-		[Signal] public delegate void PopUpEventAnsweredEventHandler(EventOutcomeData outcome);
+		[Signal] public delegate void PopUpEventAnsweredEventHandler();
 		[Signal] public delegate void PopUpEventOpenedEventHandler();
-		
 		[Export] private PackedScene popUp;
-		private TextureButton _button;
-		public Island TargetIsland { get; set; }  // Island reference
+		//private int _timesOpened = 1;
 
+		private TextureButton _button;
+
+		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
+			// Get the button node
 			_button = GetNode<TextureButton>("Pin");
+
+			// Connect the button's "pressed" signal to a local method
 			_button.Pressed += OnButtonPressed;
 		}
 
 		public override void OnButtonPressed()
 		{
-			if (GameScene.isEventRunning) return;
-			
+			if (GameScene.isEventRunning) 
+			{
+				return;
+			}
+			// Emit the custom signal
 			EmitSignal(SignalName.ButtonPressed);
 			SpawnPopUp();
+			GD.Print("pressed marker");
 		}
 		
 		private void SpawnPopUp()
 		{
-			var popUpInstance = popUp.Instantiate<PopupWindow>();
-			popUpInstance.TargetIsland = this.TargetIsland; // Pass island info
-			popUpInstance.PopUpEventAnswered += OnPopUpEventAnswered;
-			// Get viewport size
-			Vector2 viewportSize = GetViewport().GetVisibleRect().Size;
-
-			// Center in viewport
-			popUpInstance.Position = viewportSize / 2 - popUpInstance.Size / 2;
-			AddChild(popUpInstance);
-			popUpInstance.TopLevel = true; 
-			EmitSignal(SignalName.PopUpEventOpened);
-		}
-
-		private void OnPopUpEventAnswered(EventOutcomeData outcome)
-		{
-			// Handle island-specific outcomes
-			if (outcome.IsIslandSpecific)
-			{
-				outcome.TargetIsland = this.TargetIsland;
-			}
-			ResourceManager.Instance.HandleOptionOutcomes(outcome);
-			EmitSignal(SignalName.PopUpEventAnswered, outcome);
-			QueueFree();
-		}
+		PopupWindow popUpInstance = (PopupWindow)popUp.Instantiate();
+		//popUpInstance._eventsHappened = _timesOpened;
+		popUpInstance.TopLevel = true;
+		popUpInstance.ButtonPressed2 += OnPopUpButtonPressed;
+		popUpInstance.ButtonPressed1 += OnPopUpButtonPressed;
+		//ShitBought += popUpInstance.OnShitBought;
+		//Vector2 middleBottom = new Vector2( GetViewport().GetVisibleRect().Size.X / 2 , GetViewport().GetVisibleRect().Size.Y / 2 );
+		// popUpInstance.Position = middleBottom;
+		AddChild(popUpInstance);
+		EmitSignal(SignalName.PopUpEventOpened);
 		
+		//_timesOpened = _timesOpened + 1;
+		//GetNode<Panel>("Panel").Visible = true;
+	
+		}
+	
+
+		public void OnPopUpButtonPressed()
+		{	
+			GD.Print("pressed yuea");
+			EmitSignal(SignalName.PopUpEventAnswered);
+			QueueFree();
+			
+		}
+
+		// Called every frame. 'delta' is the elapsed time since the previous frame.
+		public override void _Process(double delta)
+		{
+		}
 	}
 }
