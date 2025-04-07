@@ -30,9 +30,7 @@ namespace MapGame
 		[Export] public float MagicMultiplier;
 
 		[ExportGroup("Island Targeting")]
-		[Export] public bool IsIslandSpecific = false;
-		[Export] public int IslandIndex = 0; // 0-7 for your 8 islands
-	
+		[Export] public bool IsIslandSpecific = false;	
 		// Not exported - set at runtime
 		public Island? TargetIsland { get; set; }
 	}
