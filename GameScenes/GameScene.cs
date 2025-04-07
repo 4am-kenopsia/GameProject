@@ -38,6 +38,7 @@ namespace MapGame
 		public void CreateTurnEvent()
 		{
 			GD.Print("meow");
+			isEventRunning = true;
 			_eventWindowScene = ResourceLoader.Load<PackedScene>("res://Elements/EventWindow/EventWindow.tscn");
 			if (_eventWindowScene == null)
 			{
@@ -47,11 +48,12 @@ namespace MapGame
 			_eventWindow = _eventWindowScene.Instantiate<EventWindow>();
 			AddChild(_eventWindow);
 			_eventWindow.EventAnswered += OnEventAnswered;
-			isEventRunning = true;
 		}
 		public void OnTurnButtonPressed()
 		{
+			
 			NextTurn();
+			
 		}
 		public async Task NextTurn()
 		{
@@ -61,6 +63,7 @@ namespace MapGame
 				return;
 			}
 			
+			
 			SoundPlayer.Instance.PlayNextTurnSound();
 			GD.Print("TurnButton Pressed");
 			if (SaveData.Instance._currentTurn == 3)
@@ -68,6 +71,7 @@ namespace MapGame
 				SceneTransition.Instance.TransitionToScene("res://GameScenes/DayEndScene.tscn");
 				return;
 			}
+			isEventRunning = true;
 			SoundPlayer.Instance.PlayTicking();
 			SaveData.Instance.IncreaseTurn();
 			GUI.UpdateLabels();
@@ -78,8 +82,9 @@ namespace MapGame
 			await WaitForAnimationToFinish();
 			
 			CreateTurnEvent();
+			
 			CreatePopUpMarker();
-			isEventRunning = true;
+			
 		}
 		
 		public void OnEventAnswered()

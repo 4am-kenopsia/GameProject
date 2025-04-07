@@ -4,13 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://bhxvgpyahrcbh" path="res://Elements/PopupWindow/PopupWindow.tscn" id="2_c8hkg"]
 [ext_resource type="Texture2D" uid="uid://cxyxuog4xhkax" path="res://Assets/Map/Popup_Marker_1.png" id="3_87q4n"]
 
-[node name="MarkerContainer" type="Node2D"]
+[node name="MarkerContainer" type="Control"]
 y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_3ghya")
 popUp = ExtResource("2_c8hkg")
 
 [node name="Pin" type="TextureButton" parent="."]
 texture_filter = 3
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

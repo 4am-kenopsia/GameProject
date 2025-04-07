@@ -35,9 +35,13 @@ namespace MapGame
 			popUpInstance.PopUpEventAnswered += OnPopUpEventAnswered;
 			// Get viewport size
 			Vector2 viewportSize = GetViewport().GetVisibleRect().Size;
+			
+			
 
 			// Center in viewport
-			popUpInstance.Position = viewportSize / 2 - popUpInstance.Size / 2;
+			//popUpInstance.Position = viewportSize / 2 - popUpInstance.Size / 2;
+			popUpInstance.Position = new Vector2(((viewportSize.X - 200) / 2), (viewportSize.Y / 2)); 
+			
 			AddChild(popUpInstance);
 			popUpInstance.TopLevel = true; 
 			EmitSignal(SignalName.PopUpEventOpened);

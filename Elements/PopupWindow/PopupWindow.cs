@@ -55,6 +55,7 @@ namespace MapGame
 		public override void _Ready()
 {
 	// Get UI elements safely
+	//Animation here
 	_panel = GetNode<TextureRect>("Panel");
 	_button1 = _panel.GetNode<TextureButton>("HBoxContainer/Button1");
 	_button2 = _panel.GetNode<TextureButton>("HBoxContainer/Button2");
