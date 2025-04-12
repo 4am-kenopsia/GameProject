@@ -22,7 +22,7 @@ namespace MapGame
 		public override void _Ready()
 		{
 			_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-			int _eventNumber = GD.RandRange(1, 1);
+			int _eventNumber = GD.RandRange(5, 5);
 			_animationPlayer.Play("newevent");
 			LoadEventData(_eventNumber);
 		}

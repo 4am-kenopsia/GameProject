@@ -14,10 +14,11 @@ unlockEvent2 = ""
 SecretMode2 = false
 HappinessMultiplier = 0.0
 MagicMultiplier = 0.0
+IsIslandSpecific = false
 
 [sub_resource type="Resource" id="Resource_w2yp2"]
 script = ExtResource("1_yvt5u")
-OptionSeverity = 1
+OptionSeverity = 2
 HappinessChange = -10
 MagicChange = 0
 TokensChange = 0
@@ -26,10 +27,11 @@ unlockEvent2 = ""
 SecretMode2 = false
 HappinessMultiplier = 0.0
 MagicMultiplier = 0.0
+IsIslandSpecific = false
 
 [sub_resource type="Resource" id="Resource_ws2wk"]
 script = ExtResource("1_yvt5u")
-OptionSeverity = 1
+OptionSeverity = 0
 HappinessChange = -10
 MagicChange = 0
 TokensChange = 0
@@ -38,10 +40,11 @@ unlockEvent2 = ""
 SecretMode2 = false
 HappinessMultiplier = 0.0
 MagicMultiplier = 0.0
+IsIslandSpecific = false
 
 [sub_resource type="Resource" id="Resource_mdiu7"]
 script = ExtResource("1_yvt5u")
-OptionSeverity = 2
+OptionSeverity = 1
 HappinessChange = 10
 MagicChange = 0
 TokensChange = 0
@@ -50,15 +53,16 @@ unlockEvent2 = ""
 SecretMode2 = false
 HappinessMultiplier = 0.0
 MagicMultiplier = 0.0
+IsIslandSpecific = false
 
 [resource]
 script = ExtResource("1_3ccrw")
 isEventOneTime = false
 EventPicture = ""
 EventID = "1"
-EventTitle = "Ominous Rumbling"
-EventDesc = "The people have recently sensed periodical rumbling on a small island not far from the main archipelago. The growing unrest is keeping people on edge. You feel as if something colossal is about to happen. What will you do?"
-EventOptions = PackedStringArray("Someone must be hungry, bestow some food upon the people.", "Arm the child soldiers with waist-mounted grappling hooks. He will not win.", "Bite your fingers in boredom.", "Fortify the housing of everyone that needs it from the upcoming earthquake.")
+EventTitle = "A New Job"
+EventDesc = "This is it John. Finally, a job. But can you trust this place? It feels a little too surreal... This is the biggest decision of your life. Can you do it? Can you become a Mythical Manager?"
+EventOptions = PackedStringArray("No I can\'t, this place is sketchy", "I can do this.", "I didn\'t even eat breakfast today.", "zeep zeep zeep zeep zeep")
 EventOutcomeHints = PackedStringArray("You wonder whoever had such an appetite but at least the rumbling has stopped.", "My Soldiers, Rage! My Soldiers, Scream! My Soldiers, Fight!", "You feel a jolt in your joints that scares you awake from your daydreaming.", "You did a good deed but let\'s just all hope that it\'s an earthquake and not something completely different.")
 EventDictionary = {
 "1_1": SubResource("Resource_f3ie3"),

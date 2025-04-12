@@ -1,0 +1,72 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://banl6bgpmfuur"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_fqxmj"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_t2ic8"]
+
+[sub_resource type="Resource" id="Resource_hg4w5"]
+script = ExtResource("1_fqxmj")
+OptionSeverity = 0
+HappinessChange = 0
+MagicChange = 0
+TokensChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.0
+MagicMultiplier = 0.0
+IsIslandSpecific = false
+
+[sub_resource type="Resource" id="Resource_6budh"]
+script = ExtResource("1_fqxmj")
+OptionSeverity = 2
+HappinessChange = 0
+MagicChange = 0
+TokensChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.0
+MagicMultiplier = 0.0
+IsIslandSpecific = false
+
+[sub_resource type="Resource" id="Resource_he0ow"]
+script = ExtResource("1_fqxmj")
+OptionSeverity = 0
+HappinessChange = 0
+MagicChange = 0
+TokensChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.0
+MagicMultiplier = 0.0
+IsIslandSpecific = false
+
+[sub_resource type="Resource" id="Resource_tdfym"]
+script = ExtResource("1_fqxmj")
+OptionSeverity = 1
+HappinessChange = 0
+MagicChange = 0
+TokensChange = 0
+unlockEvent = ""
+unlockEvent2 = ""
+SecretMode2 = false
+HappinessMultiplier = 0.0
+MagicMultiplier = 0.0
+IsIslandSpecific = false
+
+[resource]
+script = ExtResource("2_t2ic8")
+isEventOneTime = false
+EventPicture = ""
+EventID = "1"
+EventTitle = "Uusi Työpaikka"
+EventDesc = "Tässä se nyt on Tommi. Viimein sait töitä. Mut voitko sä luottaa tähän paikkaan? Tää tuntuu vähän epätodelliselta... Tää on sun elämäs suurin päätös. Pystyks sä siihen? Voiko susta tulla Mythical Manager?"
+EventOptions = PackedStringArray("En voi, tää paikka on outo", "Mä pystyn tähän.", "Mä en ees syöny aamupalaa.", "zeep zeep zeep zeep zeep")
+EventOutcomeHints = PackedStringArray("You wonder whoever had such an appetite but at least the rumbling has stopped.", "My Soldiers, Rage! My Soldiers, Scream! My Soldiers, Fight!", "You feel a jolt in your joints that scares you awake from your daydreaming.", "You did a good deed but let\'s just all hope that it\'s an earthquake and not something completely different.")
+EventDictionary = {
+"5_1": SubResource("Resource_hg4w5"),
+"5_2": SubResource("Resource_6budh"),
+"5_3": SubResource("Resource_he0ow"),
+"5_4": SubResource("Resource_tdfym")
+}
