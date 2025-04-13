@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://huc58i0jeeo0"]
+[gd_scene load_steps=14 format=3 uid="uid://huc58i0jeeo0"]
 
 [ext_resource type="Script" path="res://GameScenes/MainMenu.cs" id="1_sgoep"]
 [ext_resource type="Texture2D" uid="uid://c5ythxiqdqcp3" path="res://Assets/Menu/Continue_Button.png" id="2_qi025"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://qwqf5s26fpn8" path="res://Assets/Popup Window/Popup_Window_Pressed.png" id="5_b6udf"]
 [ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="6_idf1s"]
 [ext_resource type="Texture2D" uid="uid://8paongbs1euy" path="res://Assets/Menu/Mythical_Manager_Logo_White.png" id="10_0h1jy"]
+[ext_resource type="VideoStream" path="res://Assets/Menu/Mythical_Manager_Intro_2.ogv" id="13_p1nka"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -209,3 +210,13 @@ Are you sure you want to continue?"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("13_p1nka")
+autoplay = true
