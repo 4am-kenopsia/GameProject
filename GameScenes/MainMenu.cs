@@ -14,6 +14,8 @@ namespace MapGame
 		private TextureButton _noButton;
 		private TextureRect _confirmationPopup;
 		private ColorRect _settingsBackdrop;
+		private SettingsPopup _settingsPopup;
+		private PackedScene _settingsPopupScene;
 		private ConfigFile _saveData;
 
 		public override void _Ready()
@@ -25,7 +27,8 @@ namespace MapGame
 			_yesButton = GetNode<TextureButton>("ConfirmationPopup/YesButton");
 			_noButton = GetNode<TextureButton>("ConfirmationPopup/NoButton");
 			_confirmationPopup = GetNode<TextureRect>("ConfirmationPopup");
-			_settingsBackdrop = GetNode<ColorRect>("SettingsBackdrop");
+			
+			_settingsPopupScene = GD.Load<PackedScene>("res://Elements/SettingsObject/SettingsPopup.tscn");
 
 			_continueButton.Pressed += OnContinueButtonPressed;
 			_newGameButton.Pressed += OnNewGameButtonPressed;
@@ -61,7 +64,8 @@ namespace MapGame
 		private void OnSettingsButtonPressed()
 		{
 			SoundPlayer.Instance.PlayMenuButtonSound();
-			_settingsBackdrop.Visible = true;
+			_settingsPopup = _settingsPopupScene.Instantiate<SettingsPopup>();
+			AddChild(_settingsPopup);
 		}
 		private void OnCreditsButtonPressed()
 		{

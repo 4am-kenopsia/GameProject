@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://0net4cm1ager"]
 
-[ext_resource type="Script" path="res://SoundPlayer.cs" id="2_n3amm"]
+[ext_resource type="Script" path="res://Elements/SoundPlayer/SoundPlayer.cs" id="1_vgvjq"]
 
 [sub_resource type="AudioStream" id="AudioStream_l25qp"]
 
@@ -73,7 +73,7 @@ _data = {
 }
 
 [node name="SoundPlayer" type="Node"]
-script = ExtResource("2_n3amm")
+script = ExtResource("1_vgvjq")
 
 [node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStream_l25qp")

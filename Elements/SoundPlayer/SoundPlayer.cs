@@ -7,8 +7,8 @@ namespace MapGame
 	public partial class SoundPlayer : Node
 	{
 		public AudioStreamPlayer _ambiencePlayer;
-		private AudioStreamPlayer _sfxPlayer;
-		private AudioStreamPlayer _sfxPlayer2;
+		public AudioStreamPlayer _sfxPlayer;
+		public AudioStreamPlayer _sfxPlayer2;
 		private AnimationPlayer _soundTransition;
 		public static SoundPlayer Instance
 		{
@@ -22,6 +22,9 @@ namespace MapGame
 			_sfxPlayer = GetNode<AudioStreamPlayer>("SfxPlayer");
 			_sfxPlayer2 = GetNode<AudioStreamPlayer>("SfxPlayer2");
 			_ambiencePlayer = GetNode<AudioStreamPlayer>("AmbiencePlayer");
+			_sfxPlayer.VolumeDb = -10;
+			_sfxPlayer2.VolumeDb = -10;
+			_ambiencePlayer.VolumeDb = -10;
 		}
 		public void PlayAmbience()
 		{
@@ -35,9 +38,11 @@ namespace MapGame
 				.SetTrans(Tween.TransitionType.Sine)
 				.SetEase(Tween.EaseType.InOut);
 		}
-		public void PlayDayEndSound()
+		public async Task PlayDayEndSound()
 		{
 			_soundTransition.PlayBackwards("soundtransition");
+			await WaitForSoundToFinish(_ambiencePlayer);
+			_ambiencePlayer.VolumeDb = -80;
 		}
 		public void PlayPopUpSound()
 		{
@@ -85,7 +90,7 @@ namespace MapGame
 			_sfxPlayer.Play();
 		}
 		
-		private async Task WaitForSoundToFinish()
+		private async Task WaitForSoundToFinish(AudioStreamPlayer player)
 		{
 			var tcs = new TaskCompletionSource<bool>();
 			
@@ -93,9 +98,9 @@ namespace MapGame
 			{
 				tcs.SetResult(true);
 			}
-			_sfxPlayer.Finished += OnSoundFinished;
+			player.Finished += OnSoundFinished;
 			await tcs.Task;
-			_sfxPlayer.Finished -= OnSoundFinished;
+			player.Finished -= OnSoundFinished;
 		}
 	}
 }

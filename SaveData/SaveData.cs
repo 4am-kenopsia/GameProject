@@ -14,9 +14,11 @@ namespace MapGame
 		[Export] public float _currentMagicMultiplier = 0;
 		[Export] public float _currentHappinessMultiplier = 0;
 		[Export] public float _musicVolume = 0;
-		[Export] public float _ambienceVolume = 0;
-		[Export] public float _effectsVolume = 0;
+		[Export] public float _ambienceVolume = -10;
+		[Export] public float _effectsVolume = -10;
 		[Export] public string _language = "EN";
+		[Export] public Vector2 _viewPortSize;
+		[Export] public Vector2 _gameAreaSize;
 
 		[Export] public string[] _eventPool; // Something like this? 
 		public static SaveData Instance
@@ -29,6 +31,15 @@ namespace MapGame
 		public override void _Ready()
 		{
 			Instance = this;
+			_viewPortSize = GetViewport().GetVisibleRect().Size;
+			_gameAreaSize = new Vector2(_viewPortSize.X - 220, _viewPortSize.Y);
+			GD.Print($"Viewportsize is: {_viewPortSize.X} by {_viewPortSize.Y}");
+			GD.Print($"Gamearea size is: {_gameAreaSize.X} by {_gameAreaSize.Y}");
+		}
+
+		public override void _Process(double delta)
+		{
+			_viewPortSize = GetViewport().GetVisibleRect().Size;
 		}
 		
 		public void IncreaseTurn()

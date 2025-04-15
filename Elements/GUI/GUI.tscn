@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b6jfpii80x5me"]
+[gd_scene load_steps=23 format=3 uid="uid://b6jfpii80x5me"]
 
 [ext_resource type="Script" path="res://Elements/GUI/GUI.cs" id="1_j14vk"]
 [ext_resource type="Texture2D" uid="uid://dc3oh2sy5t74q" path="res://Assets/UI/Map_Frame.png" id="2_x1fcm"]
@@ -15,9 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://c6msjbxpro4df" path="res://Assets/UI/Menu_Button.png" id="11_rk3hl"]
 [ext_resource type="Texture2D" uid="uid://dm8u2ehxef6a1" path="res://Assets/UI/Turn_Plaque.png" id="12_ucnp8"]
 [ext_resource type="Texture2D" uid="uid://c0tkqjb7xvb35" path="res://Assets/UI/Menu_Button_Pressed.png" id="12_xvthq"]
-[ext_resource type="Texture2D" uid="uid://52gewses3bwv" path="res://Assets/UI/Game_Menu.png" id="16_sx3f7"]
-[ext_resource type="Texture2D" uid="uid://y8yolwxxj7q5" path="res://Assets/Popup Window/Popup_window_Button.png" id="17_3k8nv"]
-[ext_resource type="Texture2D" uid="uid://qwqf5s26fpn8" path="res://Assets/Popup Window/Popup_Window_Pressed.png" id="18_pnhi5"]
+[ext_resource type="Texture2D" uid="uid://cu0yve1q88nd7" path="res://Assets/Popup Window/Event_Window_Button.png" id="17_18pam"]
+[ext_resource type="Texture2D" uid="uid://m0t5jgte27w0" path="res://Assets/Popup Window/Event_Window_Pressed.png" id="18_7mmdn"]
 [ext_resource type="Texture2D" uid="uid://l8u348s610x4" path="res://Assets/UI/New_Turn_PopUp.png" id="19_htrlm"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oyn0g"]
@@ -28,39 +27,15 @@ outline_size = 1
 
 [sub_resource type="Animation" id="Animation_feka1"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NewDayIndicator:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1000, 160)]
-}
 
-[sub_resource type="Animation" id="Animation_wcqjh"]
-resource_name = "newday"
-length = 1.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NewDayIndicator:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 1, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-1000, 160), Vector2(670, 160), Vector2(760, 160), Vector2(2400, 160)]
-}
+[sub_resource type="Animation" id="Animation_i5ykd"]
+resource_name = "settings"
+length = 0.5
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iu183"]
 _data = {
 "RESET": SubResource("Animation_feka1"),
-"newday": SubResource("Animation_wcqjh")
+"settings": SubResource("Animation_i5ykd")
 }
 
 [node name="UI" type="Control"]
@@ -73,7 +48,7 @@ grow_vertical = 0
 script = ExtResource("1_j14vk")
 
 [node name="MapFrame2" type="TextureRect" parent="."]
-texture_filter = 2
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.998
@@ -90,6 +65,8 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -20.0
+offset_right = -20.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -272,7 +249,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TurnUI" type="TextureRect" parent="."]
-texture_filter = 2
+texture_filter = 1
 layout_mode = 1
 offset_left = 6.0
 offset_top = 6.0
@@ -283,108 +260,11 @@ texture = ExtResource("12_ucnp8")
 [node name="TurnLabel" type="Label" parent="TurnUI"]
 texture_filter = 2
 layout_mode = 1
-offset_right = 290.0
+offset_left = 79.98
+offset_right = 369.98
 offset_bottom = 70.0
 text = "Day 0, Turn 0"
 label_settings = SubResource("LabelSettings_oyn0g")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="GameMenuOverlay" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.403922, 0.192157, 0.356863, 0.25098)
-
-[node name="GameMenuPanel" type="TextureRect" parent="GameMenuOverlay"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.893
-anchor_bottom = 1.0
-offset_right = -0.560181
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("16_sx3f7")
-expand_mode = 2
-stretch_mode = 3
-
-[node name="ButtonsContainer" type="VBoxContainer" parent="GameMenuOverlay/GameMenuPanel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.234
-anchor_top = 0.298
-anchor_right = 0.5
-anchor_bottom = 0.691
-offset_left = -0.0760193
-offset_top = 0.160004
-offset_bottom = -0.280029
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="ContinueButton" type="TextureButton" parent="GameMenuOverlay/GameMenuPanel/ButtonsContainer"]
-layout_mode = 2
-texture_normal = ExtResource("17_3k8nv")
-texture_pressed = ExtResource("18_pnhi5")
-stretch_mode = 5
-
-[node name="ContinueLabel" type="Label" parent="GameMenuOverlay/GameMenuPanel/ButtonsContainer/ContinueButton"]
-texture_filter = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_euguv")
-theme_override_font_sizes/font_size = 61
-text = "CONTINUE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="IdkButton" type="TextureButton" parent="GameMenuOverlay/GameMenuPanel/ButtonsContainer"]
-layout_mode = 2
-texture_normal = ExtResource("17_3k8nv")
-texture_pressed = ExtResource("18_pnhi5")
-stretch_mode = 5
-
-[node name="IdkLabel" type="Label" parent="GameMenuOverlay/GameMenuPanel/ButtonsContainer/IdkButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_euguv")
-theme_override_font_sizes/font_size = 61
-text = "????????"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SaveAndQuitButton" type="TextureButton" parent="GameMenuOverlay/GameMenuPanel/ButtonsContainer"]
-layout_mode = 2
-texture_normal = ExtResource("17_3k8nv")
-texture_pressed = ExtResource("18_pnhi5")
-stretch_mode = 5
-
-[node name="SaveAndQuitLabel" type="Label" parent="GameMenuOverlay/GameMenuPanel/ButtonsContainer/SaveAndQuitButton"]
-texture_filter = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_euguv")
-theme_override_font_sizes/font_size = 61
-text = "SAVE & QUIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -394,9 +274,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -1960.0
+offset_left = -3960.0
 offset_top = 160.0
-offset_right = -1560.0
+offset_right = -3560.0
 offset_bottom = 280.0
 grow_horizontal = 2
 texture = ExtResource("19_htrlm")
@@ -413,6 +293,111 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("8_euguv")
 theme_override_font_sizes/font_size = 76
 text = "DAY 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameMenuOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.403922, 0.192157, 0.356863, 0.25098)
+
+[node name="ContinueButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -249.4
+offset_right = -360.0
+offset_bottom = -114.4
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("17_18pam")
+texture_pressed = ExtResource("18_7mmdn")
+stretch_mode = 5
+
+[node name="ContinueLabel" type="Label" parent="ContinueButton"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_euguv")
+theme_override_font_sizes/font_size = 61
+text = "CONTINUE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -67.0
+offset_right = -360.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("17_18pam")
+texture_pressed = ExtResource("18_7mmdn")
+stretch_mode = 5
+
+[node name="SettingsLabel" type="Label" parent="SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_euguv")
+theme_override_font_sizes/font_size = 61
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SaveAndQuitButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = 123.0
+offset_right = -360.0
+offset_bottom = 258.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("17_18pam")
+texture_pressed = ExtResource("18_7mmdn")
+stretch_mode = 5
+
+[node name="SaveAndQuitLabel" type="Label" parent="SaveAndQuitButton"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_euguv")
+theme_override_font_sizes/font_size = 61
+text = "SAVE & QUIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 

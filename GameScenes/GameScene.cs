@@ -77,9 +77,9 @@ namespace MapGame
 			GUI.UpdateLabels();
 			GD.Print("Turn: " + SaveData.Instance._currentTurn);
 			_newDayLabel.Text = "TURN " + SaveData.Instance._currentTurn;
-			_animationPlayer.Play("newday");
-
-			await WaitForAnimationToFinish();
+			// Add tween anim
+			// wait for tween anim to finish
+			//await WaitForAnimationToFinish();
 			
 			CreateTurnEvent();
 			

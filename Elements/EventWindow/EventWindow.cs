@@ -15,16 +15,43 @@ namespace MapGame
 		private EventData _currentEvent = null;
 		private Dictionary _eventDictionary = null;
 		private AnimationPlayer _animationPlayer;
+		private TextureRect _eventWindow;
+		private float _offset;
+		private float _centerX;
+		private float _centerY;
+		private Vector2 _targetPosition;
+		private Vector2 _startingPosition;
 		
 		private string _currentEventID = "";
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
+			_eventWindow = GetNode<TextureRect>("TextureRect");
 			_animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-			int _eventNumber = GD.RandRange(5, 5);
-			_animationPlayer.Play("newevent");
+			
+			_centerX = SaveData.Instance._viewPortSize.X / 2;
+			_centerY = SaveData.Instance._viewPortSize.Y / 2;
+			_offset = SaveData.Instance._viewPortSize.Y;
+			
+			_startingPosition = new Vector2(_centerX - 850, _offset);
+			
+			_eventWindow.Position = _startingPosition;
+			
+			_targetPosition = new Vector2(_startingPosition.X, _centerY - 440);
+			
+			
+			
+			int _eventNumber = GD.RandRange(1, 1);
 			LoadEventData(_eventNumber);
+			
+			_animationPlayer.Play("newevent");
+			
+			Tween tween = CreateTween();
+			
+			tween.TweenProperty(_eventWindow, "position", _targetPosition, 0.5f)
+				.SetTrans(Tween.TransitionType.Spring)
+				.SetEase(Tween.EaseType.Out);
 		}
 
 		public void LoadEventData(int eventNumber)
@@ -84,6 +111,12 @@ namespace MapGame
 			string outcomeKey = _currentEventID + "_" + optionIndex;
 			var outcome = _eventDictionary[outcomeKey];
 			
+			Tween tween = CreateTween();
+			
+			tween.TweenProperty(_eventWindow, "position", _startingPosition, 0.3f)
+				.SetTrans(Tween.TransitionType.Cubic)
+				.SetEase(Tween.EaseType.Out);
+
 			_animationPlayer.Play("begonevent");
 			await WaitForAnimationToFinish();
 			

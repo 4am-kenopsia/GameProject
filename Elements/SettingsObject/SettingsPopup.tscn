@@ -1,0 +1,160 @@
+[gd_scene load_steps=10 format=3 uid="uid://bimgipskjooie"]
+
+[ext_resource type="Script" path="res://GameScenes/SettingsPopup.cs" id="1_fuvc0"]
+[ext_resource type="Texture2D" uid="uid://52gewses3bwv" path="res://Assets/UI/Game_Menu.png" id="2_wge23"]
+[ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="3_62iuc"]
+[ext_resource type="Texture2D" uid="uid://y8yolwxxj7q5" path="res://Assets/Popup Window/Popup_window_Button.png" id="4_lsp8l"]
+[ext_resource type="Texture2D" uid="uid://bbdir5hth0y2b" path="res://Assets/UI/FI_Flag.png" id="5_bfdhx"]
+[ext_resource type="Texture2D" uid="uid://bs88esaaksyqh" path="res://Assets/UI/UK_Flag.png" id="6_4oqod"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_skxfb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jrdgs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yhcvj"]
+
+[node name="SettingsPopup" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fuvc0")
+
+[node name="SettingsPanel" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -270.0
+offset_right = 500.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wge23")
+stretch_mode = 3
+
+[node name="CloseSettings" type="TextureButton" parent="SettingsPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = -204.0
+offset_right = 226.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_lsp8l")
+
+[node name="CloseSettingsLabel" type="Label" parent="SettingsPanel/CloseSettings"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_62iuc")
+theme_override_font_sizes/font_size = 70
+text = "SAVE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.076
+anchor_right = 1.0
+anchor_bottom = 0.591
+offset_top = -0.0400009
+offset_bottom = -0.140015
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="LeftSeparator" type="VSeparator" parent="SettingsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.06
+theme_override_styles/separator = SubResource("StyleBoxEmpty_skxfb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FI" type="TextureButton" parent="SettingsPanel/HBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_bfdhx")
+stretch_mode = 3
+
+[node name="EN" type="TextureButton" parent="SettingsPanel/HBoxContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("6_4oqod")
+stretch_mode = 3
+
+[node name="CenterSeparator" type="VSeparator" parent="SettingsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.12
+theme_override_styles/separator = SubResource("StyleBoxEmpty_jrdgs")
+
+[node name="SliderContainer" type="VBoxContainer" parent="SettingsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AmbienceLabel" type="Label" parent="SettingsPanel/HBoxContainer/SliderContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_62iuc")
+theme_override_font_sizes/font_size = 46
+text = "AMBIENCE"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AmbienceSlider" type="HSlider" parent="SettingsPanel/HBoxContainer/SliderContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -40.0
+max_value = 20.0
+value = -10.0
+
+[node name="EffectsLabel" type="Label" parent="SettingsPanel/HBoxContainer/SliderContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_62iuc")
+theme_override_font_sizes/font_size = 46
+text = "EFFECTS"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="EffectsSlider" type="HSlider" parent="SettingsPanel/HBoxContainer/SliderContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -40.0
+max_value = 20.0
+value = -10.0
+
+[node name="RightSeparator" type="VSeparator" parent="SettingsPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.06
+theme_override_styles/separator = SubResource("StyleBoxEmpty_yhcvj")
