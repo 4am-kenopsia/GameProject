@@ -1,0 +1,159 @@
+[gd_scene load_steps=8 format=3 uid="uid://bimgipskjooie"]
+
+[ext_resource type="Script" path="res://GameScenes/SettingsBackdrop.cs" id="1_1o36i"]
+[ext_resource type="Texture2D" uid="uid://52gewses3bwv" path="res://Assets/UI/Game_Menu.png" id="2_wge23"]
+[ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="3_62iuc"]
+[ext_resource type="Texture2D" uid="uid://y8yolwxxj7q5" path="res://Assets/Popup Window/Popup_window_Button.png" id="4_lsp8l"]
+
+[sub_resource type="Animation" id="Animation_f37pw"]
+resource_name = "bringsettings"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(460, 1200), Vector2(460, 270)]
+}
+
+[sub_resource type="Animation" id="Animation_5b1oe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(460, 1200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f71e2"]
+_data = {
+"RESET": SubResource("Animation_5b1oe"),
+"bringsettings": SubResource("Animation_f37pw")
+}
+
+[node name="SettingsBackdrop" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.403922, 0.192157, 0.356863, 0.25098)
+script = ExtResource("1_1o36i")
+
+[node name="SettingsPanel" type="TextureRect" parent="."]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = 660.0
+offset_right = 500.0
+offset_bottom = 1200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wge23")
+stretch_mode = 5
+
+[node name="SliderContainer" type="VBoxContainer" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -214.875
+offset_right = 484.0
+offset_bottom = 209.365
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MusicLabel" type="Label" parent="SettingsPanel/SliderContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_62iuc")
+theme_override_font_sizes/font_size = 46
+text = "MUSIC"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MusicSlider" type="HSlider" parent="SettingsPanel/SliderContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 1
+scrollable = false
+
+[node name="AmbienceLabel" type="Label" parent="SettingsPanel/SliderContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_62iuc")
+theme_override_font_sizes/font_size = 46
+text = "AMBIENCE"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AmbienceSlider" type="HSlider" parent="SettingsPanel/SliderContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="EffectsLabel" type="Label" parent="SettingsPanel/SliderContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_62iuc")
+theme_override_font_sizes/font_size = 46
+text = "EFFECTS"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="EffectsSlider" type="HSlider" parent="SettingsPanel/SliderContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="CloseSettings" type="TextureButton" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -210.0
+offset_right = 481.0
+offset_bottom = -75.0
+grow_vertical = 0
+texture_normal = ExtResource("4_lsp8l")
+
+[node name="CloseSettingsLabel" type="Label" parent="SettingsPanel/CloseSettings"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_62iuc")
+theme_override_font_sizes/font_size = 70
+text = "SAVE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f71e2")
+}

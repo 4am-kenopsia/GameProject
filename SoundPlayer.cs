@@ -6,7 +6,7 @@ namespace MapGame
 {
 	public partial class SoundPlayer : Node
 	{
-		private AudioStreamPlayer _ambiencePlayer;
+		public AudioStreamPlayer _ambiencePlayer;
 		private AudioStreamPlayer _sfxPlayer;
 		private AudioStreamPlayer _sfxPlayer2;
 		private AnimationPlayer _soundTransition;
@@ -25,11 +25,15 @@ namespace MapGame
 		}
 		public void PlayAmbience()
 		{
-			_ambiencePlayer.VolumeDb = -10;
+			_ambiencePlayer.VolumeDb = -80;
 			AudioStream audioStream = (AudioStream)GD.Load("res://Assets/Sound/AmbientLoop.wav");
 			_ambiencePlayer.Stream = audioStream;
 			_ambiencePlayer.Play();
-			_soundTransition.Play("soundtransition");
+			
+			Tween tween = CreateTween();
+			tween.TweenProperty(_ambiencePlayer, "volume_db", SaveData.Instance._ambienceVolume, 4f)
+				.SetTrans(Tween.TransitionType.Sine)
+				.SetEase(Tween.EaseType.InOut);
 		}
 		public void PlayDayEndSound()
 		{
@@ -59,11 +63,11 @@ namespace MapGame
 			_sfxPlayer2.Stream = audioStream;
 			_sfxPlayer2.Play();
 			_soundTransition.Play("ticking");
-			_sfxPlayer2.VolumeDb = 0;
+			_sfxPlayer2.VolumeDb = SaveData.Instance._effectsVolume;
 		}
 		public void PlayToGameSound()
 		{
-			_sfxPlayer2.VolumeDb = 0;
+			_sfxPlayer2.VolumeDb = SaveData.Instance._effectsVolume;
 			AudioStream audioStream = (AudioStream)GD.Load("res://Assets/Sound/NewGameSound.mp3");
 			_sfxPlayer2.Stream = audioStream;
 			_sfxPlayer2.Play();

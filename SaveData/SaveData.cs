@@ -13,6 +13,10 @@ namespace MapGame
 		[Export] public float _currentSalary = 0;
 		[Export] public float _currentMagicMultiplier = 0;
 		[Export] public float _currentHappinessMultiplier = 0;
+		[Export] public float _musicVolume = 0;
+		[Export] public float _ambienceVolume = 0;
+		[Export] public float _effectsVolume = 0;
+		[Export] public string _language = "EN";
 
 		[Export] public string[] _eventPool; // Something like this? 
 		public static SaveData Instance
@@ -71,6 +75,29 @@ namespace MapGame
 				_currentSalary = (float)_saveData.GetValue(save, "Salary");
 				_currentMagicMultiplier = (float)_saveData.GetValue(save, "MagicMultiplier");
 				_currentHappinessMultiplier = (float)_saveData.GetValue(save, "HappinessMultiplier");
+			}
+		}
+		
+		public void SaveSettings()	
+		{
+			var _settingsFile = new ConfigFile();
+
+			_settingsFile.SetValue("Save1","Music", _musicVolume);
+			_settingsFile.SetValue("Save1", "Ambience", _ambienceVolume);
+			_settingsFile.SetValue("Save1","Ambience", _effectsVolume);
+			_settingsFile.SetValue("Save1","Language", _language);
+
+			_settingsFile.Save("res://SaveData/SettingsData.cfg");
+		}
+		
+		public void LoadSettings(ConfigFile _settingsData)
+		{
+			foreach (String save in _settingsData.GetSections())
+			{
+				_musicVolume = (float)_settingsData.GetValue(save, "Music");
+				_ambienceVolume = (float)_settingsData.GetValue(save, "Ambience");
+				_effectsVolume = (float)_settingsData.GetValue(save, "Effects");
+				_language = (string)_settingsData.GetValue(save, "Language");
 			}
 		}
 		
