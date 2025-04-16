@@ -89,7 +89,8 @@ namespace MapGame
 			
 			CreateTurnEvent();
 			
-			CreatePopUpMarker();
+			
+			
 			
 		}
 		
@@ -99,6 +100,12 @@ namespace MapGame
 			GD.Print("Event answered received - resetting flag");
 			RemoveChild(_eventWindow);
 			isEventRunning = false;
+			Random random = new Random();
+			int randomNumber = random.Next(1, 3);
+			for(int i = 0; i < randomNumber; i++)
+			{
+				CreatePopUpMarker();
+			}
 			
 		}
 		public void OnPopUpEventAnswered(EventOutcomeData outcome)
@@ -121,8 +128,10 @@ namespace MapGame
 			
 		}
 		private void CreatePopUpMarker()
-		{
+		{	
+			SoundPlayer.Instance.PlayPopUpSpawnSound();
 			// Instance the marker
+			
 			MarkerContainer markerInstance = (MarkerContainer)markerScene.Instantiate(); 
 			markerInstance.PopUpEventAnswered += OnPopUpEventAnswered;
 			markerInstance.PopUpEventOpened += OnPopUpEventOpened;

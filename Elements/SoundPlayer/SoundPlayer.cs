@@ -50,6 +50,12 @@ namespace MapGame
 			_sfxPlayer.Stream = audioStream;
 			_sfxPlayer.Play();
 		}
+		public void PlayPopUpSpawnSound()
+		{
+			AudioStream audioStream = (AudioStream)GD.Load("res://Assets/Sound/PopUpSpawnSound.mp3");
+			_sfxPlayer.Stream = audioStream;
+			_sfxPlayer.Play();
+		}
 		public void PlayEventButtonSound()
 		{
 			AudioStream audioStream = (AudioStream)GD.Load("res://Assets/Sound/EventButtonSound.mp3");
@@ -70,6 +76,7 @@ namespace MapGame
 			_soundTransition.Play("ticking");
 			_sfxPlayer2.VolumeDb = SaveData.Instance._effectsVolume;
 		}
+		
 		public void PlayToGameSound()
 		{
 			_sfxPlayer2.VolumeDb = SaveData.Instance._effectsVolume;

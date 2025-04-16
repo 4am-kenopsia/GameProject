@@ -12,11 +12,15 @@ namespace MapGame
 		
 		[Export] private PackedScene popUp;
 		private TextureButton _button;
+		private AnimationPlayer _player;
 		public Island TargetIsland { get; set; }  // Island reference
 
 		public override void _Ready()
 		{
 			_button = GetNode<TextureButton>("Pin");
+			_player = GetNode<AnimationPlayer>("AnimationPlayer");
+			_player.Play("fade");
+			
 			_button.Pressed += OnButtonPressed;
 		}
 
