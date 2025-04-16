@@ -13,7 +13,6 @@ namespace MapGame
 		Island5,
 		Island6,
 		Island7,
-		Island8
 	}
 
 	public partial class ResourceManager : Node
@@ -23,7 +22,6 @@ namespace MapGame
 		[Export] public float _startingTokens = 3;
 		[Export] public float _startingSalary = 1000;
 		[Export] public float _startingMagicMultiplier = 1;
-		[Export] public float _startingHappinessMultiplier = 1;
 		
 		// Dictionary to store happiness per island
 		private Dictionary<Island, float> _islandHappiness = new Dictionary<Island, float>();
@@ -36,7 +34,6 @@ namespace MapGame
 			SetTokens(_startingTokens);
 			SetSalary(_startingSalary);
 			SetMagicMultiplier(_startingMagicMultiplier);
-			SetHappinessMultiplier(_startingHappinessMultiplier);
 			
 			// Reset happiness for all islands
 			foreach (Island island in Enum.GetValues(typeof(Island)))
@@ -47,6 +44,8 @@ namespace MapGame
 			// Set global happiness to average of all islands
 			UpdateGlobalHappiness();
 		}
+
+
 
 		// Fixed missing closing parenthesis here
 		public void SetIslandHappiness(Island island, float happiness)
@@ -74,6 +73,7 @@ namespace MapGame
 			UpdateGlobalHappiness();
 		}
 
+
 		private void UpdateGlobalHappiness()
 		{
 			if (_islandHappiness.Count == 0) return;
@@ -87,10 +87,6 @@ namespace MapGame
 			SetHappiness(average);
 		}
 
-		public void SetHappiness(float targetAmount)
-		{
-			SaveData.Instance._currentHappiness = Mathf.Clamp(targetAmount, 0, 100);
-		}
 
 		public void ChangeHappiness(int change)
 		{
@@ -101,31 +97,30 @@ namespace MapGame
 				ChangeIslandHappiness(island, perIslandChange);
 			}
 		}
-
+		
+		
+		public void SetHappiness(float targetAmount)
+		{
+			SaveData.Instance._currentHappiness = Mathf.Clamp(targetAmount, 0, 100);
+		}
 		public void SetMagic(float targetAmount)
 		{
 			SaveData.Instance._currentMagic = targetAmount;
 		}
-
 		public void SetTokens(float targetAmount)
 		{
 			SaveData.Instance._currentTokens = targetAmount;
 		}
-
 		public void SetSalary(float targetAmount)
 		{
 			SaveData.Instance._currentSalary = targetAmount;
 		}
-
 		public void SetMagicMultiplier(float targetAmount)
 		{
 			SaveData.Instance._currentMagicMultiplier = targetAmount;
 		}
 
-		public void SetHappinessMultiplier(float targetAmount)
-		{
-			SaveData.Instance._currentHappinessMultiplier = targetAmount;
-		}
+
 
 
 		public void ChangeMagic(float change)
@@ -169,10 +164,10 @@ namespace MapGame
 			SaveData.Instance._currentMagicMultiplier += change;
 		}
 
-		public void ChangeHappinessMultiplier(float change)
-		{
-			SaveData.Instance._currentHappinessMultiplier += change;
-		}
+
+
+
+
 
 		public void HandleOptionOutcomes(EventOutcomeData outcome)
 		{
@@ -196,11 +191,6 @@ namespace MapGame
 			if (outcome.TokensChange != 0)
 			{
 				ChangeTokens(outcome.TokensChange);
-			}
-
-			if (outcome.HappinessMultiplier != 0)
-			{
-				ChangeHappinessMultiplier(outcome.HappinessMultiplier);
 			}
 
 			if (outcome.MagicMultiplier != 0)

@@ -8,6 +8,7 @@ namespace MapGame
 {
 	public partial class GameScene : Node
 	{
+		private GUI _guiInstance;
 		private PackedScene _eventWindowScene;
 		private EventWindow _eventWindow;
 		private TextureButton _turnButton;
@@ -18,12 +19,15 @@ namespace MapGame
 		[Export] private PackedScene markerScene;
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
-		{	
+		{
+			_guiInstance = GetNode<GUI>("GUI");
 			markerScene = GD.Load<PackedScene>("res://Elements/PopupMarker/MarkerContainer.tscn");
-			_turnButton = GetNode<TextureButton>("UI/SideUI/TurnButton");
-			_newDayIndicator = GetNode<TextureRect>("UI/NewDayIndicator");
-			_newDayLabel = GetNode<Label>("UI/NewDayIndicator/NewDayLabel");
-			_animationPlayer = GetNode<AnimationPlayer>("UI/AnimationPlayer");
+			_turnButton = GetNode<TextureButton>("GUI/SideUI/TurnButton");
+			_newDayIndicator = GetNode<TextureRect>("GUI/NewDayIndicator");
+			_newDayLabel = GetNode<Label>("GUI/NewDayIndicator/NewDayLabel");
+			_animationPlayer = GetNode<AnimationPlayer>("GUI/AnimationPlayer");
+			
+			
 			
 			_turnButton.Pressed += OnTurnButtonPressed;
 			SoundPlayer.Instance.PlayAmbience();
@@ -51,9 +55,7 @@ namespace MapGame
 		}
 		public void OnTurnButtonPressed()
 		{
-			
 			NextTurn();
-			
 		}
 		public async Task NextTurn()
 		{
@@ -74,12 +76,16 @@ namespace MapGame
 			isEventRunning = true;
 			SoundPlayer.Instance.PlayTicking();
 			SaveData.Instance.IncreaseTurn();
-			GUI.UpdateLabels();
+			_guiInstance.UpdateLabels();
+			
 			GD.Print("Turn: " + SaveData.Instance._currentTurn);
+			
 			_newDayLabel.Text = "TURN " + SaveData.Instance._currentTurn;
+			
 			// Add tween anim
 			// wait for tween anim to finish
-			//await WaitForAnimationToFinish();
+			
+			// await WaitForAnimationToFinish();
 			
 			CreateTurnEvent();
 			
@@ -89,7 +95,7 @@ namespace MapGame
 		
 		public void OnEventAnswered()
 		{
-			GUI.UpdateLabels();
+			_guiInstance.UpdateLabels();
 			GD.Print("Event answered received - resetting flag");
 			RemoveChild(_eventWindow);
 			isEventRunning = false;
@@ -98,9 +104,9 @@ namespace MapGame
 		public void OnPopUpEventAnswered(EventOutcomeData outcome)
 		{
 			ResourceManager.Instance.HandleOptionOutcomes(outcome);
-			GUI.UpdateLabels();
+			_guiInstance.UpdateLabels();
 			
-					 // Print happiness for all islands
+					// Print happiness for all islands
 			var allHappiness = ResourceManager.Instance.GetAllIslandHappiness();
 			foreach (var entry in allHappiness)
 			{
@@ -114,28 +120,6 @@ namespace MapGame
 			isEventRunning = true;
 			
 		}
-		//private void CreatePopUpMarker()
-		//{
-			//// Instance the child scene
-			//
-			//MarkerContainer markerInstance = (MarkerContainer)markerScene.Instantiate(); 
-			//markerInstance.PopUpEventAnswered += OnPopUpEventAnswered;
-			//markerInstance.PopUpEventOpened += OnPopUpEventOpened;
-//
-			//// Generate a random position within the scene
-			//Vector2 randomPosition = new Vector2(
-				//(float)GD.RandRange(0, 1405),
-				//(float)GD.RandRange(0, 854)
-			//);
-			 //
-			//// Set the position of the child instance
-			//markerInstance.Position = randomPosition;
-//
-			//// Add the child instance to the scene
-			//
-			//AddChild(markerInstance);
-	//
-		//}
 		private void CreatePopUpMarker()
 		{
 			// Instance the marker
@@ -146,7 +130,7 @@ namespace MapGame
 			// Select a random island
 			RandomNumberGenerator rng = new();
 			rng.Randomize();
-			Island randomIsland = (Island)rng.RandiRange(0, 7); // 0-7 for 8 islands
+			Island randomIsland = (Island)rng.RandiRange(0, 5); // 0-5 for 6 areas
 			
 			// Get position on island
 			Vector2 randomPosition = GetRandomPositionInsideIsland(randomIsland);
@@ -156,9 +140,6 @@ namespace MapGame
 			markerInstance.TargetIsland = randomIsland; // Add this property to MarkerContainer
 
 			AddChild(markerInstance);
-			
-			// Optional: Affect island happiness
-			ResourceManager.Instance.ChangeIslandHappiness(randomIsland, -5); // Small happiness penalty
 		}
 		private Vector2 GetRandomPositionInsideIsland(Island island)
 		{

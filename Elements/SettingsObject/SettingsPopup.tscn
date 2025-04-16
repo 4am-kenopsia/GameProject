@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bimgipskjooie"]
+[gd_scene load_steps=11 format=3 uid="uid://bimgipskjooie"]
 
 [ext_resource type="Script" path="res://GameScenes/SettingsPopup.cs" id="1_fuvc0"]
 [ext_resource type="Texture2D" uid="uid://52gewses3bwv" path="res://Assets/UI/Game_Menu.png" id="2_wge23"]
 [ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="3_62iuc"]
+[ext_resource type="Texture2D" uid="uid://qwqf5s26fpn8" path="res://Assets/Popup Window/Popup_Window_Pressed.png" id="4_barji"]
 [ext_resource type="Texture2D" uid="uid://y8yolwxxj7q5" path="res://Assets/Popup Window/Popup_window_Button.png" id="4_lsp8l"]
 [ext_resource type="Texture2D" uid="uid://bbdir5hth0y2b" path="res://Assets/UI/FI_Flag.png" id="5_bfdhx"]
 [ext_resource type="Texture2D" uid="uid://bs88esaaksyqh" path="res://Assets/UI/UK_Flag.png" id="6_4oqod"]
@@ -55,6 +56,7 @@ offset_bottom = -69.0
 grow_horizontal = 2
 grow_vertical = 0
 texture_normal = ExtResource("4_lsp8l")
+texture_pressed = ExtResource("4_barji")
 
 [node name="CloseSettingsLabel" type="Label" parent="SettingsPanel/CloseSettings"]
 texture_filter = 2

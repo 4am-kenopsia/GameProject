@@ -12,8 +12,11 @@ namespace MapGame
 		private SettingsPopup _settingsPopup;
 		private static Label _turnLabel;
 		private static Label _magicLabel;
+		private static TextureRect _magicIcon;
 		private static Label _happinessLabel;
+		private static TextureRect _happinessIcon;
 		private static Label _tokensLabel;
+		private static TextureRect _tokensIcon;
 		private static ColorRect _gameMenuOverlay;
 		private static TextureButton _menuButton;
 		private static TextureButton _continueButton;
@@ -31,9 +34,14 @@ namespace MapGame
 			_settingsPopupScene = GD.Load<PackedScene>("res://Elements/SettingsObject/SettingsPopup.tscn");
 			
 			_turnLabel = GetNode<Label>("TurnUI/TurnLabel");
-			_magicLabel = GetNode<Label>("SideUI/MagicUI/MagicLabel");
-			_happinessLabel = GetNode<Label>("SideUI/HappinessUI/HappinessLabel");
-			_tokensLabel = GetNode<Label>("SideUI/TokensUI/TokensLabel");
+			_magicLabel = GetNode<Label>("SideUI/TextureRect/MagicLabel");
+			_happinessLabel = GetNode<Label>("SideUI/TextureRect/HappinessLabel");
+			_tokensLabel = GetNode<Label>("SideUI/TextureRect/TokensLabel");
+			
+			_magicIcon = GetNode<TextureRect>("SideUI/TextureRect/MagicIcon");
+			_happinessIcon = GetNode<TextureRect>("SideUI/TextureRect/HappinessIcon");
+			_tokensIcon = GetNode<TextureRect>("SideUI/TextureRect/TokensIcon");
+			
 			_gameOver = GetNode<Label>("GameOver");
 			
 			_menuButton = GetNode<TextureButton>("SideUI/MenuButton");
@@ -70,13 +78,72 @@ namespace MapGame
 
 			}
 		}
-
-		public static void UpdateLabels()
+		
+		public void UpdateLabels()
 		{
+			// Cool little animations by first checking if the values changed.
+			UpdateResourceAnimation(_magicLabel, _magicIcon, SaveData.Instance._currentMagic);
 			_magicLabel.Text = SaveData.Instance._currentMagic.ToString();
+			
+			UpdateResourceAnimation(_happinessLabel, _happinessIcon, SaveData.Instance._currentHappiness);
 			_happinessLabel.Text = SaveData.Instance._currentHappiness.ToString() + "%";
+			
+			UpdateResourceAnimation(_tokensLabel, _tokensIcon, SaveData.Instance._currentTokens);
 			_tokensLabel.Text = SaveData.Instance._currentTokens.ToString();
+			
 			_turnLabel.Text = "Day " + SaveData.Instance._currentDay.ToString() + ", Turn " + SaveData.Instance._currentTurn.ToString();
+		}
+		
+		public async void UpdateResourceAnimation(Label label, TextureRect icon, float currentResource)
+		{
+			Color animationColor = new Color(0, 0, 0);
+			Color defaultColor = new Color(0, 0, 0);
+			Vector2 originalPosition = icon.Position;
+			float _old = label.Text.Replace("%", "").ToFloat();
+			float _new = currentResource;
+			
+			var settings = GD.Load("res://Themes/UiResourceLabelSettings.tres").Duplicate() as LabelSettings;
+			label.LabelSettings = settings;
+			
+			if (_old - _new == 0)
+			{
+				return;
+			}
+			else if (_old - _new < 0)
+			{
+				animationColor = new Color(0, 1, 0);
+			}
+			else if (_old - _new > 0)
+			{
+				animationColor = new Color(1, 0, 0);
+			}
+			
+			Tween tween = CreateTween();
+			
+			tween.TweenProperty(
+				icon,
+				"position",
+				originalPosition - new Vector2(0, 10f),
+				0.15f
+			);
+			tween.TweenProperty(
+				icon,
+				"position",
+				originalPosition,
+				0.15f
+			);
+			tween.TweenProperty(
+				label.LabelSettings,
+				"font_color",
+				animationColor,
+				0.5f
+			);
+			tween.TweenProperty(
+				label.LabelSettings,
+				"font_color",
+				defaultColor,
+				0.5f
+			);
 		}
 
 		public async void MainMenu()

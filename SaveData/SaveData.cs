@@ -12,8 +12,6 @@ namespace MapGame
 		[Export] public float _currentTokens = 0;
 		[Export] public float _currentSalary = 0;
 		[Export] public float _currentMagicMultiplier = 0;
-		[Export] public float _currentHappinessMultiplier = 0;
-		[Export] public float _musicVolume = 0;
 		[Export] public float _ambienceVolume = -10;
 		[Export] public float _effectsVolume = -10;
 		[Export] public string _language = "EN";
@@ -50,7 +48,6 @@ namespace MapGame
 		{
 			_currentDay += 1;
 			_currentTurn = 0;
-			ResourceManager.Instance.SetHappinessMultiplier(1);
 			ResourceManager.Instance.SetMagicMultiplier(1);
 		}
 		public void Reset()
@@ -70,7 +67,6 @@ namespace MapGame
 			_saveFile.SetValue("Save1","Tokens", _currentTokens);
 			_saveFile.SetValue("Save1","Salary", _currentSalary);
 			_saveFile.SetValue("Save1","MagicMultiplier", _currentMagicMultiplier);
-			_saveFile.SetValue("Save1","HappinessMultiplier", _currentHappinessMultiplier);
 
 			_saveFile.Save("res://SaveData/SaveData.cfg");
 		}
@@ -85,7 +81,6 @@ namespace MapGame
 				_currentTokens = (float)_saveData.GetValue(save, "Tokens");
 				_currentSalary = (float)_saveData.GetValue(save, "Salary");
 				_currentMagicMultiplier = (float)_saveData.GetValue(save, "MagicMultiplier");
-				_currentHappinessMultiplier = (float)_saveData.GetValue(save, "HappinessMultiplier");
 			}
 		}
 		
@@ -93,7 +88,6 @@ namespace MapGame
 		{
 			var _settingsFile = new ConfigFile();
 
-			_settingsFile.SetValue("Save1","Music", _musicVolume);
 			_settingsFile.SetValue("Save1", "Ambience", _ambienceVolume);
 			_settingsFile.SetValue("Save1","Ambience", _effectsVolume);
 			_settingsFile.SetValue("Save1","Language", _language);
@@ -105,7 +99,6 @@ namespace MapGame
 		{
 			foreach (String save in _settingsData.GetSections())
 			{
-				_musicVolume = (float)_settingsData.GetValue(save, "Music");
 				_ambienceVolume = (float)_settingsData.GetValue(save, "Ambience");
 				_effectsVolume = (float)_settingsData.GetValue(save, "Effects");
 				_language = (string)_settingsData.GetValue(save, "Language");
