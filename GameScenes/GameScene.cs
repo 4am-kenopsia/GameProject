@@ -94,7 +94,7 @@ namespace MapGame
 			
 		}
 		
-		public void OnEventAnswered()
+		public async void OnEventAnswered()
 		{
 			_guiInstance.UpdateLabels();
 			GD.Print("Event answered received - resetting flag");
@@ -103,7 +103,8 @@ namespace MapGame
 			Random random = new Random();
 			int randomNumber = random.Next(1, 3);
 			for(int i = 0; i < randomNumber; i++)
-			{
+			{	
+				await ToSignal(GetTree().CreateTimer(0.2f), SceneTreeTimer.SignalName.Timeout);
 				CreatePopUpMarker();
 			}
 			

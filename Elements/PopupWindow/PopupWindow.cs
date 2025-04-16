@@ -117,8 +117,11 @@ namespace MapGame
 			}
 		}
 
-		private void OnButton1Pressed()
+		private async void OnButton1Pressed()
 		{
+			SoundPlayer.Instance.PlayEventButtonSound();
+			TweenWindowDown();
+			await ToSignal(_tween, Tween.SignalName.Finished);
 			string outcomeKey = _currentEventID + "_" + 1;
 			var outcome = (EventOutcomeData)_eventDictionary[outcomeKey];
 			
@@ -128,14 +131,19 @@ namespace MapGame
 			{
 				outcome.TargetIsland = marker.TargetIsland;
 			}
+
+			
 			
 			EmitSignal(SignalName.PopUpEventAnswered, outcome);
 			EmitSignal(SignalName.ButtonPressed1);
 			Visible = false;
 		}
 
-		private void OnButton2Pressed()
+		private async void OnButton2Pressed()
 		{
+			SoundPlayer.Instance.PlayEventButtonSound();
+			TweenWindowDown();
+			await ToSignal(_tween, Tween.SignalName.Finished);
 			 string outcomeKey = _currentEventID + "_" + 2;
 			var outcome = (EventOutcomeData)_eventDictionary[outcomeKey];
 			
@@ -145,6 +153,7 @@ namespace MapGame
 			{
 				outcome.TargetIsland = marker.TargetIsland;
 			}
+			
 			
 			EmitSignal(SignalName.PopUpEventAnswered, outcome);
 			EmitSignal(SignalName.ButtonPressed2);
@@ -197,6 +206,22 @@ namespace MapGame
 		
 		// Configure and start the tween
 		_tween.TweenProperty(this, "position", targetPosition, 0.5f)
+			.SetTrans(Tween.TransitionType.Quad)
+			.SetEase(Tween.EaseType.Out);
+			
+		
+	}
+	public void TweenWindowDown()
+	{
+		// Create a new tween
+		_tween = CreateTween();
+		
+		
+		
+		Vector2 targetPosition = new Vector2(Position.X, Position.Y + 800);
+		
+		// Configure and start the tween
+		_tween.TweenProperty(this, "position", targetPosition, 0.25f)
 			.SetTrans(Tween.TransitionType.Quad)
 			.SetEase(Tween.EaseType.Out);
 			
