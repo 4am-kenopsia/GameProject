@@ -31,9 +31,11 @@ namespace MapGame
 		private Texture2D _newTexture;
 		private Dictionary _eventDictionary = null;
 		public Island TargetIsland { get; set; }  // Add this property
+		private Vector2 _originalPosition;
+		private Tween _tween;
 
 		private EventData _eventData;
-		public EventData EventData 
+		public EventData EventData
 		
 		{
 			get => _eventData;
@@ -55,6 +57,11 @@ namespace MapGame
 		public override void _Ready()
 {
 	// Get UI elements safely
+	// Store original position
+	_originalPosition = Position;
+	
+	// Set initial position (offscreen above)
+	Position = new Vector2(Position.X, Position.Y + 400);
 	//Animation here
 	_panel = GetNode<TextureRect>("Panel");
 	_button1 = _panel.GetNode<TextureButton>("HBoxContainer/Button1");
@@ -78,6 +85,8 @@ namespace MapGame
 	// Connect signals
 	_button1.Pressed += OnButton1Pressed;
 	_button2.Pressed += OnButton2Pressed;
+	TweenWindowUp();
+	
 }
 
 		private void LoadData() 
@@ -176,6 +185,23 @@ namespace MapGame
 		_button2Label.Text = "Cancel";
 	}
 }
+
+	public void TweenWindowUp()
+	{
+		// Create a new tween
+		_tween = CreateTween();
+		
+		
+		
+		Vector2 targetPosition = new Vector2(Position.X, Position.Y - 400);
+		
+		// Configure and start the tween
+		_tween.TweenProperty(this, "position", targetPosition, 0.5f)
+			.SetTrans(Tween.TransitionType.Quad)
+			.SetEase(Tween.EaseType.Out);
+			
+		
+	}
 
 
 		//public void OnShitBought()

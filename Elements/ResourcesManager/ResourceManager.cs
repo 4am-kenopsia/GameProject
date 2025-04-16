@@ -65,7 +65,7 @@ namespace MapGame
 			return _startingHappiness;
 		}
 
-		// Removed duplicate ChangeIslandHappiness method
+
 		public void ChangeIslandHappiness(Island island, float change)
 		{
 			float current = GetIslandHappiness(island);

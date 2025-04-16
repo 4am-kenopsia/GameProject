@@ -83,7 +83,8 @@ namespace MapGame
 			
 			CreateTurnEvent();
 			
-			CreatePopUpMarker();
+			
+			
 			
 		}
 		
@@ -93,12 +94,20 @@ namespace MapGame
 			GD.Print("Event answered received - resetting flag");
 			RemoveChild(_eventWindow);
 			isEventRunning = false;
+			Random random = new Random();
+			int randomNumber = random.Next(1, 3);
+			for(int i = 0; i < randomNumber; i++)
+			{
+				CreatePopUpMarker();
+			}
 			
 		}
 		public void OnPopUpEventAnswered(EventOutcomeData outcome)
 		{
 			ResourceManager.Instance.HandleOptionOutcomes(outcome);
 			GUI.UpdateLabels();
+			
+			//ResourceManager.Instance.GetIslandHappiness(0);
 			
 					 // Print happiness for all islands
 			var allHappiness = ResourceManager.Instance.GetAllIslandHappiness();
@@ -137,8 +146,10 @@ namespace MapGame
 	//
 		//}
 		private void CreatePopUpMarker()
-		{
+		{	
+			SoundPlayer.Instance.PlayPopUpSpawnSound();
 			// Instance the marker
+			
 			MarkerContainer markerInstance = (MarkerContainer)markerScene.Instantiate(); 
 			markerInstance.PopUpEventAnswered += OnPopUpEventAnswered;
 			markerInstance.PopUpEventOpened += OnPopUpEventOpened;
@@ -158,7 +169,7 @@ namespace MapGame
 			AddChild(markerInstance);
 			
 			// Optional: Affect island happiness
-			ResourceManager.Instance.ChangeIslandHappiness(randomIsland, -5); // Small happiness penalty
+			//ResourceManager.Instance.ChangeIslandHappiness(randomIsland, -5); // Small happiness penalty
 		}
 		private Vector2 GetRandomPositionInsideIsland(Island island)
 		{
