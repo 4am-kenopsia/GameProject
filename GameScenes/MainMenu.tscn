@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://huc58i0jeeo0"]
+[gd_scene load_steps=15 format=3 uid="uid://huc58i0jeeo0"]
 
 [ext_resource type="Script" path="res://GameScenes/MainMenu.cs" id="1_sgoep"]
 [ext_resource type="Texture2D" uid="uid://c5ythxiqdqcp3" path="res://Assets/Menu/Continue_Button.png" id="2_qi025"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://fxsfyt0x0d66" path="res://Assets/Menu/Credits_Button.png" id="5_67a1f"]
 [ext_resource type="Texture2D" uid="uid://qwqf5s26fpn8" path="res://Assets/Popup Window/Popup_Window_Pressed.png" id="5_b6udf"]
 [ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="6_idf1s"]
+[ext_resource type="Texture2D" uid="uid://dr0bcbxvbx3k" path="res://Assets/Menu/Continue_Button_Disabled.png" id="6_kl4jj"]
 [ext_resource type="VideoStream" path="res://Assets/Menu/Mythical_Manager_Intro_2.ogv" id="13_p1nka"]
 
 [node name="MainMenu" type="Control"]
@@ -98,6 +99,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 texture_normal = ExtResource("2_qi025")
+texture_disabled = ExtResource("6_kl4jj")
 stretch_mode = 0
 
 [node name="NewGameButton" type="TextureButton" parent="VBoxContainer"]
@@ -116,6 +118,16 @@ custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_67a1f")
 stretch_mode = 0
+
+[node name="ShadeOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.403922, 0.192157, 0.356863, 0.25098)
 
 [node name="ConfirmationPopup" type="TextureRect" parent="."]
 visible = false

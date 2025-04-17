@@ -20,14 +20,15 @@ namespace MapGame
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
+			GD.Print("--");
+			GD.Print("Game scene loaded");
+			
 			_guiInstance = GetNode<GUI>("GUI");
 			markerScene = GD.Load<PackedScene>("res://Elements/PopupMarker/MarkerContainer.tscn");
 			_turnButton = GetNode<TextureButton>("GUI/SideUI/TurnButton");
 			_newDayIndicator = GetNode<TextureRect>("GUI/NewDayIndicator");
 			_newDayLabel = GetNode<Label>("GUI/NewDayIndicator/NewDayLabel");
 			_animationPlayer = GetNode<AnimationPlayer>("GUI/AnimationPlayer");
-			
-			
 			
 			_turnButton.Pressed += OnTurnButtonPressed;
 			SoundPlayer.Instance.PlayAmbience();
@@ -41,7 +42,7 @@ namespace MapGame
 
 		public void CreateTurnEvent()
 		{
-			GD.Print("meow");
+			GD.Print("Turn event created");
 			isEventRunning = true;
 			_eventWindowScene = ResourceLoader.Load<PackedScene>("res://Elements/EventWindow/EventWindow.tscn");
 			if (_eventWindowScene == null)
@@ -59,49 +60,69 @@ namespace MapGame
 		}
 		public async Task NextTurn()
 		{
+			GD.Print("Next turn button pressed");
+			
 			if (isEventRunning)
 			{
 				GD.Print("Event is already running");
 				return;
 			}
 			
-			
 			SoundPlayer.Instance.PlayNextTurnSound();
-			GD.Print("TurnButton Pressed");
 			if (SaveData.Instance._currentTurn == 3)
 			{
+				GD.Print("Ending the day");
+				
 				SceneTransition.Instance.TransitionToScene("res://GameScenes/DayEndScene.tscn");
 				return;
 			}
+			
 			isEventRunning = true;
 			SoundPlayer.Instance.PlayTicking();
 			SaveData.Instance.IncreaseTurn();
 			_guiInstance.UpdateLabels();
 			
-			GD.Print("Turn: " + SaveData.Instance._currentTurn);
+			GD.Print($"Day: {SaveData.Instance._currentDay}, Turn: {SaveData.Instance._currentTurn}");
 			
 			_newDayLabel.Text = "TURN " + SaveData.Instance._currentTurn;
 			
-			// Add tween anim
-			// wait for tween anim to finish
+			Vector2 _startingPosition = new Vector2(-SaveData.Instance._viewPortSize.X - 400, SaveData.Instance._viewPortSize.Y / 9);
+			_newDayIndicator.Visible = true;
+			_newDayIndicator.Position = _startingPosition;
+			Vector2 _point1 = new Vector2((float)(SaveData.Instance._viewPortSize.X / 2 - 400), _startingPosition.Y);
+			Vector2 _point2 = new Vector2((float)(SaveData.Instance._viewPortSize.X / 2), _startingPosition.Y);
+			Vector2 _endingPosition = new Vector2(SaveData.Instance._viewPortSize.X, _startingPosition.Y);
 			
-			// await WaitForAnimationToFinish();
+			Tween tween = CreateTween();
+			
+			tween.TweenProperty(_newDayIndicator,"position", _point1, 0.3f)
+				.SetEase(Tween.EaseType.Out)
+				.SetTrans(Tween.TransitionType.Sine);
+			
+			tween.TweenProperty(_newDayIndicator,"position", _point2, 0.5f);
+			
+			tween.TweenProperty(_newDayIndicator,"position", _endingPosition, 0.3f)
+				.SetEase(Tween.EaseType.In)
+				.SetTrans(Tween.TransitionType.Sine);
+			
+			await ToSignal(tween, "finished");
+			_newDayIndicator.Visible = false;
 			
 			CreateTurnEvent();
-			
-			
-			
-			
 		}
 		
 		public void OnEventAnswered()
 		{
 			_guiInstance.UpdateLabels();
-			GD.Print("Event answered received - resetting flag");
+			GD.Print("Turn event answered received - resetting flag");
 			RemoveChild(_eventWindow);
 			isEventRunning = false;
+			
 			Random random = new Random();
 			int randomNumber = random.Next(1, 3);
+			
+			GD.Print($"Creating {randomNumber} popup markers");
+			
 			for(int i = 0; i < randomNumber; i++)
 			{
 				CreatePopUpMarker();
@@ -114,18 +135,25 @@ namespace MapGame
 			_guiInstance.UpdateLabels();
 			
 					// Print happiness for all islands
-			var allHappiness = ResourceManager.Instance.GetAllIslandHappiness();
+			var allHappiness = SaveData.Instance.GetAllIslandHappiness();
+			
+			GD.Print("--Island happinesses--");
+			
 			foreach (var entry in allHappiness)
 			{
 				GD.Print($"Island {(int)entry.Key + 1} Happiness: {entry.Value}%");
 			}
+			
+			GD.Print("--");
+			
 			isEventRunning = false;
 			
 		}
 		public void OnPopUpEventOpened()
 		{
-			isEventRunning = true;
+			GD.Print("Popup event opened");
 			
+			isEventRunning = true;
 		}
 		private void CreatePopUpMarker()
 		{	
@@ -199,21 +227,5 @@ namespace MapGame
 			
 			return islandArea.GlobalPosition;
 		}
-		private async Task WaitForAnimationToFinish()
-		{
-			var tcs = new TaskCompletionSource<bool>();
-			
-		void OnAnimationFinished(StringName animationName)
-			{
-				if (animationName == "newday")
-				{
-					tcs.SetResult(true);
-				}
-			}
-			_animationPlayer.AnimationFinished += OnAnimationFinished;
-			await tcs.Task;
-			_animationPlayer.AnimationFinished -= OnAnimationFinished;
-		}
-
 	}
 }

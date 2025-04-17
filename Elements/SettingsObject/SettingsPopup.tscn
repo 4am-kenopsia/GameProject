@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bimgipskjooie"]
 
-[ext_resource type="Script" path="res://GameScenes/SettingsPopup.cs" id="1_fuvc0"]
+[ext_resource type="Script" path="res://Elements/SettingsObject/SettingsPopup.cs" id="1_h6t6p"]
 [ext_resource type="Texture2D" uid="uid://52gewses3bwv" path="res://Assets/UI/Game_Menu.png" id="2_wge23"]
 [ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="3_62iuc"]
 [ext_resource type="Texture2D" uid="uid://qwqf5s26fpn8" path="res://Assets/Popup Window/Popup_Window_Pressed.png" id="4_barji"]
@@ -22,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fuvc0")
+script = ExtResource("1_h6t6p")
 
 [node name="SettingsPanel" type="TextureRect" parent="."]
 texture_filter = 2

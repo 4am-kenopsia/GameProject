@@ -174,7 +174,6 @@ namespace MapGame
 				SoundPlayer.Instance.PlayNextTurnSound();
 				
 				Tween tween = CreateTween();
-				//Tween tween2 = CreateTween();
 				
 				tween.TweenProperty(_gameMenuOverlay, "color", new Color(0.404f, 0.192f, 0.357f, 0.251f), 0.3f)
 					.SetTrans(Tween.TransitionType.Sine)

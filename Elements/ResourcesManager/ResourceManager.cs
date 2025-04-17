@@ -22,9 +22,6 @@ namespace MapGame
 		[Export] public float _startingTokens = 3;
 		[Export] public float _startingSalary = 1000;
 		[Export] public float _startingMagicMultiplier = 1;
-		
-		// Dictionary to store happiness per island
-		private Dictionary<Island, float> _islandHappiness = new Dictionary<Island, float>();
 
 		public static ResourceManager Instance { get; private set; }
 
@@ -51,13 +48,13 @@ namespace MapGame
 		public void SetIslandHappiness(Island island, float happiness)
 		{
 			happiness = Mathf.Clamp(happiness, 0, 100);
-			_islandHappiness[island] = happiness;
+			SaveData.Instance._islandHappiness[island] = happiness;
 			UpdateGlobalHappiness();
 		}
 
 		public float GetIslandHappiness(Island island)
 		{
-			if (_islandHappiness.TryGetValue(island, out float happiness))
+			if (SaveData.Instance._islandHappiness.TryGetValue(island, out float happiness))
 			{
 				return happiness;
 			}
@@ -69,21 +66,21 @@ namespace MapGame
 		{
 			float current = GetIslandHappiness(island);
 			float newHappiness = Mathf.Clamp(current + change, 0, 100);
-			_islandHappiness[island] = newHappiness;
+			SaveData.Instance._islandHappiness[island] = newHappiness;
 			UpdateGlobalHappiness();
 		}
 
 
 		private void UpdateGlobalHappiness()
 		{
-			if (_islandHappiness.Count == 0) return;
+			if (SaveData.Instance._islandHappiness.Count == 0) return;
 			
 			float total = 0;
-			foreach (var happiness in _islandHappiness.Values)
+			foreach (var happiness in SaveData.Instance._islandHappiness.Values)
 			{
 				total += happiness;
 			}
-			float average = total / _islandHappiness.Count;
+			float average = total / SaveData.Instance._islandHappiness.Count;
 			SetHappiness(average);
 		}
 
@@ -198,11 +195,6 @@ namespace MapGame
 				ChangeMagicMultiplier(outcome.MagicMultiplier);
 			}
 		}
-		public Dictionary<Island, float> GetAllIslandHappiness()
-		{
-			return _islandHappiness; // Your existing dictionary
-		}
-
 		public override void _Ready()
 		{
 			Instance = this;

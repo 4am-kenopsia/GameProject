@@ -11,6 +11,9 @@ namespace MapGame
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
+			GD.Print("--");
+			GD.Print("Settings window opened.");
+			
 			_ambienceSlider = GetNode<Slider>("SettingsPanel/HBoxContainer/SliderContainer/AmbienceSlider");
 			_effectsSlider = GetNode<Slider>("SettingsPanel/HBoxContainer/SliderContainer/EffectsSlider");
 			_closeSettings = GetNode<TextureButton>("SettingsPanel/CloseSettings");
@@ -44,7 +47,8 @@ namespace MapGame
 				SaveData.Instance._ambienceVolume = (float)_ambienceSlider.Value;
 			}
 			SoundPlayer.Instance._ambiencePlayer.VolumeDb = (float)_ambienceSlider.Value;
-			GD.Print(_ambienceSlider.Value);
+			
+			GD.Print($"Ambience volume: {_ambienceSlider.Value}");
 		}
 		public void OnEffectsSliderDragEnded(bool ValueChanged)
 		{
@@ -55,9 +59,14 @@ namespace MapGame
 			SoundPlayer.Instance._sfxPlayer.VolumeDb = (float)_effectsSlider.Value;
 			SoundPlayer.Instance._sfxPlayer2.VolumeDb = (float)_effectsSlider.Value;
 			SoundPlayer.Instance.PlayMenuButtonSound();
+			
+			GD.Print($"Effects volume: {_effectsSlider.Value}");
 		}
 		public void OnCloseSettingsPressed()
 		{
+			GD.Print("Settings window closed");
+			GD.Print("--");
+			
 			SoundPlayer.Instance.PlayNextTurnSound();
 			Tween tween = CreateTween();
 			tween.TweenProperty(this, "position", new Vector2(0.0f, SaveData.Instance._viewPortSize.Y), 0.3f)

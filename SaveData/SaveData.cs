@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 namespace MapGame
@@ -17,12 +18,17 @@ namespace MapGame
 		[Export] public string _language = "EN";
 		[Export] public Vector2 _viewPortSize;
 		[Export] public Vector2 _gameAreaSize;
+		[Export] public Dictionary <Island, float> _islandHappiness = new Dictionary<Island, float>();
 
 		[Export] public string[] _eventPool; // Something like this? 
 		public static SaveData Instance
 		{
 			get;
 			private set;
+		}
+		public Dictionary<Island, float> GetAllIslandHappiness()
+		{
+			return _islandHappiness; // Your existing dictionary
 		}
 		
 		// Called when the node enters the scene tree for the first time.
@@ -60,13 +66,14 @@ namespace MapGame
 		{
 			var _saveFile = new ConfigFile();
 
-			_saveFile.SetValue("Save1","Turn", 1);
+			_saveFile.SetValue("Save1","Turn", 0);
 			_saveFile.SetValue("Save1", "Day", _currentDay);
 			_saveFile.SetValue("Save1","Magic", _currentMagic);
 			_saveFile.SetValue("Save1","Happiness", _currentHappiness);
 			_saveFile.SetValue("Save1","Tokens", _currentTokens);
 			_saveFile.SetValue("Save1","Salary", _currentSalary);
 			_saveFile.SetValue("Save1","MagicMultiplier", _currentMagicMultiplier);
+			_saveFile.SetValue("Save1", "IslandHappiness", _islandHappiness);
 
 			_saveFile.Save("res://SaveData/SaveData.cfg");
 		}
@@ -81,6 +88,7 @@ namespace MapGame
 				_currentTokens = (float)_saveData.GetValue(save, "Tokens");
 				_currentSalary = (float)_saveData.GetValue(save, "Salary");
 				_currentMagicMultiplier = (float)_saveData.GetValue(save, "MagicMultiplier");
+				_islandHappiness = (Dictionary<Island, float>)_saveData.GetValue(save, "IslandHappiness");
 			}
 		}
 		
