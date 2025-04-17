@@ -111,7 +111,7 @@ namespace MapGame
 			CreateTurnEvent();
 		}
 		
-		public void OnEventAnswered()
+		public async void OnEventAnswered()
 		{
 			_guiInstance.UpdateLabels();
 			GD.Print("Turn event answered received - resetting flag");
@@ -124,7 +124,8 @@ namespace MapGame
 			GD.Print($"Creating {randomNumber} popup markers");
 			
 			for(int i = 0; i < randomNumber; i++)
-			{
+			{	
+				await ToSignal(GetTree().CreateTimer(0.2f), SceneTreeTimer.SignalName.Timeout);
 				CreatePopUpMarker();
 			}
 			

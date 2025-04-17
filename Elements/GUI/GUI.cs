@@ -6,7 +6,10 @@ namespace MapGame
 
 	public partial class GUI : Control
 	{
+		[Signal] public delegate void MenuToggledEventHandler(bool is_open);
 		[Signal] public delegate void TurnButtonPressedEventHandler();
+		
+		
 		
 		private PackedScene _settingsPopupScene;
 		private SettingsPopup _settingsPopup;
@@ -168,6 +171,7 @@ namespace MapGame
 			if (!_isMenuOpen)
 			{
 				_isMenuOpen = true;
+				 UpdateMenuState(true);
 				_gameMenuOverlay.Color = new Color(0.404f, 0.192f, 0.357f, 0f);
 				_gameMenuOverlay.Visible = true;
 				
@@ -221,6 +225,7 @@ namespace MapGame
 				.SetEase(Tween.EaseType.Out);
 			
 			_isMenuOpen = false;
+			UpdateMenuState(false); 
 		}
 		private void OnSettingsButtonPressed()
 		{
@@ -234,6 +239,10 @@ namespace MapGame
 			SoundPlayer.Instance.PlayNextTurnSound();
 			SaveData.Instance.SaveGame();
 			SceneTransition.Instance.TransitionToScene("res://GameScenes/MainMenu.tscn");
+		}
+		private void UpdateMenuState(bool is_open)
+		{
+			EmitSignal(SignalName.MenuToggled, is_open);
 		}
 	}
 }
