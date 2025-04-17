@@ -3,13 +3,11 @@
 [ext_resource type="Script" path="res://GameScenes/DayEndScene.cs" id="1_fdf8p"]
 [ext_resource type="Texture2D" uid="uid://cxltmwtktduav" path="res://Assets/UI/DayEndPanel.png" id="2_a7xpp"]
 [ext_resource type="FontFile" uid="uid://cjuyca4ytlkro" path="res://Assets/Fonts/JetBrainsMono[wght].ttf" id="2_x4mcn"]
-[ext_resource type="Texture2D" uid="uid://gkak5qsc3i51" path="res://Assets/UI/Next_Turn_Button.png" id="4_melqs"]
-
-[sub_resource type="Theme" id="Theme_j2oo4"]
-default_font = ExtResource("2_x4mcn")
-default_font_size = 60
+[ext_resource type="Texture2D" uid="uid://cu0yve1q88nd7" path="res://Assets/Popup Window/Event_Window_Button.png" id="4_8lcfl"]
+[ext_resource type="Texture2D" uid="uid://m0t5jgte27w0" path="res://Assets/Popup Window/Event_Window_Pressed.png" id="5_k8arr"]
 
 [node name="DayEndScene" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +16,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fdf8p")
 
+[node name="TextureRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -25,10 +32,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -758.0
+offset_top = -443.0
+offset_right = 762.0
+offset_bottom = 437.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_a7xpp")
@@ -38,17 +45,19 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -628.0
-offset_top = 31.0
-offset_right = 634.0
-offset_bottom = 146.0
+offset_left = -645.0
+offset_top = 41.0
+offset_right = 645.0
+offset_bottom = 204.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 76
 text = "DAY END!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="TextureRect"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,8 +70,9 @@ offset_right = 362.0
 offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_j2oo4")
-text = "Dummy"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_x4mcn")
+theme_override_font_sizes/font_size = 41
 vertical_alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="TextureRect"]
@@ -72,11 +82,26 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -531.0
-offset_top = -241.0
-offset_right = 575.0
-offset_bottom = -101.0
+offset_left = -300.0
+offset_top = -220.0
+offset_right = 300.0
+offset_bottom = -80.0
 grow_horizontal = 2
 grow_vertical = 0
-texture_normal = ExtResource("4_melqs")
-stretch_mode = 0
+texture_normal = ExtResource("4_8lcfl")
+texture_pressed = ExtResource("5_k8arr")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="TextureRect/TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_x4mcn")
+theme_override_font_sizes/font_size = 96
+text = "NEXT DAY"
+horizontal_alignment = 1
+vertical_alignment = 1

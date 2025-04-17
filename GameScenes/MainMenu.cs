@@ -51,6 +51,10 @@ namespace MapGame
 				_continueButton.Disabled = true;
 				GD.Print("Err: No Savedata found");
 			}
+			else
+			{
+				SaveData.Instance.LoadGame(_saveData);
+			}
 		}
 
 		

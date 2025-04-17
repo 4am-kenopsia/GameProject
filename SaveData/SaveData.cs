@@ -74,8 +74,13 @@ namespace MapGame
 			_saveFile.SetValue("Save1","Salary", _currentSalary);
 			_saveFile.SetValue("Save1","MagicMultiplier", _currentMagicMultiplier);
 			_saveFile.SetValue("Save1", "IslandHappiness", _islandHappiness);
+			_saveFile.SetValue("Save1", "EffectsVolume", _effectsVolume);
+			_saveFile.SetValue("Save1", "AmbienceVolume", _ambienceVolume);
+			_saveFile.SetValue("Save1","Language", _language);
 
 			_saveFile.Save("res://SaveData/SaveData.cfg");
+			
+			GD.Print("Game saved");
 		}
 		public void LoadGame(ConfigFile _saveData)
 		{
@@ -89,29 +94,12 @@ namespace MapGame
 				_currentSalary = (float)_saveData.GetValue(save, "Salary");
 				_currentMagicMultiplier = (float)_saveData.GetValue(save, "MagicMultiplier");
 				_islandHappiness = (Dictionary<Island, float>)_saveData.GetValue(save, "IslandHappiness");
+				_ambienceVolume = (float)_saveData.GetValue(save, "AmbienceVolume");
+				_effectsVolume = (float)_saveData.GetValue(save, "EffectsVolume");
+				_language = (string)_saveData.GetValue(save, "Language");
+				
+				GD.Print("Game loaded");
 			}
 		}
-		
-		public void SaveSettings()	
-		{
-			var _settingsFile = new ConfigFile();
-
-			_settingsFile.SetValue("Save1", "Ambience", _ambienceVolume);
-			_settingsFile.SetValue("Save1","Ambience", _effectsVolume);
-			_settingsFile.SetValue("Save1","Language", _language);
-
-			_settingsFile.Save("res://SaveData/SettingsData.cfg");
-		}
-		
-		public void LoadSettings(ConfigFile _settingsData)
-		{
-			foreach (String save in _settingsData.GetSections())
-			{
-				_ambienceVolume = (float)_settingsData.GetValue(save, "Ambience");
-				_effectsVolume = (float)_settingsData.GetValue(save, "Effects");
-				_language = (string)_settingsData.GetValue(save, "Language");
-			}
-		}
-		
 	}
 }

@@ -46,30 +46,35 @@ namespace MapGame
 		}
 		public void PlayPopUpSound()
 		{
+			_sfxPlayer.VolumeDb = SaveData.Instance._effectsVolume;
 			AudioStream audioStream = (AudioStream)GD.Load("res://Assets/Sound/PopUpSound.wav");
 			_sfxPlayer.Stream = audioStream;
 			_sfxPlayer.Play();
 		}
 		public void PlayPopUpSpawnSound()
 		{
+			_sfxPlayer.VolumeDb = SaveData.Instance._effectsVolume;
 			AudioStream audioStream = (AudioStream)GD.Load("res://Assets/Sound/PopUpSpawnSound.mp3");
 			_sfxPlayer.Stream = audioStream;
 			_sfxPlayer.Play();
 		}
 		public void PlayEventButtonSound()
 		{
+			_sfxPlayer.VolumeDb = SaveData.Instance._effectsVolume;
 			AudioStream audioStream = (AudioStream)GD.Load("res://Assets/Sound/EventButtonSound.mp3");
 			_sfxPlayer.Stream = audioStream;
 			_sfxPlayer.Play();
 		}
 		public void PlayNextTurnSound()
 		{
+			_sfxPlayer.VolumeDb = SaveData.Instance._effectsVolume;
 			AudioStream audioStream = (AudioStream)GD.Load("res://Assets/Sound/TurnButtonSound.mp3");
 			_sfxPlayer.Stream = audioStream;
 			_sfxPlayer.Play();
 		}
 		public void PlayTicking()
 		{
+			_sfxPlayer2.VolumeDb = SaveData.Instance._effectsVolume;
 			AudioStream audioStream = (AudioStream)GD.Load("res://Assets/Sound/TurnTickingSound.mp3");
 			_sfxPlayer2.Stream = audioStream;
 			_sfxPlayer2.Play();
@@ -86,6 +91,7 @@ namespace MapGame
 		}
 		public void PlayMenuButtonSound()
 		{
+			_sfxPlayer.VolumeDb = SaveData.Instance._effectsVolume;
 			AudioStream audioStream = (AudioStream)GD.Load("res://Assets/Sound/MenuButtonSound.mp3");
 			_sfxPlayer.Stream = audioStream;
 			_sfxPlayer.Play();
