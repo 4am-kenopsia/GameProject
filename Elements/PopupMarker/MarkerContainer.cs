@@ -15,6 +15,7 @@ namespace MapGame
 		private TextureButton _button;
 		private AnimationPlayer _player;
 		public Island TargetIsland { get; set; }  // Island reference
+		private GUI _gui;
 
 		public override void _Ready()
 		{
@@ -24,11 +25,18 @@ namespace MapGame
 			TweenFadeIn();
 			
 			_button.Pressed += OnButtonPressed;
-			
+			GetNode<GUI>("/root/GameScene/GUI").MenuToggled += (is_open) => {
+			GetNode<TextureButton>("Pin").Disabled = is_open;
+			};
+
+
 		}
+
 
 		public override void OnButtonPressed()
 		{
+			 if (GameScene.isEventRunning || GetNode<TextureButton>("Pin").Disabled) 
+	   		 return;
 			if (GameScene.isEventRunning) return;
 			
 			EmitSignal(SignalName.ButtonPressed);
