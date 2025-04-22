@@ -161,11 +161,6 @@ namespace MapGame
 			SaveData.Instance._currentMagicMultiplier += change;
 		}
 
-
-
-
-
-
 		public void HandleOptionOutcomes(EventOutcomeData outcome)
 		{
 			if (outcome.HappinessChange != 0)

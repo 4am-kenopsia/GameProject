@@ -32,6 +32,7 @@ namespace MapGame
 		private Dictionary _eventDictionary = null;
 		public Island TargetIsland { get; set; }  // Add this property
 		private Vector2 _originalPosition;
+		private Vector2 _targetPosition;
 		private Tween _tween;
 
 		private EventData _eventData;
@@ -48,46 +49,45 @@ namespace MapGame
 				}
 			}
 		}
-		//private PopupEventData _currentEvent = null;
-		//public int _eventsHappened { get; set; } = 0;
-		
-		
 
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
-{
-	// Get UI elements safely
-	// Store original position
-	_originalPosition = Position;
+		{
+		ColorRect _eater = GetNode<ColorRect>("ColorRect2");
+		_eater.CustomMinimumSize = SaveData.Instance._viewPortSize;
+		_eater.GlobalPosition = new Vector2(0, 0);
+		// Get UI elements safely
+		// Store original position
+		_targetPosition = new Vector2(0, 0);
+		
+		// Set initial position (offscreen above)
+		_originalPosition = new Vector2(_targetPosition.X, SaveData.Instance._viewPortSize.Y);
+		Position = _originalPosition;
+		//Animation here
+		_panel = GetNode<TextureRect>("Panel");
+		_button1 = _panel.GetNode<TextureButton>("HBoxContainer/Button1");
+		_button2 = _panel.GetNode<TextureButton>("HBoxContainer/Button2");
+		_button1Label = _panel.GetNode<Label>("HBoxContainer/Button1/Label");
+		_button2Label = _panel.GetNode<Label>("HBoxContainer/Button2/Label");
+		
+		_img = _panel.GetNode<TextureRect>("img");
+		_description = _panel.GetNode<Label>("Description");
+		_eventLabel = _panel.GetNode<Label>("EventLabel");
 	
-	// Set initial position (offscreen above)
-	Position = new Vector2(Position.X, Position.Y + 400);
-	//Animation here
-	_panel = GetNode<TextureRect>("Panel");
-	_button1 = _panel.GetNode<TextureButton>("HBoxContainer/Button1");
-	_button2 = _panel.GetNode<TextureButton>("HBoxContainer/Button2");
-	_button1Label = _panel.GetNode<Label>("HBoxContainer/Button1/Label");
-	_button2Label = _panel.GetNode<Label>("HBoxContainer/Button2/Label");
-	
-	_img = _panel.GetNode<TextureRect>("img");
-	_description = _panel.GetNode<Label>("Description");
-	_eventLabel = _panel.GetNode<Label>("EventLabel");
-
-	// Get event from EventLoader
-	var eventLoader = GetNode<EventLoader>("/root/EventLoader");
-	var marker = GetParent() as MarkerContainer;
-	var eventData = eventLoader.GetRandomEventForIsland(marker?.TargetIsland ?? Island.Island1);
-	
-	// Initialize event data
-	EventData = eventData ?? new EventData();
-	
-	
-	// Connect signals
-	_button1.Pressed += OnButton1Pressed;
-	_button2.Pressed += OnButton2Pressed;
-	TweenWindowUp();
-	
-}
+		// Get event from EventLoader
+		var eventLoader = GetNode<EventLoader>("/root/EventLoader");
+		var marker = GetParent() as MarkerContainer;
+		var eventData = eventLoader.GetRandomEventForIsland(marker?.TargetIsland ?? Island.Island1);
+		
+		// Initialize event data
+		EventData = eventData ?? new EventData();
+		
+		
+		// Connect signals
+		_button1.Pressed += OnButton1Pressed;
+		_button2.Pressed += OnButton2Pressed;
+		TweenWindowUp();
+		}
 
 		private void LoadData() 
 		{
@@ -144,7 +144,7 @@ namespace MapGame
 			SoundPlayer.Instance.PlayEventButtonSound();
 			TweenWindowDown();
 			await ToSignal(_tween, Tween.SignalName.Finished);
-			 string outcomeKey = _currentEventID + "_" + 2;
+			string outcomeKey = _currentEventID + "_" + 2;
 			var outcome = (EventOutcomeData)_eventDictionary[outcomeKey];
 			
 			// Get parent marker if exists
@@ -154,7 +154,6 @@ namespace MapGame
 				outcome.TargetIsland = marker.TargetIsland;
 			}
 			
-			
 			EmitSignal(SignalName.PopUpEventAnswered, outcome);
 			EmitSignal(SignalName.ButtonPressed2);
 			Visible = false;
@@ -162,83 +161,61 @@ namespace MapGame
 		
 
 
-			private void LoadEventData(EventData eventData)
-{
-	// Initialize with empty dictionary if null
-	_eventDictionary = eventData?.EventDictionary ?? new Godot.Collections.Dictionary();
-	_currentEventID = eventData?.EventID ?? "default_event";
-
-	// Safe UI updates with null checks
-	if (_eventLabel != null)
-		_eventLabel.Text = eventData?.EventTitle ?? "New Event";
+		private void LoadEventData(EventData eventData)
+		{
+		// Initialize with empty dictionary if null
+		_eventDictionary = eventData?.EventDictionary ?? new Godot.Collections.Dictionary();
+		_currentEventID = eventData?.EventID ?? "default_event";
 	
-	if (_description != null)
-		_description.Text = eventData?.EventDesc ?? "An event occurred";
+		// Safe UI updates with null checks
+		if (_eventLabel != null)
+			_eventLabel.Text = eventData?.EventTitle ?? "New Event";
+		
+		if (_description != null)
+			_description.Text = eventData?.EventDesc ?? "An event occurred";
+		// Safe image loading
+		if (_img != null && !string.IsNullOrEmpty(eventData?.EventPicture))
+		{
+			_img.Texture = GD.Load<Texture2D>(eventData.EventPicture) 
+						  ?? GD.Load<Texture2D>("res://fallback_texture.png");
+		}
+		// Safe button options (with array bounds checking)
+		if (eventData?.EventOptions != null && eventData.EventOptions.Length >= 2)
+		{
+			_button1Label.Text = eventData.EventOptions[0] ?? "Continue";
+			_button2Label.Text = eventData.EventOptions[1] ?? "Cancel";
+		}
+		else
+		{
+			_button1Label.Text = "Continue";
+			_button2Label.Text = "Cancel";
+		}
+		}
 
-	// Safe image loading
-	if (_img != null && !string.IsNullOrEmpty(eventData?.EventPicture))
-	{
-		_img.Texture = GD.Load<Texture2D>(eventData.EventPicture) 
-					  ?? GD.Load<Texture2D>("res://fallback_texture.png");
-	}
-
-	// Safe button options (with array bounds checking)
-	if (eventData?.EventOptions != null && eventData.EventOptions.Length >= 2)
-	{
-		_button1Label.Text = eventData.EventOptions[0] ?? "Continue";
-		_button2Label.Text = eventData.EventOptions[1] ?? "Cancel";
-	}
-	else
-	{
-		_button1Label.Text = "Continue";
-		_button2Label.Text = "Cancel";
-	}
-}
-
-	public void TweenWindowUp()
-	{
-		// Create a new tween
-		_tween = CreateTween();
-		
-		
-		
-		Vector2 targetPosition = new Vector2(Position.X, Position.Y - 400);
-		
-		// Configure and start the tween
-		_tween.TweenProperty(this, "position", targetPosition, 0.5f)
-			.SetTrans(Tween.TransitionType.Quad)
-			.SetEase(Tween.EaseType.Out);
+		public void TweenWindowUp()
+		{
+			// Create a new tween
+			_tween = CreateTween();
 			
+			// Configure and start the tween
+			_tween.TweenProperty(this, "position", _targetPosition , 0.5f)
+				.SetTrans(Tween.TransitionType.Quad)
+				.SetEase(Tween.EaseType.Out);
+				
 		
-	}
-	public void TweenWindowDown()
-	{
-		// Create a new tween
-		_tween = CreateTween();
-		
-		
-		
-		Vector2 targetPosition = new Vector2(Position.X, Position.Y + 800);
-		
-		// Configure and start the tween
-		_tween.TweenProperty(this, "position", targetPosition, 0.25f)
-			.SetTrans(Tween.TransitionType.Quad)
-			.SetEase(Tween.EaseType.Out);
+		}
+		public void TweenWindowDown()
+		{
+			// Create a new tween
+			_tween = CreateTween();
 			
-		
-	}
-
-
-		//public void OnShitBought()
-		//{
-			//GD.Print("Shit was bought! Updating PopupWindow...");
-			//_increase = _increase + 1;
-			//// Add logic to update the PopupWindow UI or perform other actions
-		//}
-		
-
-
-
+			// Configure and start the tween
+			_tween.TweenProperty(this, "position", _originalPosition, 0.25f)
+				.SetTrans(Tween.TransitionType.Quad)
+				.SetEase(Tween.EaseType.Out);
+				
+			
+		}
 		// Called every frame. 'delta' is the elapsed time since the previous frame.
 		public override void _Process(double delta)
 		{

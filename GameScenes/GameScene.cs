@@ -16,15 +16,20 @@ namespace MapGame
 		private Label _newDayLabel;
 		private AnimationPlayer _animationPlayer;
 		public static bool isEventRunning = false;
+		public bool _isPanelOpen = false;
+		private Control _currentIslandPanel = null;
+		private PackedScene IslandPanelScene;
 		[Export] private PackedScene markerScene;
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
 			GD.Print("--");
 			GD.Print("Game scene loaded");
+			GD.Print(SaveData.Instance._currentDay);
 			
 			_guiInstance = GetNode<GUI>("GUI");
 			markerScene = GD.Load<PackedScene>("res://Elements/PopupMarker/MarkerContainer.tscn");
+			IslandPanelScene = GD.Load<PackedScene>("res://Elements/IslandHappinessPanel/IslandPanel.tscn");
 			_turnButton = GetNode<TextureButton>("GUI/SideUI/TurnButton");
 			_newDayIndicator = GetNode<TextureRect>("GUI/NewDayIndicator");
 			_newDayLabel = GetNode<Label>("GUI/NewDayIndicator/NewDayLabel");
@@ -38,8 +43,66 @@ namespace MapGame
 		public override void _Process(double delta)
 		{
 		}
-		
 
+		public override void _Input(InputEvent @event)
+		{
+			if (@event is InputEventScreenTouch touchEvent 
+				&& touchEvent.Pressed 
+				&& _isPanelOpen == false 
+				&& isEventRunning == false 
+				&& _currentIslandPanel == null)
+			{
+				Vector2 touchPos = touchEvent.Position;
+				_ = CheckTouchedIsland(touchPos);
+			}
+		}
+		
+		private async Task CheckTouchedIsland(Vector2 touchPosition)
+		{
+			Node _map = GetNode<TextureRect>("TextureRect");
+			foreach (Node child in _map.GetChildren())
+			{
+				if (child is Area2D area)
+				{
+					foreach (Node shape in area.GetChildren())
+					{
+						if (shape is CollisionPolygon2D polygon && polygon.Polygon != null)
+						{
+							Vector2 localTouch = polygon.ToLocal(touchPosition);
+							
+							if (Geometry2D.IsPointInPolygon(localTouch, polygon.Polygon))
+							{
+								GD.Print($"{localTouch.X}, {localTouch.Y}");
+								Control panel = (Control)IslandPanelScene.Instantiate();
+								area.AddChild(panel);
+								_currentIslandPanel = panel;
+								
+								GD.Print($"{area.Name} pressed");
+								
+								Label _panelHappiness = area.GetNode<Label>("IslandPanel/TextureRect/HappinessLabel");
+								
+								Enum.TryParse(area.Name, out Island islandEnum);
+								SaveData.Instance._islandHappiness.TryGetValue(islandEnum, out float happiness);
+								GD.Print(happiness);
+								
+								_panelHappiness.Text = $"{happiness}%";
+								
+								if (touchPosition.Y - 132 < 0)
+								{
+									panel.GlobalPosition = new Vector2(touchPosition.X, 132);
+								}
+								else
+								{
+									panel.GlobalPosition = touchPosition;
+								}
+								return;
+							}
+						}
+					}
+				}
+			}
+		}
+		
 		public void CreateTurnEvent()
 		{
 			GD.Print("Turn event created");
@@ -118,8 +181,7 @@ namespace MapGame
 			RemoveChild(_eventWindow);
 			isEventRunning = false;
 			
-			Random random = new Random();
-			int randomNumber = random.Next(1, 3);
+			int randomNumber = GD.RandRange(1, 3);
 			
 			GD.Print($"Creating {randomNumber} popup markers");
 			
@@ -135,7 +197,7 @@ namespace MapGame
 			ResourceManager.Instance.HandleOptionOutcomes(outcome);
 			_guiInstance.UpdateLabels();
 			
-					// Print happiness for all islands
+			// Print happiness for all islands
 			var allHappiness = SaveData.Instance.GetAllIslandHappiness();
 			
 			GD.Print("--Island happinesses--");
@@ -166,9 +228,7 @@ namespace MapGame
 			markerInstance.PopUpEventOpened += OnPopUpEventOpened;
 
 			// Select a random island
-			RandomNumberGenerator rng = new();
-			rng.Randomize();
-			Island randomIsland = (Island)rng.RandiRange(0, 5); // 0-5 for 6 areas
+			Island randomIsland = (Island)GD.RandRange(0, 5); // 0-5 for 6 areas
 			
 			// Get position on island
 			Vector2 randomPosition = GetRandomPositionInsideIsland(randomIsland);
@@ -187,8 +247,8 @@ namespace MapGame
 			
 			// Get all collision polygons for this island
 			var polygons = islandArea.GetChildren()
-								   .OfType<CollisionPolygon2D>()
-								   .ToList();
+									.OfType<CollisionPolygon2D>()
+									.ToList();
 			
 			if (polygons.Count == 0)
 			{
@@ -199,7 +259,7 @@ namespace MapGame
 			// Select a random polygon
 			RandomNumberGenerator rng = new();
 			rng.Randomize();
-			CollisionPolygon2D selectedPolygon = polygons[rng.RandiRange(0, polygons.Count - 1)];
+			CollisionPolygon2D selectedPolygon = polygons[GD.RandRange(0, polygons.Count - 1)];
 			Vector2[] polygonPoints = selectedPolygon.Polygon;
 
 			// Calculate bounds

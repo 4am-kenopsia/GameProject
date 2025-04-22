@@ -14,6 +14,7 @@ namespace MapGame
 		private RichTextLabel _eventContent = null;
 		private EventData _currentEvent = null;
 		private Dictionary _eventDictionary = null;
+		private TextureRect _eventIcon = null;
 		private AnimationPlayer _animationPlayer;
 		private TextureRect _eventWindow;
 		private float _offset;
@@ -40,9 +41,13 @@ namespace MapGame
 			
 			_targetPosition = new Vector2(_startingPosition.X, _centerY - 440);
 			
+			string _eventNumber = GD.RandRange(1, 1).ToString();
 			
-			
-			int _eventNumber = GD.RandRange(1, 1);
+			if (SaveData.Instance._currentDay == 0)
+			{
+				_eventNumber = $"T{SaveData.Instance._currentTurn}";
+				GD.Print(SaveData.Instance._currentTurn);
+			}
 			LoadEventData(_eventNumber);
 			
 			_animationPlayer.Play("newevent");
@@ -54,9 +59,9 @@ namespace MapGame
 				.SetEase(Tween.EaseType.Out);
 		}
 
-		public void LoadEventData(int eventNumber)
+		public void LoadEventData(string eventNumber)
 		{
-			_currentEvent = ResourceLoader.Load<EventData>("res://Code/EventData/TurnEvents/TestEvent" + eventNumber + ".tres");
+			_currentEvent = ResourceLoader.Load<EventData>($"res://Code/EventData/TurnEvents/{SaveData.Instance._language}/Event{eventNumber}.tres");
 			_currentEventID = eventNumber.ToString();
 			_eventDictionary = _currentEvent.EventDictionary;
 
@@ -65,9 +70,12 @@ namespace MapGame
 
 			_eventContent = GetNode<RichTextLabel>("TextureRect/TurnEventContent");
 			_eventContent.Text = _currentEvent.EventDesc;
-
-			SetupOptionButton(2, "OptionContainer2", _currentEvent.EventOptions.Length > 1);
+			
+			_eventIcon = GetNode<TextureRect>("TextureRect/TurnEventIcon");
+			_eventIcon.Texture = (Texture2D)GD.Load(_currentEvent.EventPicture);
+			
 			SetupOptionButton(1, "OptionContainer1", _currentEvent.EventOptions.Length > 0);
+			SetupOptionButton(2, "OptionContainer2", _currentEvent.EventOptions.Length > 1);
 			SetupOptionButton(3, "OptionContainer3", _currentEvent.EventOptions.Length > 2);
 			SetupOptionButton(4, "OptionContainer4", _currentEvent.EventOptions.Length > 3);
 		}

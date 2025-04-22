@@ -110,6 +110,7 @@ namespace MapGame
 			GD.Print("Confirmed new game");
 			
 			_confirmationPopup.Visible = false;
+			SaveData.Instance._currentDay = 0;
 			ResourceManager.Instance.ResetResources();
 			SaveData.Instance.SaveGame();
 			SoundPlayer.Instance.PlayMenuButtonSound();

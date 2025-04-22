@@ -7,6 +7,8 @@ namespace MapGame
 	{
 		private Slider _ambienceSlider;
 		private Slider _effectsSlider;
+		private TextureButton _fi;
+		private TextureButton _en;
 		private TextureButton _closeSettings;
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
@@ -17,10 +19,14 @@ namespace MapGame
 			_ambienceSlider = GetNode<Slider>("SettingsPanel/HBoxContainer/SliderContainer/AmbienceSlider");
 			_effectsSlider = GetNode<Slider>("SettingsPanel/HBoxContainer/SliderContainer/EffectsSlider");
 			_closeSettings = GetNode<TextureButton>("SettingsPanel/CloseSettings");
+			_fi = GetNode<TextureButton>("SettingsPanel/HBoxContainer/HBoxContainer/FI");
+			_en = GetNode<TextureButton>("SettingsPanel/HBoxContainer/HBoxContainer/EN");
 			
 			_ambienceSlider.DragEnded += OnAmbienceSliderDragEnded;
 			_effectsSlider.DragEnded += OnEffectsSliderDragEnded;
 			_closeSettings.Pressed += OnCloseSettingsPressed;
+			_fi.Pressed += OnFiPressed;
+			_en.Pressed += OnEnPressed;
 			
 			_ambienceSlider.Value = SaveData.Instance._ambienceVolume;
 			_effectsSlider.Value = SaveData.Instance._effectsVolume;
@@ -74,6 +80,14 @@ namespace MapGame
 				.SetEase(Tween.EaseType.In);
 				
 			tween.TweenCallback(Callable.From(() => QueueFree()));
+		}
+		public void OnFiPressed()
+		{
+			SaveData.Instance._language = "FI";
+		}
+		public void OnEnPressed()
+		{
+			SaveData.Instance._language = "EN";
 		}
 	}
 }

@@ -6,30 +6,26 @@
 [sub_resource type="Resource" id="Resource_8h64p"]
 script = ExtResource("1_nig6e")
 OptionSeverity = 0
-HappinessChange = 5
+IsIslandSpecific = true
 MagicChange = 0
+HappinessChange = 5
 TokensChange = 0
+MagicMultiplier = 0.0
 unlockEvent = ""
 unlockEvent2 = ""
 SecretMode2 = false
-HappinessMultiplier = 0.0
-MagicMultiplier = 0.0
-IsIslandSpecific = true
-IslandIndex = 0
 
 [sub_resource type="Resource" id="Resource_oiudi"]
 script = ExtResource("1_nig6e")
 OptionSeverity = 0
-HappinessChange = -10
+IsIslandSpecific = true
 MagicChange = 0
+HappinessChange = -10
 TokensChange = 0
+MagicMultiplier = 0.0
 unlockEvent = ""
 unlockEvent2 = ""
 SecretMode2 = false
-HappinessMultiplier = 0.0
-MagicMultiplier = 0.0
-IsIslandSpecific = true
-IslandIndex = 0
 
 [resource]
 script = ExtResource("2_hyht8")

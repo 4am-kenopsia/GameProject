@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://5datrm4lnxey"]
+
+[ext_resource type="Script" path="res://Elements/IslandHappinessPanel/IslandPanel.cs" id="1_fmoao"]
+[ext_resource type="Texture2D" uid="uid://cm2pax14n84qx" path="res://Assets/Map/IslandHappinessPanel.png" id="2_5tddw"]
+[ext_resource type="LabelSettings" uid="uid://bhk4sb115ln2u" path="res://Themes/UiResourceLabelSettings.tres" id="3_a3534"]
+[ext_resource type="Texture2D" uid="uid://bxpxytgp824ov" path="res://Assets/Resources/happiness_icon_yay.png" id="4_0js7k"]
+
+[node name="IslandPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_fmoao")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -132.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_5tddw")
+
+[node name="HappinessLabel" type="Label" parent="TextureRect"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.45
+offset_bottom = -11.45
+grow_horizontal = 2
+grow_vertical = 0
+text = "0%"
+label_settings = ExtResource("3_a3534")
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
+[node name="HappinessIcon" type="TextureRect" parent="TextureRect"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.0
+offset_top = 25.07
+offset_right = 16.0
+offset_bottom = 57.07
+grow_horizontal = 2
+texture = ExtResource("4_0js7k")

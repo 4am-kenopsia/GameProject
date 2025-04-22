@@ -28,7 +28,7 @@ namespace MapGame
 		private float _centerX;
 		private float _centerY;
 		private float _offset;
-		private static Label _gameOver;
+
 		private bool _isMenuOpen = false;
 
 		// Called when the node enters the scene tree for the first time.
@@ -44,8 +44,6 @@ namespace MapGame
 			_magicIcon = GetNode<TextureRect>("SideUI/TextureRect/MagicIcon");
 			_happinessIcon = GetNode<TextureRect>("SideUI/TextureRect/HappinessIcon");
 			_tokensIcon = GetNode<TextureRect>("SideUI/TextureRect/TokensIcon");
-			
-			_gameOver = GetNode<Label>("GameOver");
 			
 			_menuButton = GetNode<TextureButton>("SideUI/MenuButton");
 			_gameMenuOverlay = GetNode<ColorRect>("GameMenuOverlay");
@@ -74,12 +72,6 @@ namespace MapGame
 		{
 			_centerX = SaveData.Instance._viewPortSize.X / 2;
 			_centerY = SaveData.Instance._viewPortSize.Y / 2;
-			if (SaveData.Instance._currentHappiness == 0)
-			{
-				//_gameOver.Show();
-				//MainMenu();
-
-			}
 		}
 		
 		public void UpdateLabels()

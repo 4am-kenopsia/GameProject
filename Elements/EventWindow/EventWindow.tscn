@@ -123,6 +123,22 @@ theme = ExtResource("3_gf7l4")
 theme_override_colors/default_color = Color(0.0941176, 0.0509804, 0.0156863, 1)
 text = "Dummy"
 
+[node name="TurnEventIcon" type="TextureRect" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -530.0
+offset_top = -267.0
+offset_right = -134.0
+offset_bottom = 77.0
+grow_horizontal = 0
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
 [node name="OptionsContainer" type="GridContainer" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = -1

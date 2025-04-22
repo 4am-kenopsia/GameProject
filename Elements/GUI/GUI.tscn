@@ -208,21 +208,6 @@ texture_normal = ExtResource("11_rk3hl")
 texture_pressed = ExtResource("12_xvthq")
 stretch_mode = 5
 
-[node name="GameOver" type="Label" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.996
-offset_top = 5.0
-offset_right = -199.0
-offset_bottom = 0.319946
-theme_override_fonts/font = ExtResource("8_euguv")
-theme_override_font_sizes/font_size = 80
-text = "GAME OVER"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="TurnUI" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 1

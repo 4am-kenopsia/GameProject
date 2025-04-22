@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3 uid="uid://diop4dluck4rg"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_ara3g"]
+
+[resource]
+script = ExtResource("1_ara3g")
+isEventOneTime = true
+EventPicture = ""
+EventID = "0"
+EventTitle = "Introductions"
+EventDesc = ""
+EventOptions = PackedStringArray()
+EventOutcomeHints = PackedStringArray()
+EventDictionary = {}
