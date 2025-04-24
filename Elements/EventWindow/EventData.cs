@@ -10,10 +10,12 @@ namespace MapGame
 		[Export] public bool isEventOneTime;
 		[Export(PropertyHint.File, "*.png")] public string EventPicture;
 		[Export] public string EventID;
-		[Export] public string EventTitle;
-		[Export(PropertyHint.MultilineText)] public string EventDesc;
-		[Export] public string[] EventOptions = null;
-		[Export] public string[] EventOutcomeHints = null;
+		[Export] public string EventTitleEN;
+		[Export] public string EventTitleFI;
+		[Export(PropertyHint.MultilineText)] public string EventDescEN;
+		[Export(PropertyHint.MultilineText)] public string EventDescFI;
+		[Export] public string[] EventOptionsEN = null;
+		[Export] public string[] EventOptionsFI = null;
 		[Export] public Dictionary EventDictionary = new();
 		
 	}

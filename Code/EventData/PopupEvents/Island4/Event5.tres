@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://bqure23k28mxm"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_px7jc"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_ql3ep"]
+
+[sub_resource type="Resource" id="Resource_tqsls"]
+script = ExtResource("1_px7jc")
+OptionSeverity = 2
+IsIslandSpecific = true
+MagicChange = -2300
+HappinessChange = 30
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_0gx4y"]
+script = ExtResource("1_px7jc")
+OptionSeverity = 1
+IsIslandSpecific = true
+MagicChange = -2100
+HappinessChange = 5
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("2_ql3ep")
+isEventOneTime = false
+EventPicture = ""
+EventID = "5"
+EventTitleEN = ""
+EventTitleFI = ""
+EventDescEN = "A factory promises jobs for everyone but secretly demands a nearby sacred forest be cut down."
+EventDescFI = "Tehdas lupaa töitä kaikille, mutta vaatii salaa läheisen pyhän metsän kaatamista."
+EventOptionsEN = PackedStringArray("Protect the environment, inform locals about the plans.", "Jobs for everyone!")
+EventOptionsFI = PackedStringArray("Suojele ympäristöä ja tiedota paikallisia suunnitelmista.", "Töitä kaikille!")
+EventDictionary = {
+"5_1": SubResource("Resource_tqsls"),
+"5_2": SubResource("Resource_0gx4y")
+}

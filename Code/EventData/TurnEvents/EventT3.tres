@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://dmcpgwkfd60w7"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_2f41s"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_exrhb"]
+
+[sub_resource type="Resource" id="Resource_h4ltj"]
+script = ExtResource("1_exrhb")
+OptionSeverity = 2
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = -1.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = true
+
+[sub_resource type="Resource" id="Resource_am3qd"]
+script = ExtResource("1_exrhb")
+OptionSeverity = 1
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.2
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_wo8hj"]
+script = ExtResource("1_exrhb")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.1
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_o2cjw"]
+script = ExtResource("1_exrhb")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 1
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("1_2f41s")
+isEventOneTime = false
+EventPicture = "res://Assets/Characters/mascot_head.png"
+EventID = "T3"
+EventTitleEN = "Flow of the game"
+EventTitleFI = "Pelin kulku"
+EventDescEN = "Great! Now lastly before the day ends, I'm sure you noticed those indicators on the event options. They depict how risky that choice is, meaning that the amount that it increases or decreases your resources depending on how risky it is. Your goal here is to make sure none of the countries' happinesses go to 0 or any of your other resources run out..The boss wouldn't like that..."
+EventDescFI = "Hienoa! Vielä ennen päivän loppua — oletkin varmaan huomannut nuo kuvakkeet tapahtumavalintojen yhteydessä. Ne kuvaavat, kuinka riskialtis valinta on, eli kuinka paljon resurssisi voivat kasvaa tai vähentyä sen mukaan. Tavoitteesi on pitää huoli siitä, ettei minkään maan onnellisuus laske nollaan — tai että mikään muu resurssi pääse loppumaan. Pomo ei pitäisi siitä..."
+EventOptionsEN = PackedStringArray("Screw the boss, I\'m leaving!!", "Sounds simple and fun!", "I\'m ready to keep this world safe!", "Are there coffee breaks?")
+EventOptionsFI = PackedStringArray("Hittoako pomosta, minä lähden!!", "Kuulostaa yksinkertaiselta ja hauskalta!", "Oon valmiina pitämään tämän maailman turvassa!", "Pidetäänkö kahvitaukoja?")
+EventDictionary = {
+"T3_1": SubResource("Resource_h4ltj"),
+"T3_2": SubResource("Resource_am3qd"),
+"T3_3": SubResource("Resource_wo8hj"),
+"T3_4": SubResource("Resource_o2cjw")
+}

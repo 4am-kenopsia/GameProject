@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://dh6s17o50smip"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_fpf4v"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_qj3v6"]
+
+[sub_resource type="Resource" id="Resource_0agkh"]
+script = ExtResource("1_fpf4v")
+OptionSeverity = 1
+IsIslandSpecific = true
+MagicChange = 500
+HappinessChange = -15
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_ueekh"]
+script = ExtResource("1_fpf4v")
+OptionSeverity = 0
+IsIslandSpecific = true
+MagicChange = -1000
+HappinessChange = 10
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("2_qj3v6")
+isEventOneTime = false
+EventPicture = ""
+EventID = "5"
+EventTitleEN = ""
+EventTitleFI = ""
+EventDescEN = "A bothersome vandal group has taken place in a city and is causing problems for the townspeople."
+EventDescFI = "Haitallinen joukko vandaaleita on ottanut sijaa kaupungissa ja aiheuttaa ongelmia kaupunkilaisille."
+EventOptionsEN = PackedStringArray("Karma will get them", "Drive them away ")
+EventOptionsFI = PackedStringArray("Karma kyllä saa ne", "Aja ne pois alueelta")
+EventDictionary = {
+"5_1": SubResource("Resource_0agkh"),
+"5_2": SubResource("Resource_ueekh")
+}

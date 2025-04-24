@@ -9,23 +9,32 @@ namespace MapGame
 	public partial class GameScene : Node
 	{
 		private GUI _guiInstance;
+		
 		private PackedScene _eventWindowScene;
 		private EventWindow _eventWindow;
-		private TextureButton _turnButton;
-		private TextureRect _newDayIndicator;
-		private Label _newDayLabel;
-		private AnimationPlayer _animationPlayer;
-		public static bool isEventRunning = false;
-		public bool _isPanelOpen = false;
+		
 		private Control _currentIslandPanel = null;
 		private PackedScene IslandPanelScene;
+		
+		private TextureButton _turnButton;
+		
+		private TextureRect _newDayIndicator;
+		private Label _newDayLabel;
+		
+		private AnimationPlayer _animationPlayer;
+		
+		public static bool isEventRunning = false;
+		public bool _isPanelOpen = false;
+		public bool _isMenuOpenBool = false;
+		
 		[Export] private PackedScene markerScene;
+		
 		// Called when the node enters the scene tree for the first time.
 		public override void _Ready()
 		{
 			GD.Print("--");
 			GD.Print("Game scene loaded");
-			GD.Print(SaveData.Instance._currentDay);
+			GD.Print($"Day: {SaveData.Instance._currentDay}");
 			
 			_guiInstance = GetNode<GUI>("GUI");
 			markerScene = GD.Load<PackedScene>("res://Elements/PopupMarker/MarkerContainer.tscn");
@@ -36,6 +45,7 @@ namespace MapGame
 			_animationPlayer = GetNode<AnimationPlayer>("GUI/AnimationPlayer");
 			
 			_turnButton.Pressed += OnTurnButtonPressed;
+			_guiInstance.MenuToggled += (IsOpen) => {_isMenuOpenBool = IsOpen;};
 			SoundPlayer.Instance.PlayAmbience();
 		}
 
@@ -50,7 +60,8 @@ namespace MapGame
 				&& touchEvent.Pressed 
 				&& _isPanelOpen == false 
 				&& isEventRunning == false 
-				&& _currentIslandPanel == null)
+				&& _currentIslandPanel == null
+				&& _isMenuOpenBool == false)
 			{
 				Vector2 touchPos = touchEvent.Position;
 				_ = CheckTouchedIsland(touchPos);
@@ -59,6 +70,10 @@ namespace MapGame
 		
 		private async Task CheckTouchedIsland(Vector2 touchPosition)
 		{
+			await ToSignal(GetTree().CreateTimer(0.3), "timeout");
+			
+			if (isEventRunning == true) return;
+			
 			Node _map = GetNode<TextureRect>("TextureRect");
 			foreach (Node child in _map.GetChildren())
 			{
@@ -95,6 +110,9 @@ namespace MapGame
 								{
 									panel.GlobalPosition = touchPosition;
 								}
+								GD.Print("meow");
+								await ToSignal(GetTree().CreateTimer(1.3), "timeout");
+								_currentIslandPanel = null;
 								return;
 							}
 						}
@@ -180,38 +198,36 @@ namespace MapGame
 			GD.Print("Turn event answered received - resetting flag");
 			RemoveChild(_eventWindow);
 			isEventRunning = false;
-			
-			int randomNumber = GD.RandRange(1, 3);
-			
-			GD.Print($"Creating {randomNumber} popup markers");
-			
-			for(int i = 0; i < randomNumber; i++)
-			{	
-				await ToSignal(GetTree().CreateTimer(0.2f), SceneTreeTimer.SignalName.Timeout);
-				CreatePopUpMarker();
+			if (SaveData.Instance._currentDay == 0 && SaveData.Instance._currentTurn == 1)
+			{
+				return;
 			}
 			
+			int randomNumber = GD.RandRange(1, 3);
+			GD.Print($"Creating {randomNumber} popup markers");
+			for(int i = 0; i < randomNumber; i++)
+			{	
+				await ToSignal(GetTree().CreateTimer(0.2f), "timeout"); // "SceneTreeTimer.SignalName.Timeout"
+				CreatePopUpMarker();
+			}
 		}
-		public void OnPopUpEventAnswered(EventOutcomeData outcome)
+		
+		public void OnPopUpEventAnswered()
 		{
-			ResourceManager.Instance.HandleOptionOutcomes(outcome);
 			_guiInstance.UpdateLabels();
 			
 			// Print happiness for all islands
 			var allHappiness = SaveData.Instance.GetAllIslandHappiness();
-			
 			GD.Print("--Island happinesses--");
-			
 			foreach (var entry in allHappiness)
 			{
-				GD.Print($"Island {(int)entry.Key + 1} Happiness: {entry.Value}%");
+				GD.Print($"Island {(int)entry.Key} Happiness: {entry.Value}%");
 			}
-			
 			GD.Print("--");
 			
 			isEventRunning = false;
-			
 		}
+		
 		public void OnPopUpEventOpened()
 		{
 			GD.Print("Popup event opened");
@@ -228,7 +244,8 @@ namespace MapGame
 			markerInstance.PopUpEventOpened += OnPopUpEventOpened;
 
 			// Select a random island
-			Island randomIsland = (Island)GD.RandRange(0, 5); // 0-5 for 6 areas
+			Island randomIsland = (Island)GD.RandRange(1, 6); // 0-5 for 6 areas
+			GD.Print($"Random island: {randomIsland}");
 			
 			// Get position on island
 			Vector2 randomPosition = GetRandomPositionInsideIsland(randomIsland);
@@ -252,7 +269,7 @@ namespace MapGame
 			
 			if (polygons.Count == 0)
 			{
-				GD.PrintErr($"No collision polygons found for {island}");
+				GD.PrintErr($"No collision polygons found for Island {island}");
 				return islandArea.GlobalPosition;
 			}
 

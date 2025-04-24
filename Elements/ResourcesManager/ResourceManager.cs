@@ -6,13 +6,12 @@ namespace MapGame
 {
 	public enum Island
 	{
-		Island1,
-		Island2,
-		Island3,
-		Island4,
-		Island5,
-		Island6,
-		Island7,
+		Island1 = 1,
+		Island2 = 2,
+		Island3 = 3,
+		Island4 = 4,
+		Island5 = 5,
+		Island6 = 6
 	}
 
 	public partial class ResourceManager : Node
@@ -47,6 +46,7 @@ namespace MapGame
 		// Fixed missing closing parenthesis here
 		public void SetIslandHappiness(Island island, float happiness)
 		{
+			GD.Print($"Set {island} happiness to {happiness}");
 			happiness = Mathf.Clamp(happiness, 0, 100);
 			SaveData.Instance._islandHappiness[island] = happiness;
 			UpdateGlobalHappiness();
@@ -64,6 +64,7 @@ namespace MapGame
 
 		public void ChangeIslandHappiness(Island island, float change)
 		{
+			GD.Print($"Changing {island} happiness by {change}");
 			float current = GetIslandHappiness(island);
 			float newHappiness = Mathf.Clamp(current + change, 0, 100);
 			SaveData.Instance._islandHappiness[island] = newHappiness;
@@ -188,6 +189,11 @@ namespace MapGame
 			if (outcome.MagicMultiplier != 0)
 			{
 				ChangeMagicMultiplier(outcome.MagicMultiplier);
+			}
+			
+			if (outcome.InstantGameOver == true)
+			{
+				_ = SceneTransition.Instance.TransitionToScene("res://GameScenes/MainMenu.tscn");
 			}
 		}
 		public override void _Ready()

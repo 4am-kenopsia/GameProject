@@ -14,7 +14,7 @@ public partial class IslandPanel : Control
 			.SetTrans(Tween.TransitionType.Sine)
 			.SetEase(Tween.EaseType.Out);
 			
-		tween.TweenInterval(1.8f);
+		tween.TweenInterval(0.4f);
 		
 		tween.TweenProperty(this, "modulate:a", 0.0f, 0.3f)
 			.SetTrans(Tween.TransitionType.Sine)

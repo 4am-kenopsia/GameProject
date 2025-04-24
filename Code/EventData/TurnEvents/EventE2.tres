@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://djhf20276h2io"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_oj2tj"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_u4adi"]
+
+[sub_resource type="Resource" id="Resource_203ly"]
+script = ExtResource("1_oj2tj")
+OptionSeverity = 2
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = true
+
+[sub_resource type="Resource" id="Resource_bl8sa"]
+script = ExtResource("1_oj2tj")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.1
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("1_u4adi")
+isEventOneTime = false
+EventPicture = "res://Assets/Characters/mascot_head.png"
+EventID = "E2"
+EventTitleEN = "You passed the internship"
+EventTitleFI = "Läpäisit työharjottelun"
+EventDescEN = "Congratulations! You survived through the internship period and the boss has offered you a full-time position here! Well... less offered and more... you're now forced to work here forever... I'll still stay here with you though!
+(You completed the demo)"
+EventDescFI = "Onnittelut! Selvisit harjoittelujakson loppuun, ja pomo on tarjonnut sinulle vakituista työpaikkaa täällä! No… \"tarjonnut\" on ehkä väärä sana — sinut on nyt käytännössä pakotettu työskentelemään täällä ikuisesti... Mutta hei, minä pysyn silti täällä kanssasi!
+(Läpäisit demon)"
+EventOptionsEN = PackedStringArray("NO IM RESIGN", "Uh oh what did I get myself into...")
+EventOptionsFI = PackedStringArray("EI KUN IRTISANOUDUN", "O-ou... mihinkä mä sotkin itteni taas...")
+EventDictionary = {
+"E2_1": SubResource("Resource_203ly"),
+"E2_2": SubResource("Resource_bl8sa")
+}

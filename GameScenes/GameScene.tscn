@@ -99,12 +99,3 @@ polygon = PackedVector2Array(1714, 771, 1697, 750, 1680, 725, 1667, 682, 1677, 6
 z_index = 4095
 layout_mode = 1
 mouse_force_pass_scroll_events = false
-
-[node name="PopUpLayer" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2

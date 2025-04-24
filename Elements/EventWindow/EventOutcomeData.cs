@@ -13,7 +13,7 @@ namespace MapGame
 			High
 		}
 		[Export] public Severity OptionSeverity { get; set; }
-		[Export] public bool IsIslandSpecific = false;	
+		[Export] public bool IsIslandSpecific;
 		[ExportGroup("Resource changes")]
 		
 		[Export] public int MagicChange;
@@ -25,7 +25,7 @@ namespace MapGame
 		[ExportSubgroup("Bonus changes")]
 		[Export] public string unlockEvent;
 		[Export] public string unlockEvent2;
-		[Export] public bool SecretMode2;
+		[Export] public bool InstantGameOver;
 
 		[ExportGroup("Island Targeting")]
 		

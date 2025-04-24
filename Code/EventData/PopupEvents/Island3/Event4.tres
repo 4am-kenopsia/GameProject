@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://bufd0cwxmttoh"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_gfasu"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_2rhwt"]
+
+[sub_resource type="Resource" id="Resource_mv7vq"]
+script = ExtResource("1_gfasu")
+OptionSeverity = 1
+IsIslandSpecific = true
+MagicChange = -1900
+HappinessChange = 25
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_7kgxf"]
+script = ExtResource("1_gfasu")
+OptionSeverity = 0
+IsIslandSpecific = true
+MagicChange = 900
+HappinessChange = -10
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("2_2rhwt")
+isEventOneTime = false
+EventPicture = ""
+EventID = "4"
+EventTitleEN = ""
+EventTitleFI = ""
+EventDescEN = "A superpower’s dictator threatens to purchase the area in hopes of gaining access to its minerals and transportation routes."
+EventDescFI = "Suurvallan diktaattori uhkaa ostavansa alueen mineraalien ja kulkuväylien toivossa. "
+EventOptionsEN = PackedStringArray("Strengthen the region’s independence and issue a warning to the dictator.", "No worries, the dictator seems like a nice guy.")
+EventOptionsFI = PackedStringArray("Vahvista alueen itsenäisyyttä ja anna diktaattorille varoitus.", "Ei hätää, diktaattori vaikuttaa mukavalta.")
+EventDictionary = {
+"4_1": SubResource("Resource_mv7vq"),
+"4_2": SubResource("Resource_7kgxf")
+}

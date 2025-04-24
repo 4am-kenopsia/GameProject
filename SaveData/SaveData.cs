@@ -15,10 +15,11 @@ namespace MapGame
 		[Export] public float _currentMagicMultiplier = 0;
 		[Export] public float _ambienceVolume = -10;
 		[Export] public float _effectsVolume = -10;
+		[Export] public bool _gameOver = false;
 		[Export] public string _language = "EN";
 		[Export] public Vector2 _viewPortSize;
 		[Export] public Vector2 _gameAreaSize;
-		[Export] public Dictionary <Island, float> _islandHappiness = new Dictionary<Island, float>();
+		[Export] public Dictionary <Island, float> _islandHappiness = new();
 
 		[Export] public string[] _eventPool; // Something like this? 
 		public static SaveData Instance
@@ -28,7 +29,7 @@ namespace MapGame
 		}
 		public Dictionary<Island, float> GetAllIslandHappiness()
 		{
-			return _islandHappiness; // Your existing dictionary
+			return _islandHappiness;
 		}
 		
 		// Called when the node enters the scene tree for the first time.
@@ -56,11 +57,6 @@ namespace MapGame
 			_currentTurn = 0;
 			ResourceManager.Instance.SetMagicMultiplier(1);
 		}
-		public void Reset()
-		{
-			_currentTurn = 0;
-			_eventPool = new string[0]; // Reset the event pool to an empty array
-		}
 		
 		public void SaveGame()	
 		{
@@ -77,6 +73,7 @@ namespace MapGame
 			_saveFile.SetValue("Save1", "EffectsVolume", _effectsVolume);
 			_saveFile.SetValue("Save1", "AmbienceVolume", _ambienceVolume);
 			_saveFile.SetValue("Save1","Language", _language);
+			_saveFile.SetValue("Save1", "GameOver", _gameOver);
 
 			_saveFile.Save("res://SaveData/SaveData.cfg");
 			
@@ -97,6 +94,7 @@ namespace MapGame
 				_ambienceVolume = (float)_saveData.GetValue(save, "AmbienceVolume");
 				_effectsVolume = (float)_saveData.GetValue(save, "EffectsVolume");
 				_language = (string)_saveData.GetValue(save, "Language");
+				_gameOver = (bool)_saveData.GetValue(save, "GameOver");
 				
 				GD.Print("Game loaded");
 			}

@@ -1,12 +1,13 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 namespace MapGame
 {
 
 	public partial class GUI : Control
 	{
-		[Signal] public delegate void MenuToggledEventHandler(bool is_open);
+		[Signal] public delegate void MenuToggledEventHandler(bool IsOpen);
 		[Signal] public delegate void TurnButtonPressedEventHandler();
 		
 		
@@ -81,7 +82,7 @@ namespace MapGame
 			_magicLabel.Text = SaveData.Instance._currentMagic.ToString();
 			
 			UpdateResourceAnimation(_happinessLabel, _happinessIcon, SaveData.Instance._currentHappiness);
-			_happinessLabel.Text = SaveData.Instance._currentHappiness.ToString() + "%";
+			_happinessLabel.Text = SaveData.Instance._currentHappiness.ToString();
 			
 			UpdateResourceAnimation(_tokensLabel, _tokensIcon, SaveData.Instance._currentTokens);
 			_tokensLabel.Text = SaveData.Instance._currentTokens.ToString();
@@ -140,30 +141,13 @@ namespace MapGame
 				0.5f
 			);
 		}
-
-		public async void MainMenu()
-		{
-
-			await ToSignal(GetTree().CreateTimer(3.0f), Timer.SignalName.Timeout);
-			// Reset the resources
-			ResourceManager.Instance.ResetResources();
-
-			// Reset the SaveData
-			SaveData.Instance.Reset();
-
-
-			// Load the main menu scene
-			GetTree().ChangeSceneToFile("res://GameScenes/MainMenu.tscn");
-
-
-		}
 		
 		private void OnMenuButtonPressed()
 		{
 			if (!_isMenuOpen)
 			{
 				_isMenuOpen = true;
-				 UpdateMenuState(true);
+				_ = UpdateMenuStateAsync(true);
 				_gameMenuOverlay.Color = new Color(0.404f, 0.192f, 0.357f, 0f);
 				_gameMenuOverlay.Visible = true;
 				
@@ -217,7 +201,7 @@ namespace MapGame
 				.SetEase(Tween.EaseType.Out);
 			
 			_isMenuOpen = false;
-			UpdateMenuState(false); 
+			_ = UpdateMenuStateAsync(false); 
 		}
 		private void OnSettingsButtonPressed()
 		{
@@ -230,11 +214,12 @@ namespace MapGame
 		{
 			SoundPlayer.Instance.PlayNextTurnSound();
 			SaveData.Instance.SaveGame();
-			SceneTransition.Instance.TransitionToScene("res://GameScenes/MainMenu.tscn");
+			_ = SceneTransition.Instance.TransitionToScene("res://GameScenes/MainMenu.tscn");
 		}
-		private void UpdateMenuState(bool is_open)
+		private async Task UpdateMenuStateAsync(bool IsOpen)
 		{
-			EmitSignal(SignalName.MenuToggled, is_open);
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
+			EmitSignal(SignalName.MenuToggled, IsOpen);
 		}
 	}
 }

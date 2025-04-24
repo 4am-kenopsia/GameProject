@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://bf6ngdi6wnivo"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_dakt7"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_n0vfx"]
+
+[sub_resource type="Resource" id="Resource_2ywh8"]
+script = ExtResource("1_dakt7")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.1
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_ilx1s"]
+script = ExtResource("1_dakt7")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = -0.1
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("2_n0vfx")
+isEventOneTime = false
+EventPicture = "res://Assets/Characters/mascot_head.png"
+EventID = "T1"
+EventTitleEN = "Welcome to Mythical Manager"
+EventTitleFI = "Tervetuloa Mythical Manageriin"
+EventDescEN = "Hey! I'm Orion and I was tasked with being your assistant for the duration of your time here at Mythical Manager! Let me introduce you to your work. This is a \"turn event\" you'll get one of them per turn, so 3 per day and you get an amount of magic as your salary depending on your choices to them. Why don't you go forward in the day with the big button on the side!"
+EventDescFI = "Hei! Olen Orion, ja minut on määrätty avustajaksesi koko oleskelusi ajaksi täällä Mythical Managerissa! Annan sinulle pienen esittelyn työstäsi. Tämä on niin sanottu vuorotapahtuma – saat yhden joka vuorolla, eli kolme päivässä, ja saat taikaa palkaksi riippuen millaisia valintoja teet. Jatkappa päivääsi eteenpäin painamalla sivussa olevaa nappia."
+EventOptionsEN = PackedStringArray("Okay! I\'ll do that.", "Gotcha... I\'m John...")
+EventOptionsFI = PackedStringArray("Okei! Teenpäs niin.", "Ooookeii...")
+EventDictionary = {
+"T1_1": SubResource("Resource_2ywh8"),
+"T1_2": SubResource("Resource_ilx1s")
+}

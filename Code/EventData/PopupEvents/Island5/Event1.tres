@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://cgyjv5gyyxcxd"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_146ix"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_ui2u6"]
+
+[sub_resource type="Resource" id="Resource_8h64p"]
+script = ExtResource("1_146ix")
+OptionSeverity = 0
+IsIslandSpecific = true
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 1
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_oiudi"]
+script = ExtResource("1_146ix")
+OptionSeverity = 0
+IsIslandSpecific = true
+MagicChange = -900
+HappinessChange = 5
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("2_ui2u6")
+isEventOneTime = false
+EventPicture = ""
+EventID = "1"
+EventTitleEN = ""
+EventTitleFI = ""
+EventDescEN = "Some locals find a strange rock on the ground, many claiming it's sent by aliens."
+EventDescFI = "Jotkut paikalliset löytävät maasta oudon kiven, ja monet väittävät sen olevan avaruusolentojen lähettämä."
+EventOptionsEN = PackedStringArray("This is pseudoscience! Ignore the claims.", "Take samples and do testing, to hopefully discover a new energy source.")
+EventOptionsFI = PackedStringArray("Tämä on pseudotiedettä! Älä kiinnitä huomiota väitteisiin.", "Ota näytteitä ja tee testejä — ehkä löydämme uuden energianlähteen.")
+EventDictionary = {
+"1_1": SubResource("Resource_8h64p"),
+"1_2": SubResource("Resource_oiudi")
+}

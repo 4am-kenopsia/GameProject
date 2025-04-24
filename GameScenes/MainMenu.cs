@@ -46,7 +46,7 @@ namespace MapGame
 
 			_saveData = new ConfigFile();
 			Error err = _saveData.Load("res://SaveData/SaveData.cfg");
-			if (err != Error.Ok)
+			if (err != Error.Ok || SaveData.Instance._gameOver == true)
 			{
 				_continueButton.Disabled = true;
 				GD.Print("Err: No Savedata found");
@@ -111,6 +111,7 @@ namespace MapGame
 			
 			_confirmationPopup.Visible = false;
 			SaveData.Instance._currentDay = 0;
+			SaveData.Instance._gameOver = false;
 			ResourceManager.Instance.ResetResources();
 			SaveData.Instance.SaveGame();
 			SoundPlayer.Instance.PlayMenuButtonSound();

@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://dp5pkv261dlnr"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_fyng7"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_u4bml"]
+
+[sub_resource type="Resource" id="Resource_excve"]
+script = ExtResource("1_fyng7")
+OptionSeverity = 1
+IsIslandSpecific = true
+MagicChange = 1200
+HappinessChange = -20
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_c7bm2"]
+script = ExtResource("1_fyng7")
+OptionSeverity = 2
+IsIslandSpecific = true
+MagicChange = -3000
+HappinessChange = 20
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("2_u4bml")
+isEventOneTime = false
+EventPicture = ""
+EventID = "3"
+EventTitleEN = ""
+EventTitleFI = ""
+EventDescEN = "There is speculation about a civil war due to shrinking residential areas."
+EventDescFI = "Sisällissotaa spekuloidaan asuinalueiden pienentymisen takia. "
+EventOptionsEN = PackedStringArray("Who says that? I haven’t seen such issues in the area.", "Sounds serious — we must act immediately to prevent this from happening.")
+EventOptionsFI = PackedStringArray("Kuka noin muka väittää? En ole nähnyt alueella tällaisia ongelmia. ", "Kuulostaa vakavalta, on toimittava heti välttääksemme tämän tapahtuman.")
+EventDictionary = {
+"3_1": SubResource("Resource_excve"),
+"3_2": SubResource("Resource_c7bm2")
+}

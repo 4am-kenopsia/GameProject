@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://bf5wi8ylhdg4h"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_bfnrh"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_tchc1"]
+
+[sub_resource type="Resource" id="Resource_xkfjd"]
+script = ExtResource("1_bfnrh")
+OptionSeverity = 1
+IsIslandSpecific = true
+MagicChange = -1800
+HappinessChange = -5
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_a2aay"]
+script = ExtResource("1_bfnrh")
+OptionSeverity = 2
+IsIslandSpecific = true
+MagicChange = -2600
+HappinessChange = 25
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("2_tchc1")
+isEventOneTime = false
+EventPicture = ""
+EventID = "3"
+EventTitleEN = ""
+EventTitleFI = ""
+EventDescEN = "Locals are refusing to use medicine to treat their illnesses, instead relying on rocks for their healing properties."
+EventDescFI = "Paikalliset kieltäytyvät käyttämästä lääkkeitä sairauksiensa hoitoon ja luottavat sen sijaan kivien parantaviin ominaisuuksiin."
+EventOptionsEN = PackedStringArray("Mandate healing pebbles for every household.", "Start a large campaign to inform people the dangers of pseudoscience.")
+EventOptionsFI = PackedStringArray("Määrää parantavat kivet jokaiseen kotitalouteen.", "Käynnistä laaja kampanja pseudotieteen vaaroista.")
+EventDictionary = {
+"3_1": SubResource("Resource_xkfjd"),
+"3_2": SubResource("Resource_a2aay")
+}

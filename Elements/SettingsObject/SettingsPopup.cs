@@ -28,6 +28,15 @@ namespace MapGame
 			_fi.Pressed += OnFiPressed;
 			_en.Pressed += OnEnPressed;
 			
+			switch (SaveData.Instance._language)
+			{
+				case "EN":
+					OnEnPressed();
+					break;
+				case "FI":
+					OnFiPressed();
+					break;
+			}
 			_ambienceSlider.Value = SaveData.Instance._ambienceVolume;
 			_effectsSlider.Value = SaveData.Instance._effectsVolume;
 			
@@ -83,10 +92,18 @@ namespace MapGame
 		}
 		public void OnFiPressed()
 		{
+			GD.Print("Switched language to Finnish");
+			SoundPlayer.Instance.PlayMenuButtonSound();
+			_fi.Modulate = new Color(1, 1, 1, 1);
+			_en.Modulate = new Color(1, 1, 1, 0.5f);
 			SaveData.Instance._language = "FI";
 		}
 		public void OnEnPressed()
 		{
+			GD.Print("Switched language to English");
+			SoundPlayer.Instance.PlayMenuButtonSound();
+			_en.Modulate = new Color(1, 1, 1, 1);
+			_fi.Modulate = new Color(1, 1, 1, 0.5f);
 			SaveData.Instance._language = "EN";
 		}
 	}

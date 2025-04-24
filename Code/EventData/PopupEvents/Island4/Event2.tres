@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://c7eswldm57elh"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_111kp"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_k5n6g"]
+
+[sub_resource type="Resource" id="Resource_ua7ti"]
+script = ExtResource("1_111kp")
+OptionSeverity = 2
+IsIslandSpecific = true
+MagicChange = -3000
+HappinessChange = 30
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_1rk6e"]
+script = ExtResource("1_111kp")
+OptionSeverity = 2
+IsIslandSpecific = true
+MagicChange = 1000
+HappinessChange = -30
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("2_k5n6g")
+isEventOneTime = false
+EventPicture = ""
+EventID = "2"
+EventTitleEN = ""
+EventTitleFI = ""
+EventDescEN = "A local fisher is reporting lakes turning black and fish becoming deformed."
+EventDescFI = "Paikallinen kalastaja raportoi järvien muuttuvan mustiksi ja kalojen olevan epämuodostuneita."
+EventOptionsEN = PackedStringArray("Investigate what\'s going on.", "It\'s probably nothing...")
+EventOptionsFI = PackedStringArray("Tutki, mistä on kyse.", "Tuskinpa mitään vakavaa...")
+EventDictionary = {
+"2_1": SubResource("Resource_ua7ti"),
+"2_2": SubResource("Resource_1rk6e")
+}

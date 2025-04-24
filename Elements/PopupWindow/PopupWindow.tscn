@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhxvgpyahrcbh"]
+[gd_scene load_steps=8 format=3 uid="uid://bhxvgpyahrcbh"]
 
 [ext_resource type="Script" path="res://Elements/PopupWindow/PopupWindow.cs" id="1_2q78g"]
 [ext_resource type="Texture2D" uid="uid://21xrjiyrenbp" path="res://Assets/Popup Window/Popup_Window.png" id="2_5otnm"]
@@ -7,16 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://qwqf5s26fpn8" path="res://Assets/Popup Window/Popup_Window_Pressed.png" id="5_7fp6y"]
 [ext_resource type="Texture2D" uid="uid://c6y8yyunuq7qx" path="res://Assets/Resources/large_change.png" id="6_a2opx"]
 
-[sub_resource type="FontVariation" id="FontVariation_obhgt"]
-base_font = ExtResource("2_slau0")
-variation_opentype = {
-2003265652: 800
-}
-
 [sub_resource type="FontVariation" id="FontVariation_iwew6"]
 base_font = ExtResource("2_slau0")
 
-[node name="PopupWindow" type="Control" node_paths=PackedStringArray("_eventLabel")]
+[node name="PopupWindow" type="Control"]
 top_level = true
 z_index = 4096
 layout_mode = 3
@@ -26,7 +20,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2q78g")
-_eventLabel = NodePath("Panel/EventLabel")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 layout_mode = 1
@@ -52,20 +45,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_5otnm")
 
-[node name="EventLabel" type="Label" parent="Panel"]
-visible = false
-layout_mode = 0
-offset_left = 139.0
-offset_top = 55.0
-offset_right = 1002.0
-offset_bottom = 132.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = SubResource("FontVariation_obhgt")
-theme_override_font_sizes/font_size = 14
-text = "A man has fallen in to the river of lego city"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Description" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 8
@@ -86,15 +65,6 @@ text = "Description"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-
-[node name="img" type="TextureRect" parent="Panel"]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_left = 620.0
-offset_top = 120.0
-offset_right = 820.0
-offset_bottom = 350.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -126,10 +96,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_slau0")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "SDSDSADASDASDAS"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Button1"]
 layout_mode = 1
@@ -164,10 +135,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_slau0")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "SDSDSADASDASDAS"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/Button2"]
 layout_mode = 1
@@ -186,5 +158,3 @@ mouse_filter = 2
 texture = ExtResource("6_a2opx")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

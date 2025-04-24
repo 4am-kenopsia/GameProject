@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://d2q5f7vjwyo22"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_4vbg1"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_wokuh"]
+
+[sub_resource type="Resource" id="Resource_jageq"]
+script = ExtResource("1_4vbg1")
+OptionSeverity = 2
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = true
+
+[sub_resource type="Resource" id="Resource_xa3yg"]
+script = ExtResource("1_4vbg1")
+OptionSeverity = 2
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = true
+
+[sub_resource type="Resource" id="Resource_um1gv"]
+script = ExtResource("1_4vbg1")
+OptionSeverity = 2
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = true
+
+[sub_resource type="Resource" id="Resource_0d0x2"]
+script = ExtResource("1_4vbg1")
+OptionSeverity = 2
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = true
+
+[resource]
+script = ExtResource("2_wokuh")
+isEventOneTime = false
+EventPicture = "res://Assets/Characters/mascot_head.png"
+EventID = "E1"
+EventTitleEN = "You're FIRED!"
+EventTitleFI = "Saat POTKUT!"
+EventDescEN = "Uh oh... The boss really isn't amused by your performance... He told me to come tell you that your contract is terminated immediately.... I'm sorry. I had fun with you while it lasted. I hope you can find some work in the future... Only someplace else..."
+EventDescFI = "O-Ou... Pomoa ei todellakaan huvita suorituksesi... Hän käski minun tulla kertomaan, että sopimuksesi on irtisanottu välittömästi... Olen pahoillani. Minulla oli kyllä hauskaa kanssasi. Toivottavasti löydät vielä töitä jostain tulevaisuudessa... Mutta jostain muualta..."
+EventOptionsEN = PackedStringArray("NOOO NOOOOOO NOO", "I hated the boss anyway...", "How could you do this to me....", "Oh, how unfortunate..")
+EventOptionsFI = PackedStringArray("EIIII EIIIIIIIII EIIII", "Vihasin pomoo muutenkin...", "Miten voit tehdä mulle näin...", "Voi, miten valitettavaa..")
+EventDictionary = {
+"E1_1": SubResource("Resource_jageq"),
+"E1_2": SubResource("Resource_xa3yg"),
+"E1_3": SubResource("Resource_um1gv"),
+"E1_4": SubResource("Resource_0d0x2")
+}

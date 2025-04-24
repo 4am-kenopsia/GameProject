@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=5 format=3 uid="uid://cpblejvgyg623"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_eech4"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="2_imceg"]
+
+[sub_resource type="Resource" id="Resource_rkoo1"]
+script = ExtResource("1_eech4")
+OptionSeverity = 1
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.2
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_xj57q"]
+script = ExtResource("1_eech4")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("2_imceg")
+isEventOneTime = false
+EventPicture = "res://Assets/Characters/mascot_head.png"
+EventID = "T2"
+EventTitleEN = "Popups and resources"
+EventTitleFI = "Popupit ja resurssit"
+EventDescEN = "Well done John! After you answer a turn event, the map will update with various events and situations happening around the world. You can choose to click these popups open and answer them to affect the people's happiness in that country and your own magic reserves. Clicking on an island displays the happiness of that island and you can see the average happiness of the world on the side panel as well as tokens which are a rarer resource."
+EventDescFI = "Hienoa työtä, Tommi! Kun olet vastannut vuorotapahtumaan, kartta päivittyy eri tapahtumilla ja tilanteilla, jotka tapahtuvat ympäri maailmaa. Voit klikata näitä ilmestyviä ilmoituksia auki ja vastata niihin vaikuttaaksesi kyseisen maan ihmisten onnellisuuteen ja sinun taikavaroihin. Klikkaamalla saarta näet sen saaren onnellisuustason ja sivupaneelissa näkyy koko maailman keskimääräinen onnellisuus sekä merkit, joka on harvinaisempi resurssi."
+EventOptionsEN = PackedStringArray("WOAH I HAVE MAGIC???", "Makes sense.")
+EventOptionsFI = PackedStringArray("WOA MULLA ON TAIKAVOIMIA???", "Kuulostaa selkeeltä.")
+EventDictionary = {
+"T2_1": SubResource("Resource_rkoo1"),
+"T2_2": SubResource("Resource_xj57q")
+}

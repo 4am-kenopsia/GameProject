@@ -5,37 +5,34 @@ namespace MapGame
 {
 	public partial class MarkerContainer : Control
 	{
-		// Signal declarations (only one 'public')
-		[Signal] public delegate void ButtonPressedEventHandler(); 
-		[Signal] public delegate void PopUpEventAnsweredEventHandler(EventOutcomeData outcome);
+		[Signal] public delegate void PopUpEventAnsweredEventHandler();
 		[Signal] public delegate void PopUpEventOpenedEventHandler();
+		
 		private Tween _tween;
 		
 		[Export] private PackedScene popUp;
-		private TextureButton _button;
-		private AnimationPlayer _player;
+		private TextureButton _pin;
 		public Island TargetIsland { get; set; } // Island reference
 		private GUI _gui;
 
 		public override void _Ready()
 		{
 			Modulate = Colors.Transparent;
-			_button = GetNode<TextureButton>("Pin");
-			_player = GetNode<AnimationPlayer>("AnimationPlayer");
+			_pin = GetNode<TextureButton>("Pin");
 			TweenFadeIn();
 			
-			_button.Pressed += OnButtonPressed;
+			_pin.Pressed += OnPinPressed;
+			
 			GetNode<GUI>("/root/GameScene/GUI").MenuToggled += (is_open) => {
 			GetNode<TextureButton>("Pin").Disabled = is_open;
 			};
 		}
 
 
-		public void OnButtonPressed()
+		public void OnPinPressed()
 		{
 			if (GameScene.isEventRunning || GetNode<TextureButton>("Pin").Disabled) return;
 			
-			EmitSignal(SignalName.ButtonPressed);
 			SpawnPopUp();
 		}
 		
@@ -44,30 +41,27 @@ namespace MapGame
 			SoundPlayer.Instance.PlayPopUpSound();
 			TweenFadeOut();
 			await ToSignal(_tween, Tween.SignalName.Finished);
-			var popUpInstance = popUp.Instantiate<PopupWindow>();
 			
-			popUpInstance.TargetIsland = this.TargetIsland; // Pass island info
-			popUpInstance.PopUpEventAnswered += OnPopUpEventAnswered;
+			PopupWindow popupWindow = popUp.Instantiate<PopupWindow>();
+			
+			popupWindow.TargetIsland = TargetIsland; // Pass island info
+			
+			popupWindow.PopUpEventAnswered += OnPopUpEventAnswered;
 
 			// Center in viewport
-			popUpInstance.GlobalPosition = new Vector2(0, 0); 
+			//popupWindow.GlobalPosition = new Vector2(0, 0); 
 			
-			AddChild(popUpInstance);
-			popUpInstance.TopLevel = true; 
+			AddChild(popupWindow);
+			popupWindow.TopLevel = true; 
 			EmitSignal(SignalName.PopUpEventOpened);
 		}
 
-		private void OnPopUpEventAnswered(EventOutcomeData outcome)
+		private void OnPopUpEventAnswered()
 		{
-			// Handle island-specific outcomes
-			if (outcome.IsIslandSpecific)
-			{
-				outcome.TargetIsland = this.TargetIsland;
-			}
-			ResourceManager.Instance.HandleOptionOutcomes(outcome);
-			EmitSignal(SignalName.PopUpEventAnswered, outcome);
+			EmitSignal(SignalName.PopUpEventAnswered);
 			QueueFree();
 		}
+		
 		public void TweenFadeIn()
 		{
 		// Create a new tween
