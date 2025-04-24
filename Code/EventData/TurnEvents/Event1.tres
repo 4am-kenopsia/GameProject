@@ -1,16 +1,70 @@
-[gd_resource type="Resource" script_class="EventData" load_steps=2 format=3 uid="uid://diop4dluck4rg"]
+[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://diop4dluck4rg"]
 
 [ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_sn75l"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_vt033"]
+
+[sub_resource type="Resource" id="Resource_efu7y"]
+script = ExtResource("1_vt033")
+OptionSeverity = 2
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = -0.4
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_llh61"]
+script = ExtResource("1_vt033")
+OptionSeverity = 1
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 1
+MagicMultiplier = 0.2
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_5354k"]
+script = ExtResource("1_vt033")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = -0.2
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_2h7gp"]
+script = ExtResource("1_vt033")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.1
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
 
 [resource]
 script = ExtResource("1_sn75l")
 isEventOneTime = true
-EventPicture = ""
-EventID = "0"
-EventTitleEN = ""
-EventTitleFI = ""
-EventDescEN = ""
-EventDescFI = ""
-EventOptionsEN = PackedStringArray()
-EventOptionsFI = PackedStringArray()
-EventDictionary = {}
+EventPicture = "res://Assets/Characters/mascot_head.png"
+EventID = "1"
+EventTitleEN = "Disappearing village"
+EventTitleFI = "Kadonnut kylä"
+EventDescEN = "A rumor spreads across the world that a village has disappeared overnight due to a powerful curse. A bard posts a dramatic tale about it on MystiGram, and it goes viral. But you’re not sure it’s true."
+EventDescFI = "Huhut leviävät ympäri maailmaa: kylä on kadonnut yön aikana voimakkaan kirouksen seurauksena. Eräs trubaduuri julkaisee dramaattisen kertomuksen asiasta MystiGram:issa, ja se leviää salamannopeasti. Et kuitenkaan ole varma, onko tarina totta."
+EventOptionsEN = PackedStringArray("Share the story immediately!", "Investigate the source of the rumor before reacting.", "Add your own twist to the story and repost it.", "Ask the local villagers first before sharing anything.")
+EventOptionsFI = PackedStringArray("Jaa tarinaa heti!", "Selvitä huhun alkuperä ennen kun reagoit", "Lisää oma lisäys tarinaan ja jaa se", "Ota yhteyttä paikallisiin kyläläisiin varmistaakseen asian ennen jakamista")
+EventDictionary = {
+"1_1": SubResource("Resource_efu7y"),
+"1_2": SubResource("Resource_llh61"),
+"1_3": SubResource("Resource_5354k"),
+"1_4": SubResource("Resource_2h7gp")
+}

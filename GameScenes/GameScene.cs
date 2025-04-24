@@ -110,7 +110,6 @@ namespace MapGame
 								{
 									panel.GlobalPosition = touchPosition;
 								}
-								GD.Print("meow");
 								await ToSignal(GetTree().CreateTimer(1.3), "timeout");
 								_currentIslandPanel = null;
 								return;
@@ -222,6 +221,10 @@ namespace MapGame
 			foreach (var entry in allHappiness)
 			{
 				GD.Print($"Island {(int)entry.Key} Happiness: {entry.Value}%");
+				if (entry.Value <= 0)
+				{
+					SaveData.Instance._gameOver = true;
+				}
 			}
 			GD.Print("--");
 			

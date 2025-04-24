@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://brbj0hd455yxh"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_4xvun"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_8c74o"]
+
+[sub_resource type="Resource" id="Resource_kbjjc"]
+script = ExtResource("1_4xvun")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.0
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_06c87"]
+script = ExtResource("1_4xvun")
+OptionSeverity = 2
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.3
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_w18jt"]
+script = ExtResource("1_4xvun")
+OptionSeverity = 1
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = -0.2
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_74tri"]
+script = ExtResource("1_4xvun")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = -1
+MagicMultiplier = 0.1
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("1_8c74o")
+isEventOneTime = false
+EventPicture = "res://Assets/Characters/mascot_head.png"
+EventID = "2"
+EventTitleEN = "Dragonpox cure"
+EventTitleFI = ""
+EventDescEN = "A scroll is circulating claiming unicorn horn powder can cure Dragonpox—a deadly but rare disease. A local apothecary starts selling fake potions based on this claim."
+EventDescFI = "Käärö kiertää, väittäen että yksisarven sarvijauhe parantaa lohikäärmerokon – harvinaisen mutta tappavan taudin. Paikallinen apteekkari alkaa myydä väärennettyä rohtoa väitteen perusteella."
+EventOptionsEN = PackedStringArray("Buy the potion just in case—it can’t hurt, right?", "Report the apothecary for spreading false information.", "Promote the cure to your friends to help them stay safe.", "Research real magical medicine sources before believing it.")
+EventOptionsFI = PackedStringArray("Ostan rohtoa varmuuden vuoksi – ei siitä haittaakaan ole", "Ilmoitan apteekkarista, koska hän levittää väärää tietoa", "Suosittelen rohtoa ystävilleni – heidänkin pitää suojautua", "Tutkin oikeita maagisen lääketieteen lähteitä ennen kuin uskon väitteeseen")
+EventDictionary = {
+"2_1": SubResource("Resource_kbjjc"),
+"2_2": SubResource("Resource_06c87"),
+"2_3": SubResource("Resource_w18jt"),
+"2_4": SubResource("Resource_74tri")
+}

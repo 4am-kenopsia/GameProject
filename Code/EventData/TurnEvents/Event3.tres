@@ -1,0 +1,70 @@
+[gd_resource type="Resource" script_class="EventData" load_steps=7 format=3 uid="uid://bh727sfcclapa"]
+
+[ext_resource type="Script" path="res://Elements/EventWindow/EventOutcomeData.cs" id="1_reb4l"]
+[ext_resource type="Script" path="res://Elements/EventWindow/EventData.cs" id="1_t7o7p"]
+
+[sub_resource type="Resource" id="Resource_icrxa"]
+script = ExtResource("1_reb4l")
+OptionSeverity = 1
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.2
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_uo0mu"]
+script = ExtResource("1_reb4l")
+OptionSeverity = 0
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = 0.1
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_sdmqy"]
+script = ExtResource("1_reb4l")
+OptionSeverity = 1
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = 0
+MagicMultiplier = -0.2
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[sub_resource type="Resource" id="Resource_5etll"]
+script = ExtResource("1_reb4l")
+OptionSeverity = 2
+IsIslandSpecific = false
+MagicChange = 0
+HappinessChange = 0
+TokensChange = -1
+MagicMultiplier = 0.4
+unlockEvent = ""
+unlockEvent2 = ""
+InstantGameOver = false
+
+[resource]
+script = ExtResource("1_t7o7p")
+isEventOneTime = false
+EventPicture = ""
+EventID = "3"
+EventTitleEN = "The Serpent Sigil"
+EventTitleFI = "Käärmesinetti"
+EventDescEN = "A mysterious sigil appears on city walls, and rumors claim it’s a mark of an underground rebellion. Some believe it's a call for justice, others think it's a plot to overthrow the queen. The sigil starts trending on the MystiGram."
+EventDescFI = "Salaperäinen sinetti ilmestyy kaupungin muureihin, ja huhut väittävät sen olevan maanalaisten kapinallisten merkki. Osa uskoo sen olevan oikeudenmukaisuuden kutsu, toiset epäilevät vallankaappausta. Sinetti alkaa levitä MystiGram:issa."
+EventOptionsEN = PackedStringArray("Share it with your friends—it’s clearly important.", "Try to find out who’s behind it before forming an opinion.", "Assume it’s true and start preparing for a rebellion.", "Ask the city’s scholars or leaders if there’s any truth to it.")
+EventOptionsFI = PackedStringArray("Jaetaan kavereille – tämä on selvästi tärkeää.", "Yritän selvittää kuka on sen takana ennen kuin muodostan mielipiteen.", "Oletan että se on totta ja alan valmistautua kapinaan.", "Kysyn kaupungin oppineilta tai johtajilta, onko väitteessä perää.")
+EventDictionary = {
+"3_1": SubResource("Resource_icrxa"),
+"3_2": SubResource("Resource_uo0mu"),
+"3_3": SubResource("Resource_sdmqy"),
+"3_4": SubResource("Resource_5etll")
+}

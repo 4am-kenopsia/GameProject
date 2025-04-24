@@ -42,13 +42,13 @@ namespace MapGame
 			_eventWindow.Position = _startingPosition;
 			_targetPosition = new Vector2(_startingPosition.X, _centerY - 440);
 			
-			string _eventNumber = GD.RandRange(1, 1).ToString();
+			string _eventNumber = GD.RandRange(1, 3).ToString();
 			if (SaveData.Instance._currentDay == 0)
 			{
 				_eventNumber = $"T{SaveData.Instance._currentTurn}";
 				GD.Print(SaveData.Instance._currentTurn);
 			}
-			else if (SaveData.Instance._gameOver == true)
+			else if (SaveData.Instance._gameOver == true || SaveData.Instance._currentMagic <= 0)
 			{
 				_eventNumber = "E1";
 			}
